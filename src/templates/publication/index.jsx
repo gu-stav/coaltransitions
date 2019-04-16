@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import Constraint from '../../components/constraint';
 import style from './style';
 import withLayout from '../../components/with-layout';
 
@@ -12,36 +13,38 @@ const Page = ({
     }
   }
 }) => (
-  <article>
+  <article className="publication-container">
     <style jsx>{style}</style>
 
-    <header>
-      <h1 className="title">
-        {title}
-        {(year || subtitle) && (
-          <small>
-            {year}
-            {(subtitle || year) && ` - `}
-            {subtitle}
-          </small>
+    <Constraint>
+      <header>
+        <h1 className="title">
+          {title}
+          {(year || subtitle) && (
+            <small className="subtitle">
+              {year}
+              {(subtitle || year) && ` - `}
+              {subtitle}
+            </small>
+          )}
+        </h1>
+
+        {author && (
+          <ul>
+            {author.map(({ name }) => (
+              <li>{name}</li>
+            ))}
+          </ul>
         )}
-      </h1>
+      </header>
 
-      {author && (
-        <ul>
-          {author.map(({ name }) => (
-            <li>{name}</li>
-          ))}
-        </ul>
+      {abstract && (
+        <div
+          className="abstract"
+          dangerouslySetInnerHTML={{ __html: abstract }}
+        />
       )}
-    </header>
-
-    {abstract && (
-      <div
-        className="abstract"
-        dangerouslySetInnerHTML={{ __html: abstract }}
-      />
-    )}
+    </Constraint>
   </article>
 );
 
