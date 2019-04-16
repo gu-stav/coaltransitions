@@ -1,7 +1,10 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-export default ({
+import style from './style';
+import withLayout from '../../components/with-layout';
+
+const Page = ({
   data: {
     publication: {
       acf: { abstract, year, subtitle, author },
@@ -10,8 +13,10 @@ export default ({
   }
 }) => (
   <article>
+    <style jsx>{style}</style>
+
     <header>
-      <h1>
+      <h1 className="title">
         {title}
         {(year || subtitle) && (
           <small>
@@ -31,9 +36,16 @@ export default ({
       )}
     </header>
 
-    {abstract && <div dangerouslySetInnerHTML={{ __html: abstract }} />}
+    {abstract && (
+      <div
+        className="abstract"
+        dangerouslySetInnerHTML={{ __html: abstract }}
+      />
+    )}
   </article>
 );
+
+export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {

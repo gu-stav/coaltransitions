@@ -2,12 +2,16 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import React from 'react';
 
+import style from './style';
+
 export default ({
   data: {
     publications: { nodes: publications }
   }
 }) => (
   <>
+    <style jsx>{style}</style>
+
     <h1>Publications</h1>
 
     {publications && (
