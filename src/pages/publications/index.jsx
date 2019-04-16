@@ -2,16 +2,14 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import React from 'react';
 
-import style from './style';
+import withLayout from '../../components/with-layout';
 
-export default ({
+const Page = ({
   data: {
     publications: { nodes: publications }
   }
 }) => (
   <>
-    <style jsx>{style}</style>
-
     <h1>Publications</h1>
 
     {publications && (
@@ -28,19 +26,14 @@ export default ({
   </>
 );
 
+export default withLayout(Page);
+
 export const query = graphql`
   query {
     publications: allWordpressWpPublications {
       nodes {
         slug
         title
-        acf {
-          year
-          subtitle
-          author {
-            name
-          }
-        }
       }
     }
   }
