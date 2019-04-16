@@ -5,10 +5,14 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        baseUrl: config.episodes.endpoint,
+        baseUrl: config.endpoint,
         protocol: 'https',
         includedRoutes: ['/*/*/publications', '/*/*/media'],
-        verboseOutput: true
+        verboseOutput: true,
+        auth: {
+          htaccess_user: config.auth_username,
+          htaccess_pass: config.auth_password
+        }
       }
     },
 

@@ -1,5 +1,5 @@
 {
-  "episodes": {
-    "endpoint": "b1909.myraidbox.de"
-  }
+  "endpoint": "b1909.myraidbox.de",
+  "auth_username": "rb",
+  "auth_password": "gonobeda"
 }
