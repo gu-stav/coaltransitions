@@ -8,7 +8,6 @@ module.exports = {
         baseUrl: config.endpoint,
         protocol: 'https',
         includedRoutes: ['**/publications', '**/media', '**/tags'],
-        verboseOutput: true,
         auth: {
           htaccess_user: config.auth_username,
           htaccess_pass: config.auth_password
