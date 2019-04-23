@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import Link from 'gatsby-link';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
@@ -11,6 +10,7 @@ import {
   extractPublicationsAuthors,
   extractPublicationsTags
 } from '../../lib/publication';
+import PublicationsList from './publication-list';
 import withLayout from '../../components/with-layout';
 
 const setUrlForFilter = (name, value) => {
@@ -124,17 +124,7 @@ const Page = ({
       <h1>Publications ({filter.publications.length})</h1>
 
       {filter.publications && (
-        <ul>
-          {filter.publications.map(({ slug, title }) => (
-            <li>
-              <h2>
-                <Link to={`/publications/${slug}/`}>
-                  <span dangerouslySetInnerHTML={{ __html: title }} />
-                </Link>
-              </h2>
-            </li>
-          ))}
-        </ul>
+        <PublicationsList publications={filter.publications} />
       )}
     </>
   );
@@ -148,6 +138,17 @@ export const query = graphql`
       nodes {
         slug
         title
+        featuredImage: featured_media {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 400) {
+                src
+                srcSet
+                srcSetWebp
+              }
+            }
+          }
+        }
         tags {
           name
         }
