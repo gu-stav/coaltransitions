@@ -49,7 +49,7 @@ const Page = ({
           <ul>
             {author.map(({ name }) => (
               <li>
-                <Link to={`/publications/?tag=${name}`}>{name}</Link>
+                <Link to={`/publications/?authors=${name}`}>{name}</Link>
               </li>
             ))}
           </ul>
@@ -63,7 +63,7 @@ const Page = ({
           <ul>
             {tags.map(({ slug, name }) => (
               <li>
-                <Link to={`/publications/?tag=${slug}`}>{name}</Link>
+                <Link to={`/publications/?keywords=${slug}`}>{name}</Link>
               </li>
             ))}
           </ul>
