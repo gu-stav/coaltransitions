@@ -5,3 +5,26 @@ exports.createPages = ({ actions, graphql }) => {
 
   return createPublicationPages(graphql, createPage);
 };
+
+exports.onCreateNode = ({ node }) => {
+  if (
+    (node.internal.type === 'wordpress__acf_publications' ||
+      node.internal.type === 'wordpress__wp_publications') &&
+    node.acf.institute === false
+  ) {
+    // eslint-disable-next-line no-param-reassign
+    node.acf.institute = [];
+  }
+
+  if (
+    node.internal.type === 'wordpress__acf_publications' ||
+    node.internal.type === 'wordpress__wp_publications'
+  ) {
+    node.acf.language.forEach(language => {
+      if (language.file === false) {
+        // eslint-disable-next-line no-param-reassign
+        language.file = {};
+      }
+    });
+  }
+};
