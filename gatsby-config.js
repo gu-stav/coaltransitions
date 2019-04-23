@@ -1,6 +1,10 @@
 const config = require('./config.json');
 
 module.exports = {
+  siteMetadata: {
+    title: 'Coal Transitions'
+  },
+
   plugins: [
     {
       resolve: 'gatsby-source-wordpress',

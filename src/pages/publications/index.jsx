@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import React, { useState } from 'react';
 import Select from 'react-select';
@@ -63,7 +64,9 @@ const Page = ({
   });
 
   return (
-    <main>
+    <>
+      <Helmet title="Publications" />
+
       <Constraint>
         <h2>Filter</h2>
 
@@ -133,7 +136,7 @@ const Page = ({
           ))}
         </ul>
       )}
-    </main>
+    </>
   );
 };
 

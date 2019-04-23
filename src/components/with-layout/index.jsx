@@ -1,13 +1,35 @@
+import Helmet from 'react-helmet';
 import React from 'react';
+import { graphql, useStaticQuery } from 'gatsby';
 
 import SideColumn from './side-column';
 import style from './style';
 
-export default Children => props => (
-  <main className="site">
-    <style jsx>{style}</style>
+export default Children => props => {
+  const {
+    site: {
+      siteMetadata: { title }
+    }
+  } = useStaticQuery(graphql`
+    query {
+      site {
+        siteMetadata {
+          title
+        }
+      }
+    }
+  `);
 
-    <SideColumn />
-    <Children {...props} />
-  </main>
-);
+  return (
+    <main className="site">
+      <style jsx>{style}</style>
+
+      <Helmet titleTemplate={`%s | ${title}`} />
+
+      <SideColumn />
+      <div>
+        <Children {...props} />
+      </div>
+    </main>
+  );
+};

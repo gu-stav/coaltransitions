@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 import Link from 'gatsby-link';
 import React from 'react';
 
@@ -18,6 +19,8 @@ const Page = ({
   }
 }) => (
   <Constraint>
+    <Helmet title={title} />
+
     <article className="publication-container">
       <style jsx>{style}</style>
 
