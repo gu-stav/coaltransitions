@@ -3,6 +3,12 @@ import Link from 'gatsby-link';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
+import {
+  publicationContainsAllTags,
+  publicationContainsAllAuthors,
+  extractPublicationsAuthors,
+  extractPublicationsTags
+} from '../../lib/publication';
 import withLayout from '../../components/with-layout';
 
 const setUrlForFilter = (name, value) => {
@@ -21,55 +27,34 @@ const getFilterFromUrl = name => {
   return value ? value.split(';') : [];
 };
 
-const extractAuthors = publications => {
-  const authors = publications.reduce((acc, publication) => {
-    const {
-      acf: { author: publicationAuthors }
-    } = publication;
-
-    publicationAuthors.forEach(({ name }) => {
-      acc.add(name);
-    });
-
-    return acc;
-  }, new Set());
-
-  return Array.from(authors.entries(), ([author]) => {
-    return {
-      value: author,
-      label: author
-    };
-  });
-};
-
-const extractTags = publications => {
-  const tags = publications.reduce((acc, publication) => {
-    const { tags: publicationTags } = publication;
-
-    publicationTags.forEach(({ name }) => {
-      acc.add(name);
-    });
+const filterPublications = (publications, { authors, tags }) =>
+  publications.reduce((acc, publication) => {
+    if (
+      publicationContainsAllTags(publication, tags) === true &&
+      publicationContainsAllAuthors(publication, authors) === true
+    ) {
+      acc.push(publication);
+    }
 
     return acc;
-  }, new Set());
-
-  return Array.from(tags.entries(), ([tag]) => {
-    return {
-      value: tag,
-      label: tag
-    };
-  });
-};
+  }, []);
 
 const Page = ({
   data: {
     publications: { nodes: publications }
   }
 }) => {
+  const urlAuthors = getFilterFromUrl('authors');
+  const urlTags = getFilterFromUrl('keywords');
+
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    authors: getFilterFromUrl('authors'),
-    tags: getFilterFromUrl('keywords')
+    publications: filterPublications(publications, {
+      authors: urlAuthors,
+      tags: urlTags
+    }),
+    authors: urlAuthors,
+    tags: urlTags
   });
 
   return (
@@ -78,7 +63,7 @@ const Page = ({
 
       <h3>Author</h3>
       <Select
-        options={extractAuthors(publications)}
+        options={extractPublicationsAuthors(publications)}
         defaultValue={filter.authors.map(author => ({
           value: author,
           label: author
@@ -88,7 +73,11 @@ const Page = ({
 
           setFilter(state => ({
             ...state,
-            authors
+            authors,
+            publications: filterPublications(publications, {
+              authors,
+              tags: filter.tags
+            })
           }));
 
           setUrlForFilter('authors', authors);
@@ -99,7 +88,7 @@ const Page = ({
 
       <h3>Keywords</h3>
       <Select
-        options={extractTags(publications)}
+        options={extractPublicationsTags(publications)}
         defaultValue={filter.tags.map(tag => ({
           value: tag,
           label: tag
@@ -109,7 +98,11 @@ const Page = ({
 
           setFilter(state => ({
             ...state,
-            tags
+            tags,
+            publications: filterPublications(publications, {
+              authors: filter.authors,
+              tags
+            })
           }));
 
           setUrlForFilter('keywords', tags);
@@ -118,11 +111,11 @@ const Page = ({
         isSearchable
       />
 
-      <h1>Publications ({publications.length})</h1>
+      <h1>Publications ({filter.publications.length})</h1>
 
-      {publications && (
+      {filter.publications && (
         <ul>
-          {publications.map(({ slug, title }) => (
+          {filter.publications.map(({ slug, title }) => (
             <li>
               <h2>
                 <Link to={`/publications/${slug}/`}>{title}</Link>

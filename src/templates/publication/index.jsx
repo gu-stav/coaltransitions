@@ -80,9 +80,9 @@ const Page = ({
           <h3>Keywords</h3>
 
           <ul>
-            {tags.map(({ slug, name }) => (
+            {tags.map(({ name }) => (
               <li>
-                <Link to={`/publications/?keywords=${slug}`}>{name}</Link>
+                <Link to={`/publications/?keywords=${name}`}>{name}</Link>
               </li>
             ))}
           </ul>
