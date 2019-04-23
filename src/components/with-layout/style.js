@@ -14,6 +14,10 @@ export default css`
     padding: 0;
   }
 
+  :global(a) {
+    color: currentColor;
+  }
+
   @font-face {
     font-display: swap;
     font-family: 'Public Sans';
@@ -43,5 +47,10 @@ export default css`
         format('woff2'),
       url('/fonts/public-sans/webfonts/PublicSans-ExtraBold.woff')
         format('woff');
+  }
+
+  .site {
+    display: flex;
+    flex-direction: row;
   }
 `;

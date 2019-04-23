@@ -2,6 +2,6 @@ import css from 'styled-jsx/css';
 
 export default css`
   .constraint {
-    max-width: 880px;
+    max-width: 1024px;
   }
 `;

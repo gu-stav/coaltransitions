@@ -23,15 +23,29 @@ export const colors = {
 };
 
 export const mixins = {
+  textHuge: `
+    font-family: ${fonts.publicSans.family};
+    font-size: 3.18rem;
+    font-weight: 800;
+    line-height: 1.2;
+  `,
+
   textBig: `
     font-family: ${fonts.publicSans.family};
     font-size: 1.5rem;
     font-weight: 800;
   `,
 
-  textRegular: `
+  textStandard: `
     font-family: ${fonts.publicSans.family};
     font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.5;
+  `,
+
+  textSmall: `
+    font-family: ${fonts.publicSans.family};
+    font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
   `

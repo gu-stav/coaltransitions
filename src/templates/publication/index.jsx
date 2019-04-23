@@ -2,102 +2,135 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import React from 'react';
 
+import Constraint from '../../components/constraint';
 import style from './style';
+import Tag from '../../components/tag';
 import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
     publication: {
-      acf: { abstract, year, subtitle, author, language },
+      acf: { abstract, year, subtitle, author, language, institute, employer },
       title,
       featuredImage,
       tags
     }
   }
 }) => (
-  <article className="publication-container">
-    <style jsx>{style}</style>
+  <Constraint>
+    <article className="publication-container">
+      <style jsx>{style}</style>
 
-    <div className="content-container">
-      <header>
-        <h1 className="title">
-          {year && <small className="year">{year}</small>}
-          {title}
-          {subtitle && <small className="subtitle">{subtitle}</small>}
-        </h1>
+      <header className="header">
+        <div className="content-container">
+          <h1 className="title">
+            {year && <small className="year">{year}</small>}
+            <span dangerouslySetInnerHTML={{ __html: title }} />
+            {subtitle && <small className="subtitle">{subtitle}</small>}
+          </h1>
 
-        {language &&
-          language.map(
-            ({ language: downloadLanguage, external_url: externalUrl }) => (
-              <a href={externalUrl}>{downloadLanguage}</a>
-            )
-          )}
+          {language &&
+            language.map(
+              ({ language: downloadLanguage, external_url: externalUrl }) => (
+                <a href={externalUrl}>{downloadLanguage}</a>
+              )
+            )}
+        </div>
 
         {featuredImage && featuredImage.localFile && (
-          <picture>
-            <source
-              type="image/webp"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSetWebp}
-            />
-            <source
-              type="image/png"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
-            />
+          <div className="meta-container">
+            <picture className="cover-image">
+              <source
+                type="image/webp"
+                srcSet={
+                  featuredImage.localFile.childImageSharp.fluid.srcSetWebp
+                }
+              />
+              <source
+                type="image/png"
+                srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
+              />
 
-            <img
-              src={featuredImage.localFile.childImageSharp.fluid.src}
-              alt=""
-            />
-          </picture>
+              <img
+                src={featuredImage.localFile.childImageSharp.fluid.src}
+                alt=""
+              />
+            </picture>
+          </div>
         )}
       </header>
 
-      {abstract && (
-        <div
-          className="abstract"
-          dangerouslySetInnerHTML={{ __html: abstract }}
-        />
-      )}
-    </div>
-
-    <div className="meta-container">
-      {author && (
-        <div className="meta-block">
-          <h3>Authors</h3>
-
-          <ul>
-            {author.map(({ name }) => (
-              <li>
-                <Link to={`/publications/?authors=${name}`}>{name}</Link>
-              </li>
-            ))}
-          </ul>
+      <div className="body">
+        <div className="content-container">
+          {abstract && (
+            <div
+              className="abstract"
+              dangerouslySetInnerHTML={{ __html: abstract }}
+            />
+          )}
         </div>
-      )}
 
-      {tags && (
-        <div className="meta-block">
-          <h3>Keywords</h3>
+        <div className="meta-container">
+          {tags && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Keywords</h3>
 
-          <ul>
-            {tags.map(({ name }) => (
-              <li>
-                <Link to={`/publications/?keywords=${name}`}>{name}</Link>
-              </li>
-            ))}
-          </ul>
+              <ul className="meta-block-list">
+                {tags.map(({ name }) => (
+                  <li>
+                    <Tag to={`/publications/?keywords=${name}`}>{name}</Tag>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {author && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Authors</h3>
+
+              <ul className="meta-block-list">
+                {author.map(({ name }) => (
+                  <li>
+                    <Link to={`/publications/?authors=${name}`}>{name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {institute && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Insitute</h3>
+              <ul className="meta-block-list">
+                {institute.map(({ name }) => (
+                  <li>
+                    <p className="meta-block-content">{name}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {employer && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Employer</h3>
+
+              <p className="meta-block-content">{employer}</p>
+            </div>
+          )}
+
+          {year && (
+            <div className="meta-block">
+              <h3 className="meta-block-title">Year of publication</h3>
+
+              <p className="meta-block-content">2019</p>
+            </div>
+          )}
         </div>
-      )}
-
-      {year && (
-        <div className="meta-block">
-          <h3>Year of publication</h3>
-
-          <p>2019</p>
-        </div>
-      )}
-    </div>
-  </article>
+      </div>
+    </article>
+  </Constraint>
 );
 
 export default withLayout(Page);
@@ -126,6 +159,10 @@ export const query = graphql`
         year
         subtitle
         author {
+          name
+        }
+        employer
+        institute {
           name
         }
         language {

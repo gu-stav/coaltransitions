@@ -3,6 +3,7 @@ import Link from 'gatsby-link';
 import React, { useState } from 'react';
 import Select from 'react-select';
 
+import Constraint from '../../components/constraint';
 import {
   publicationContainsAllTags,
   publicationContainsAllAuthors,
@@ -62,58 +63,60 @@ const Page = ({
   });
 
   return (
-    <>
-      <h2>Filter</h2>
+    <main>
+      <Constraint>
+        <h2>Filter</h2>
 
-      <h3>Author</h3>
-      <Select
-        options={extractPublicationsAuthors(publications)}
-        defaultValue={filter.authors.map(author => ({
-          value: author,
-          label: author
-        }))}
-        onChange={selected => {
-          const authors = selected.map(({ value }) => value);
+        <h3>Author</h3>
+        <Select
+          options={extractPublicationsAuthors(publications)}
+          defaultValue={filter.authors.map(author => ({
+            value: author,
+            label: author
+          }))}
+          onChange={selected => {
+            const authors = selected.map(({ value }) => value);
 
-          setFilter(state => ({
-            ...state,
-            authors,
-            publications: filterPublications(publications, {
+            setFilter(state => ({
+              ...state,
               authors,
-              tags: filter.tags
-            })
-          }));
+              publications: filterPublications(publications, {
+                authors,
+                tags: filter.tags
+              })
+            }));
 
-          setUrlForFilter('authors', authors);
-        }}
-        isMulti
-        isSearchable
-      />
+            setUrlForFilter('authors', authors);
+          }}
+          isMulti
+          isSearchable
+        />
 
-      <h3>Keywords</h3>
-      <Select
-        options={extractPublicationsTags(publications)}
-        defaultValue={filter.tags.map(tag => ({
-          value: tag,
-          label: tag
-        }))}
-        onChange={selected => {
-          const tags = selected.map(({ value }) => value);
+        <h3>Keywords</h3>
+        <Select
+          options={extractPublicationsTags(publications)}
+          defaultValue={filter.tags.map(tag => ({
+            value: tag,
+            label: tag
+          }))}
+          onChange={selected => {
+            const tags = selected.map(({ value }) => value);
 
-          setFilter(state => ({
-            ...state,
-            tags,
-            publications: filterPublications(publications, {
-              authors: filter.authors,
-              tags
-            })
-          }));
+            setFilter(state => ({
+              ...state,
+              tags,
+              publications: filterPublications(publications, {
+                authors: filter.authors,
+                tags
+              })
+            }));
 
-          setUrlForFilter('keywords', tags);
-        }}
-        isMulti
-        isSearchable
-      />
+            setUrlForFilter('keywords', tags);
+          }}
+          isMulti
+          isSearchable
+        />
+      </Constraint>
 
       <h1>Publications ({filter.publications.length})</h1>
 
@@ -122,13 +125,15 @@ const Page = ({
           {filter.publications.map(({ slug, title }) => (
             <li>
               <h2>
-                <Link to={`/publications/${slug}/`}>{title}</Link>
+                <Link to={`/publications/${slug}/`}>
+                  <span dangerouslySetInnerHTML={{ __html: title }} />
+                </Link>
               </h2>
             </li>
           ))}
         </ul>
       )}
-    </>
+    </main>
   );
 };
 
