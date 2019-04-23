@@ -53,4 +53,8 @@ export default css`
     display: flex;
     flex-direction: row;
   }
+
+  .site-container {
+    flex: 1 0 100%;
+  }
 `;

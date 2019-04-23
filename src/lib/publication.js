@@ -77,3 +77,25 @@ export const publicationContainsAllAuthors = (publication, authors) =>
         return acc;
       }, true)
     : true;
+
+export const extractPublicationYearExtremes = publications => {
+  let min;
+  let max;
+
+  publications.forEach(({ acf: { year } }, index) => {
+    if (index === 0) {
+      min = year;
+      max = year;
+    } else {
+      if (year > max) {
+        max = year;
+      }
+
+      if (year < min) {
+        min = year;
+      }
+    }
+  });
+
+  return [parseInt(min, 10), parseInt(max, 10)];
+};

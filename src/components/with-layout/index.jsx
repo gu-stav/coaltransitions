@@ -27,7 +27,7 @@ export default Children => props => {
       <Helmet titleTemplate={`%s | ${title}`} />
 
       <SideColumn />
-      <div>
+      <div className="site-container">
         <Children {...props} />
       </div>
     </main>

@@ -2,16 +2,20 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import React, { useState } from 'react';
 import Select from 'react-select';
+import { Range } from 'rc-slider';
 
 import Constraint from '../../components/constraint';
 import {
   publicationContainsAllTags,
   publicationContainsAllAuthors,
   extractPublicationsAuthors,
-  extractPublicationsTags
+  extractPublicationsTags,
+  extractPublicationYearExtremes
 } from '../../lib/publication';
 import PublicationsList from './publication-list';
 import withLayout from '../../components/with-layout';
+
+import 'rc-slider/assets/index.css';
 
 const setUrlForFilter = (name, value) => {
   const newValue = value.join(';');
@@ -22,7 +26,7 @@ const setUrlForFilter = (name, value) => {
   window.history.pushState('', '', url);
 };
 
-const getFilterFromUrl = name => {
+const getFilterFromUrl = (name, mappingFunction = val => val) => {
   if (typeof window === 'undefined') {
     return [];
   }
@@ -30,14 +34,29 @@ const getFilterFromUrl = name => {
   const url = new URL(window.location.href);
   const value = url.searchParams.get(name);
 
-  return value ? value.split(';') : [];
+  if (!value) {
+    return null;
+  }
+
+  return value.split(';').map(mappingFunction);
 };
 
-const filterPublications = (publications, { authors, tags }) =>
+const publicationInTimeRange = ({ acf: { year } }, range) => {
+  if (!range) {
+    return true;
+  }
+
+  const [min, max] = range;
+
+  return year >= min && year <= max;
+};
+
+const filterPublications = (publications, { authors, tags, range }) =>
   publications.reduce((acc, publication) => {
     if (
       publicationContainsAllTags(publication, tags) === true &&
-      publicationContainsAllAuthors(publication, authors) === true
+      publicationContainsAllAuthors(publication, authors) === true &&
+      publicationInTimeRange(publication, range)
     ) {
       acc.push(publication);
     }
@@ -52,15 +71,22 @@ const Page = ({
 }) => {
   const urlAuthors = getFilterFromUrl('authors');
   const urlTags = getFilterFromUrl('keywords');
+  const urlRange = getFilterFromUrl('range', year => parseInt(year, 10));
+  const [
+    minPublicationYear,
+    maxPublicationYear
+  ] = extractPublicationYearExtremes(publications);
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
     publications: filterPublications(publications, {
       authors: urlAuthors,
-      tags: urlTags
+      tags: urlTags,
+      range: urlRange
     }),
-    authors: urlAuthors,
-    tags: urlTags
+    authors: urlAuthors || [],
+    tags: urlTags || [],
+    range: urlRange || [minPublicationYear, maxPublicationYear]
   });
 
   return (
@@ -119,6 +145,28 @@ const Page = ({
           isMulti
           isSearchable
         />
+
+        <h3>Year of publication</h3>
+        <Range
+          min={minPublicationYear}
+          max={maxPublicationYear}
+          defaultValue={filter.range}
+          onChange={value => {
+            setFilter(state => ({
+              ...state,
+              range: value,
+              publications: filterPublications(publications, {
+                authors: filter.authors,
+                tags: filter.tags,
+                range: value
+              })
+            }));
+
+            setUrlForFilter('range', value);
+          }}
+          allowCross={false}
+          dots
+        />
       </Constraint>
 
       <h1>Publications ({filter.publications.length})</h1>
@@ -153,6 +201,7 @@ export const query = graphql`
           name
         }
         acf {
+          year
           author {
             name
           }

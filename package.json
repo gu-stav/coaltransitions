@@ -21,6 +21,7 @@
     "gatsby-source-filesystem": "^2.0.29",
     "gatsby-source-wordpress": "^3.0.53",
     "gatsby-transformer-sharp": "^2.1.17",
+    "rc-slider": "^8.6.9",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.0",
