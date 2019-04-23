@@ -10,6 +10,7 @@ const Page = ({
     publication: {
       acf: { abstract, year, subtitle, author, language },
       title,
+      featuredImage,
       tags
     }
   }
@@ -31,6 +32,24 @@ const Page = ({
               <a href={externalUrl}>{downloadLanguage}</a>
             )
           )}
+
+        {featuredImage && featuredImage.localFile && (
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSetWebp}
+            />
+            <source
+              type="image/png"
+              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
+            />
+
+            <img
+              src={featuredImage.localFile.childImageSharp.fluid.src}
+              alt=""
+            />
+          </picture>
+        )}
       </header>
 
       {abstract && (
@@ -87,6 +106,17 @@ export const query = graphql`
   query($wordpressId: Int) {
     publication: wordpressWpPublications(wordpress_id: { eq: $wordpressId }) {
       title
+      featuredImage: featured_media {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 800) {
+              src
+              srcSet
+              srcSetWebp
+            }
+          }
+        }
+      }
       tags {
         name
         slug

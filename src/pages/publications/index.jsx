@@ -5,6 +5,22 @@ import Select from 'react-select';
 
 import withLayout from '../../components/with-layout';
 
+const setUrlForFilter = (name, value) => {
+  const newValue = value.join(';');
+  const url = new URL(window.location.href);
+
+  url.searchParams.set(name, newValue);
+
+  window.history.pushState('', '', url);
+};
+
+const getFilterFromUrl = name => {
+  const url = new URL(window.location.href);
+  const value = url.searchParams.get(name);
+
+  return value ? value.split(';') : [];
+};
+
 const extractAuthors = publications => {
   const authors = publications.reduce((acc, publication) => {
     const {
@@ -52,22 +68,30 @@ const Page = ({
 }) => {
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    authors: [],
-    tags: []
+    authors: getFilterFromUrl('authors'),
+    tags: getFilterFromUrl('keywords')
   });
 
   return (
     <>
-      <h1>Publications</h1>
+      <h2>Filter</h2>
 
       <h3>Author</h3>
       <Select
         options={extractAuthors(publications)}
+        defaultValue={filter.authors.map(author => ({
+          value: author,
+          label: author
+        }))}
         onChange={selected => {
+          const authors = selected.map(({ value }) => value);
+
           setFilter(state => ({
             ...state,
-            authors: selected.map(({ value }) => value)
+            authors
           }));
+
+          setUrlForFilter('authors', authors);
         }}
         isMulti
         isSearchable
@@ -76,15 +100,25 @@ const Page = ({
       <h3>Keywords</h3>
       <Select
         options={extractTags(publications)}
+        defaultValue={filter.tags.map(tag => ({
+          value: tag,
+          label: tag
+        }))}
         onChange={selected => {
+          const tags = selected.map(({ value }) => value);
+
           setFilter(state => ({
             ...state,
-            tags: selected.map(({ value }) => value)
+            tags
           }));
+
+          setUrlForFilter('keywords', tags);
         }}
         isMulti
         isSearchable
       />
+
+      <h1>Publications ({publications.length})</h1>
 
       {publications && (
         <ul>
