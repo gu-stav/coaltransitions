@@ -102,9 +102,7 @@ export const query = graphql`
           language
           external_url
           file {
-            ... on wordpress__wp_media {
-              source_url
-            }
+            link
           }
         }
       }
