@@ -23,9 +23,11 @@ export const extractPublicationsTags = publications => {
   const tags = publications.reduce((acc, publication) => {
     const { tags: publicationTags } = publication;
 
-    publicationTags.forEach(({ name }) => {
-      acc.add(name);
-    });
+    if (publicationTags) {
+      publicationTags.forEach(({ name }) => {
+        acc.add(name);
+      });
+    }
 
     return acc;
   }, new Set());

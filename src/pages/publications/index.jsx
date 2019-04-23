@@ -21,6 +21,10 @@ const setUrlForFilter = (name, value) => {
 };
 
 const getFilterFromUrl = name => {
+  if (typeof window === 'undefined') {
+    return [];
+  }
+
   const url = new URL(window.location.href);
   const value = url.searchParams.get(name);
 
