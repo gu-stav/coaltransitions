@@ -3,13 +3,17 @@ import React from 'react';
 import Publication from './publication';
 import style from './style';
 
-export default ({ publications = [] }) => (
+export default ({ publications = [], onFilter }) => (
   <ul>
     <style jsx>{style}</style>
 
     {publications.map(({ slug, ...attibutes }) => (
-      <li>
-        <Publication url={`/publications/${slug}/`} {...attibutes} />
+      <li key={`publication-${slug}`}>
+        <Publication
+          url={`/publications/${slug}/`}
+          onFilter={onFilter}
+          {...attibutes}
+        />
       </li>
     ))}
   </ul>

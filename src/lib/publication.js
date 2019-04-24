@@ -24,30 +24,25 @@ export const extractPublicationsTags = publications => {
     const { tags: publicationTags } = publication;
 
     if (publicationTags) {
-      publicationTags.forEach(({ name }) => {
-        acc.add(name);
+      publicationTags.forEach(({ slug, name }) => {
+        acc[slug] = name;
       });
     }
 
     return acc;
-  }, new Set());
+  }, {});
 
-  return Array.from(tags.entries(), ([tag]) => {
-    return {
-      value: tag,
-      label: tag
-    };
-  });
+  return Object.entries(tags).map(([value, label]) => ({ value, label }));
 };
 
 export const publicationContainsAllTags = (publication, tags) =>
   tags && tags.length > 0
-    ? tags.reduce((acc, tag) => {
+    ? tags.reduce((acc, slug) => {
         const { tags: publicationTags } = publication;
 
         if (
-          publicationTags.find(({ name: tagName }) => {
-            return tagName === tag;
+          publicationTags.find(({ slug: tagSlug }) => {
+            return tagSlug === slug;
           }) === undefined
         ) {
           // eslint-disable-next-line no-param-reassign

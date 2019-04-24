@@ -79,9 +79,9 @@ const Page = ({
               <h3 className="meta-block-title">Keywords</h3>
 
               <ul className="meta-block-list">
-                {tags.map(({ name }) => (
+                {tags.map(({ slug, name }) => (
                   <li>
-                    <Tag to={`/publications/?keywords=${name}`}>{name}</Tag>
+                    <Tag to={`/publications/?keywords=${slug}`}>{name}</Tag>
                   </li>
                 ))}
               </ul>
@@ -95,7 +95,11 @@ const Page = ({
               <ul className="meta-block-list">
                 {author.map(({ name }) => (
                   <li>
-                    <Link to={`/publications/?authors=${name}`}>{name}</Link>
+                    <Link
+                      to={`/publications/?authors=${encodeURIComponent(name)}`}
+                    >
+                      {name}
+                    </Link>
                   </li>
                 ))}
               </ul>

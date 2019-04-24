@@ -4,7 +4,14 @@ import React from 'react';
 import style, { linkTitle } from './style';
 import Tag from '../../tag';
 
-export default ({ acf: { author }, tags, title, featuredImage, url }) => (
+export default ({
+  acf: { author },
+  tags,
+  title,
+  featuredImage,
+  url,
+  onFilter
+}) => (
   <div className="publication">
     <style jsx>{style}</style>
     {linkTitle.styles}
@@ -41,7 +48,15 @@ export default ({ acf: { author }, tags, title, featuredImage, url }) => (
       <ul>
         {author.map(({ name }) => (
           <li>
-            <Link to={`/publications/?authors=${name}`}>{name}</Link>
+            <Link
+              to={`/publications/?authors=${name}`}
+              onClick={event => {
+                event.preventDefault();
+                onFilter({ authors: [name] });
+              }}
+            >
+              {name}
+            </Link>
           </li>
         ))}
       </ul>
@@ -49,9 +64,17 @@ export default ({ acf: { author }, tags, title, featuredImage, url }) => (
 
     {tags && (
       <ul>
-        {tags.map(({ name }) => (
+        {tags.map(({ slug, name }) => (
           <li>
-            <Tag to={`/publications/?keywords=${name}`}>{name}</Tag>
+            <Tag
+              to={`/publications/?keywords=${slug}`}
+              onClick={event => {
+                event.preventDefault();
+                onFilter({ tags: [slug] });
+              }}
+            >
+              {name}
+            </Tag>
           </li>
         ))}
       </ul>

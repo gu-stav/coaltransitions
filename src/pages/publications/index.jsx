@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { Range } from 'rc-slider';
 
@@ -25,6 +25,7 @@ const Page = ({
   const urlAuthors = getFilterFromUrl('authors');
   const urlTags = getFilterFromUrl('keywords');
   const urlRange = getFilterFromUrl('range', year => parseInt(year, 10));
+  const tags = extractPublicationsTags(publications);
   const [
     minPublicationYear,
     maxPublicationYear
@@ -35,6 +36,23 @@ const Page = ({
     authors: urlAuthors || [],
     tags: urlTags || [],
     range: urlRange || [minPublicationYear, maxPublicationYear]
+  });
+
+  // Keep state in sync with the URL
+  useEffect(() => {
+    setUrlForFilter('authors', filter.authors);
+    setUrlForFilter('keywords', filter.tags);
+
+    // Only set the URL parameter, if the start and beginning are different
+    // than the default
+    if (
+      filter.range[0] !== minPublicationYear ||
+      filter.range[1] !== maxPublicationYear
+    ) {
+      setUrlForFilter('range', filter.range);
+    } else {
+      setUrlForFilter('range', null);
+    }
   });
 
   const filteredPublications = filterPublications(publications, {
@@ -53,7 +71,7 @@ const Page = ({
         <h3>Author</h3>
         <Select
           options={extractPublicationsAuthors(publications)}
-          defaultValue={filter.authors.map(author => ({
+          value={filter.authors.map(author => ({
             value: author,
             label: author
           }))}
@@ -64,8 +82,6 @@ const Page = ({
               ...state,
               authors
             }));
-
-            setUrlForFilter('authors', authors);
           }}
           isMulti
           isSearchable
@@ -73,20 +89,18 @@ const Page = ({
 
         <h3>Keywords</h3>
         <Select
-          options={extractPublicationsTags(publications)}
-          defaultValue={filter.tags.map(tag => ({
+          options={tags}
+          value={filter.tags.map(tag => ({
             value: tag,
-            label: tag
+            label: tags.find(({ value }) => value === tag).label
           }))}
           onChange={selected => {
-            const tags = selected.map(({ value }) => value);
+            const selectedTags = selected.map(({ value }) => value);
 
             setFilter(state => ({
               ...state,
-              tags
+              tags: selectedTags
             }));
-
-            setUrlForFilter('keywords', tags);
           }}
           isMulti
           isSearchable
@@ -102,8 +116,6 @@ const Page = ({
               ...state,
               range: value
             }));
-
-            setUrlForFilter('range', value);
           }}
           allowCross={false}
           dots
@@ -113,7 +125,15 @@ const Page = ({
       <h1>Publications ({filteredPublications.length})</h1>
 
       {filteredPublications && (
-        <PublicationsList publications={filteredPublications} />
+        <PublicationsList
+          publications={filteredPublications}
+          onFilter={filterItem => {
+            setFilter(state => ({
+              ...state,
+              ...filterItem
+            }));
+          }}
+        />
       )}
     </>
   );
@@ -139,6 +159,7 @@ export const query = graphql`
           }
         }
         tags {
+          slug
           name
         }
         acf {

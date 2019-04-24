@@ -1,8 +1,14 @@
+const DIVIDER = ',';
+
 export const setUrlForFilter = (name, value) => {
-  const newValue = value.join(';');
+  const newValue = value && value.join(DIVIDER);
   const url = new URL(window.location.href);
 
-  url.searchParams.set(name, newValue);
+  if (newValue) {
+    url.searchParams.set(name, newValue);
+  } else {
+    url.searchParams.delete(name);
+  }
 
   window.history.pushState('', '', url);
 };
@@ -19,5 +25,5 @@ export const getFilterFromUrl = (name, mappingFunction = val => val) => {
     return null;
   }
 
-  return value.split(';').map(mappingFunction);
+  return value.split(DIVIDER).map(mappingFunction);
 };
