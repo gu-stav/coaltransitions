@@ -17,6 +17,17 @@ import withLayout from '../../components/with-layout';
 
 import 'rc-slider/assets/index.css';
 
+const generateRangeMarks = (min, max) => {
+  const marks = {};
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = min; i <= max; ++i) {
+    marks[i] = i;
+  }
+
+  return marks;
+};
+
 const Page = ({
   data: {
     publications: { nodes: publications }
@@ -55,11 +66,20 @@ const Page = ({
     }
   });
 
-  const filteredPublications = filterPublications(publications, {
-    authors: filter.authors,
-    tags: filter.tags,
-    range: filter.range
-  });
+  let filteredPublications = publications;
+
+  if (
+    filter.authors.length > 0 ||
+    filter.tags.length > 0 ||
+    filter.range[0] !== minPublicationYear ||
+    filter.range[1] !== maxPublicationYear
+  ) {
+    filteredPublications = filterPublications(publications, {
+      authors: filter.authors,
+      tags: filter.tags,
+      range: filter.range
+    });
+  }
 
   return (
     <>
@@ -110,7 +130,7 @@ const Page = ({
         <Range
           min={minPublicationYear}
           max={maxPublicationYear}
-          defaultValue={filter.range}
+          value={filter.range}
           onChange={value => {
             setFilter(state => ({
               ...state,
@@ -119,7 +139,25 @@ const Page = ({
           }}
           allowCross={false}
           dots
+          marks={generateRangeMarks(minPublicationYear, maxPublicationYear)}
         />
+
+        <br />
+        <br />
+
+        <button
+          type="button"
+          onClick={() => {
+            setFilter(state => ({
+              ...state,
+              authors: [],
+              tags: [],
+              range: [minPublicationYear, maxPublicationYear]
+            }));
+          }}
+        >
+          Reset filter
+        </button>
       </Constraint>
 
       <h1>Publications ({filteredPublications.length})</h1>
