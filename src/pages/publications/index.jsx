@@ -28,6 +28,13 @@ const generateRangeMarks = (min, max) => {
   return marks;
 };
 
+// Read initial state from the URL
+const urlState = {
+  authors: getFilterFromUrl('authors') || [],
+  tags: getFilterFromUrl('keywords') || [],
+  range: getFilterFromUrl('range', year => parseInt(year, 10)) || null
+};
+
 const Page = ({
   data: {
     publications: { nodes: publications }
@@ -41,10 +48,30 @@ const Page = ({
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    authors: [],
-    tags: [],
-    range: [minPublicationYear, maxPublicationYear]
+    ...urlState
   });
+
+  // Keep state in sync with the URL
+  // TODO: does this break SSR
+  if (typeof window !== 'undefined') {
+    useEffect(() => {
+      setUrlForFilter('authors', filter.authors);
+      setUrlForFilter('keywords', filter.tags);
+
+      // Only set the URL parameter, if the start and beginning are different
+      // than the default
+      if (filter.range !== null) {
+        if (
+          filter.range[0] !== minPublicationYear ||
+          filter.range[1] !== maxPublicationYear
+        ) {
+          setUrlForFilter('range', filter.range);
+        }
+      } else {
+        setUrlForFilter('range', null);
+      }
+    });
+  }
 
   const filteredPublications = filterPublications(publications, {
     authors: filter.authors,
@@ -101,7 +128,7 @@ const Page = ({
         <Range
           min={minPublicationYear}
           max={maxPublicationYear}
-          value={filter.range}
+          value={filter.range || [minPublicationYear, maxPublicationYear]}
           onChange={value => {
             setFilter(state => ({
               ...state,
@@ -123,7 +150,7 @@ const Page = ({
               ...state,
               authors: [],
               tags: [],
-              range: [minPublicationYear, maxPublicationYear]
+              range: null
             }));
           }}
         >
