@@ -29,7 +29,7 @@ const generateRangeMarks = (min, max) => {
 };
 
 // Read initial state from the URL
-const urlState = {
+const INITIAL_STATE = {
   authors: getFilterFromUrl('authors') || [],
   tags: getFilterFromUrl('keywords') || [],
   range: getFilterFromUrl('range', year => parseInt(year, 10)) || null
@@ -48,30 +48,28 @@ const Page = ({
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    ...urlState
+    ...INITIAL_STATE
   });
 
   // Keep state in sync with the URL
   // TODO: does this break SSR
-  if (typeof window !== 'undefined') {
-    useEffect(() => {
-      setUrlForFilter('authors', filter.authors);
-      setUrlForFilter('keywords', filter.tags);
+  useEffect(() => {
+    setUrlForFilter('authors', filter.authors);
+    setUrlForFilter('keywords', filter.tags);
 
-      // Only set the URL parameter, if the start and beginning are different
-      // than the default
-      if (filter.range !== null) {
-        if (
-          filter.range[0] !== minPublicationYear ||
-          filter.range[1] !== maxPublicationYear
-        ) {
-          setUrlForFilter('range', filter.range);
-        }
-      } else {
-        setUrlForFilter('range', null);
+    // Only set the URL parameter, if the start and beginning are different
+    // than the default
+    if (filter.range !== null) {
+      if (
+        filter.range[0] !== minPublicationYear ||
+        filter.range[1] !== maxPublicationYear
+      ) {
+        setUrlForFilter('range', filter.range);
       }
-    });
-  }
+    } else {
+      setUrlForFilter('range', null);
+    }
+  }, [filter]);
 
   const filteredPublications = filterPublications(publications, {
     authors: filter.authors,
