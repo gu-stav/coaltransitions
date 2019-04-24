@@ -12,7 +12,7 @@ import {
   filterPublications
 } from '../../lib/publication';
 import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
-import PublicationsList from './publication-list';
+import PublicationsList from '../../components/publication-list';
 import withLayout from '../../components/with-layout';
 
 import 'rc-slider/assets/index.css';

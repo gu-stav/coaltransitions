@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { mixins } from '../../../../token';
+import { mixins } from '../../../token';
 
 export default css`
   .publication {
