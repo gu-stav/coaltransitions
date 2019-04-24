@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Select from 'react-select';
 import { Range } from 'rc-slider';
 
@@ -11,7 +11,8 @@ import {
   extractPublicationYearExtremes,
   filterPublications
 } from '../../lib/publication';
-import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
+import UrlSideEffects from './url-side-effects';
+import { getFilterFromUrl } from '../../lib/url';
 import PublicationsList from '../../components/publication-list';
 import withLayout from '../../components/with-layout';
 
@@ -51,26 +52,6 @@ const Page = ({
     ...INITIAL_STATE
   });
 
-  // Keep state in sync with the URL
-  // TODO: does this break SSR
-  useEffect(() => {
-    setUrlForFilter('authors', filter.authors);
-    setUrlForFilter('keywords', filter.tags);
-
-    // Only set the URL parameter, if the start and beginning are different
-    // than the default
-    if (filter.range !== null) {
-      if (
-        filter.range[0] !== minPublicationYear ||
-        filter.range[1] !== maxPublicationYear
-      ) {
-        setUrlForFilter('range', filter.range);
-      }
-    } else {
-      setUrlForFilter('range', null);
-    }
-  }, [filter]);
-
   const filteredPublications = filterPublications(publications, {
     authors: filter.authors,
     tags: filter.tags,
@@ -80,6 +61,14 @@ const Page = ({
   return (
     <>
       <Helmet title="Publications" />
+
+      {typeof window !== 'undefined' && (
+        <UrlSideEffects
+          state={filter}
+          maxPublicationYear={maxPublicationYear}
+          minPublicationYear={minPublicationYear}
+        />
+      )}
 
       <Constraint>
         <h2>Filter</h2>
