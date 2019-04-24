@@ -99,3 +99,26 @@ export const extractPublicationYearExtremes = publications => {
 
   return [parseInt(min, 10), parseInt(max, 10)];
 };
+
+export const publicationInTimeRange = ({ acf: { year } }, range) => {
+  if (!range) {
+    return true;
+  }
+
+  const [min, max] = range;
+
+  return year >= min && year <= max;
+};
+
+export const filterPublications = (publications, { authors, tags, range }) =>
+  publications.reduce((acc, publication) => {
+    if (
+      publicationContainsAllTags(publication, tags) === true &&
+      publicationContainsAllAuthors(publication, authors) === true &&
+      publicationInTimeRange(publication, range)
+    ) {
+      acc.push(publication);
+    }
+
+    return acc;
+  }, []);

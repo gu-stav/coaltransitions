@@ -6,63 +6,16 @@ import { Range } from 'rc-slider';
 
 import Constraint from '../../components/constraint';
 import {
-  publicationContainsAllTags,
-  publicationContainsAllAuthors,
   extractPublicationsAuthors,
   extractPublicationsTags,
-  extractPublicationYearExtremes
+  extractPublicationYearExtremes,
+  filterPublications
 } from '../../lib/publication';
+import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
 import PublicationsList from './publication-list';
 import withLayout from '../../components/with-layout';
 
 import 'rc-slider/assets/index.css';
-
-const setUrlForFilter = (name, value) => {
-  const newValue = value.join(';');
-  const url = new URL(window.location.href);
-
-  url.searchParams.set(name, newValue);
-
-  window.history.pushState('', '', url);
-};
-
-const getFilterFromUrl = (name, mappingFunction = val => val) => {
-  if (typeof window === 'undefined') {
-    return [];
-  }
-
-  const url = new URL(window.location.href);
-  const value = url.searchParams.get(name);
-
-  if (!value) {
-    return null;
-  }
-
-  return value.split(';').map(mappingFunction);
-};
-
-const publicationInTimeRange = ({ acf: { year } }, range) => {
-  if (!range) {
-    return true;
-  }
-
-  const [min, max] = range;
-
-  return year >= min && year <= max;
-};
-
-const filterPublications = (publications, { authors, tags, range }) =>
-  publications.reduce((acc, publication) => {
-    if (
-      publicationContainsAllTags(publication, tags) === true &&
-      publicationContainsAllAuthors(publication, authors) === true &&
-      publicationInTimeRange(publication, range)
-    ) {
-      acc.push(publication);
-    }
-
-    return acc;
-  }, []);
 
 const Page = ({
   data: {
@@ -79,14 +32,15 @@ const Page = ({
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    publications: filterPublications(publications, {
-      authors: urlAuthors,
-      tags: urlTags,
-      range: urlRange
-    }),
     authors: urlAuthors || [],
     tags: urlTags || [],
     range: urlRange || [minPublicationYear, maxPublicationYear]
+  });
+
+  const filteredPublications = filterPublications(publications, {
+    authors: filter.authors,
+    tags: filter.tags,
+    range: filter.range
   });
 
   return (
@@ -108,11 +62,7 @@ const Page = ({
 
             setFilter(state => ({
               ...state,
-              authors,
-              publications: filterPublications(publications, {
-                authors,
-                tags: filter.tags
-              })
+              authors
             }));
 
             setUrlForFilter('authors', authors);
@@ -133,11 +83,7 @@ const Page = ({
 
             setFilter(state => ({
               ...state,
-              tags,
-              publications: filterPublications(publications, {
-                authors: filter.authors,
-                tags
-              })
+              tags
             }));
 
             setUrlForFilter('keywords', tags);
@@ -154,12 +100,7 @@ const Page = ({
           onChange={value => {
             setFilter(state => ({
               ...state,
-              range: value,
-              publications: filterPublications(publications, {
-                authors: filter.authors,
-                tags: filter.tags,
-                range: value
-              })
+              range: value
             }));
 
             setUrlForFilter('range', value);
@@ -169,10 +110,10 @@ const Page = ({
         />
       </Constraint>
 
-      <h1>Publications ({filter.publications.length})</h1>
+      <h1>Publications ({filteredPublications.length})</h1>
 
-      {filter.publications && (
-        <PublicationsList publications={filter.publications} />
+      {filteredPublications && (
+        <PublicationsList publications={filteredPublications} />
       )}
     </>
   );
