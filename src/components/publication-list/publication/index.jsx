@@ -37,7 +37,8 @@ export default ({
 
             <img
               src={featuredImage.localFile.childImageSharp.fluid.src}
-              alt=""
+              alt={`Cover of publication ${title}`}
+              loading="lazy"
             />
           </picture>
         </div>
@@ -47,7 +48,7 @@ export default ({
     {author && (
       <ul>
         {author.map(({ name }) => (
-          <li>
+          <li key={`publication-author-${title}-${name}`}>
             <Link
               to={`/publications/?authors=${name}`}
               onClick={event => {
@@ -65,7 +66,7 @@ export default ({
     {tags && (
       <ul>
         {tags.map(({ slug, name }) => (
-          <li>
+          <li key={`publication-tag-${title}-${slug}`}>
             <Tag
               to={`/publications/?keywords=${slug}`}
               onClick={event => {
