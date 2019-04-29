@@ -1,8 +1,15 @@
+const MQ_SIZES = [['phone', 500], ['tablet', 768], ['desktop', 1024]];
+
 export const fonts = {
   publicSans: {
     family: '"Public Sans", sans-serif'
   }
 };
+
+export const mq = MQ_SIZES.reduce((acc, [name, size]) => {
+  acc[name] = `only screen and (min-width: ${size}px)`;
+  return acc;
+}, {});
 
 export const colors = {
   // Yellow
@@ -23,30 +30,48 @@ export const colors = {
 };
 
 export const mixins = {
-  textHuge: `
-    font-family: ${fonts.publicSans.family};
-    font-size: 3.18rem;
-    font-weight: 800;
-    line-height: 1.2;
-  `,
+  resetList() {
+    return `
+      list-style: none;
+      margin-bottom: 0;
+      margin-top: 0;
+      padding-left: 0;
+    `;
+  },
 
-  textBig: `
-    font-family: ${fonts.publicSans.family};
-    font-size: 1.5rem;
-    font-weight: 800;
-  `,
+  text(size) {
+    switch (size) {
+      case 'small':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+        `;
 
-  textStandard: `
-    font-family: ${fonts.publicSans.family};
-    font-size: 1.15rem;
-    font-weight: 400;
-    line-height: 1.5;
-  `,
+      case 'medium':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.33rem;
+          font-weight: 400;
+          line-height: 1.25;
+        `;
 
-  textSmall: `
-    font-family: ${fonts.publicSans.family};
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-  `
+      case 'huge':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 2.75rem;
+          font-weight: 700;
+          line-height: 1.1;
+        `;
+
+      default:
+        return `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1.31rem;
+        font-weight: 400;
+        line-height: 1.57;
+      `;
+    }
+  }
 };

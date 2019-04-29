@@ -2,7 +2,6 @@ import Helmet from 'react-helmet';
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
-import SideColumn from './side-column';
 import style from './style';
 
 export default Children => props => {
@@ -21,15 +20,14 @@ export default Children => props => {
   `);
 
   return (
-    <main className="site">
+    <>
       <style jsx>{style}</style>
 
       <Helmet titleTemplate={`%s | ${title}`} />
 
-      <SideColumn />
-      <div className="site-container">
+      <div className="site">
         <Children {...props} />
       </div>
-    </main>
+    </>
   );
 };

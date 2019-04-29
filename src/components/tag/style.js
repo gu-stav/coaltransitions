@@ -14,7 +14,7 @@ export const linkStyle = css.resolve`
 
   a,
   a::before {
-    ${mixins.textSmall};
+    ${mixins.text('small')};
 
     font-weight: 700;
   }
