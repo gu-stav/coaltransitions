@@ -41,6 +41,7 @@ export const publicationContainsAllTags = (publication, tags) =>
         const { tags: publicationTags } = publication;
 
         if (
+          publicationTags &&
           publicationTags.find(({ slug: tagSlug }) => {
             return tagSlug === slug;
           }) === undefined
