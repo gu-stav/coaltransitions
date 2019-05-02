@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-import { mixins, mq } from '../../token';
+import { colors, mixins, mq } from '../../token';
 
 export default css`
   .publication {
@@ -34,7 +34,7 @@ export default css`
   }
 
   .title {
-    ${mixins.text('huge')}
+    ${mixins.text('extra-big')}
 
     margin-top: 0;
     text-align: right;
@@ -43,7 +43,7 @@ export default css`
   .year-text {
     ${mixins.text('medium')}
 
-    background-color: #7DB343;
+    background-color: ${colors.greenBrand};
     color: white;
     display: inline-block;
     margin-bottom: 2rem;
@@ -101,7 +101,7 @@ export default css`
   .meta-block-title {
     ${mixins.text('small')}
 
-    background: #2E56B4;
+    background: ${colors.blueBrand};
     color: white;
     display: inline-block;
     font-weight: 700;

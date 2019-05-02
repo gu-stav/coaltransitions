@@ -12,21 +12,18 @@ export const mq = MQ_SIZES.reduce((acc, [name, size]) => {
 }, {});
 
 export const colors = {
-  // Yellow
-  yellowLight: '#FFFB4E',
-  yellowMedium: '#F5E01F',
-  yellowDark: '#D5C200',
-
   // Blue
-  blueMedium: '#0D47A1',
-  blueDarkLight: '#002171',
-  blueDark: '#00125E',
+  blueAction: '#2E56B4',
+  blueActionActive: '#00125E',
+  blueBrand: '#0D47A1',
 
   // Grey
   greyLight: '#E2E2E2',
-  greyMedium: '#C5C5C5',
-  greyDarkLight: '#9C9C9C',
-  greyDark: '#575756'
+  greyDark: '#9C9C9C',
+
+  // Green
+  greenBrand: '#7DB343',
+  greenAction: '#629A27'
 };
 
 export const mixins = {
@@ -46,23 +43,39 @@ export const mixins = {
           font-family: ${fonts.publicSans.family};
           font-size: 1rem;
           font-weight: 400;
-          line-height: 1.5;
+          line-height: 1.18;
         `;
 
       case 'medium':
         return `
           font-family: ${fonts.publicSans.family};
-          font-size: 1.33rem;
-          font-weight: 400;
-          line-height: 1.25;
+          font-size: 1.75rem;
+          font-weight: 800;
+          line-height: 1.21;
+        `;
+
+      case 'big':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 2rem;
+          font-weight: 700;
+          line-height: 1.11;
+        `;
+
+      case 'extra-big':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 3.18rem;
+          font-weight: 700;
+          line-height: 1.03;
         `;
 
       case 'huge':
         return `
           font-family: ${fonts.publicSans.family};
-          font-size: 2.75rem;
-          font-weight: 700;
-          line-height: 1.1;
+          font-size: 4rem;
+          font-weight: 200;
+          line-height: 1.26;
         `;
 
       default:
@@ -70,7 +83,7 @@ export const mixins = {
         font-family: ${fonts.publicSans.family};
         font-size: 1.31rem;
         font-weight: 400;
-        line-height: 1.57;
+        line-height: 1.71;
       `;
     }
   }
