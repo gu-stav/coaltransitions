@@ -4,7 +4,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { colors, mixins } from '../../token';
+import { colors, mixins } from '../../../token';
 
 export const linkStyle = css.resolve`
   a {

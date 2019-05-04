@@ -5,7 +5,7 @@ import React from 'react';
 import AuthorList from '../../components/author-list';
 import Constraint from '../../components/constraint';
 import style from './style';
-import Tag from '../../components/tag';
+import TagList from '../../components/tag-list';
 import withLayout from '../../components/with-layout';
 
 const Page = ({
@@ -77,13 +77,7 @@ const Page = ({
           <div className="meta-block">
             <h3 className="meta-block-title">Keywords</h3>
 
-            <ul className="meta-block-list">
-              {tags.map(({ slug, name }) => (
-                <li>
-                  <Tag to={`/publications/?keywords=${slug}`}>{name}</Tag>
-                </li>
-              ))}
-            </ul>
+            <TagList tags={tags} />
           </div>
         )}
 

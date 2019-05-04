@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { colors, mixins } from '../../token';
+import { mixins } from '../../token';
 
 export default css`
   ul {
@@ -11,16 +11,6 @@ export default css`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  li + li:before {
-    color: ${colors.blueBrand};
-    content: '·';
-    font-size: 1.25rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-left: 0.35rem;
-    margin-right: 0.35rem;
   }
 `;
 

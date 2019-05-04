@@ -3,12 +3,14 @@ import React from 'react';
 import Publication from './publication';
 import style from './style';
 
-export default ({ publications = [], onFilter }) => (
-  <>
+export default ({ title, publications = [], onFilter }) => (
+  <div className="publications-container">
+    <style jsx>{style}</style>
+
+    <h2 className="title">{title}</h2>
+
     {publications.length > 0 ? (
       <ul>
-        <style jsx>{style}</style>
-
         {publications.map(({ slug, ...attibutes }) => (
           <li key={`publication-${slug}`}>
             <Publication
@@ -22,5 +24,5 @@ export default ({ publications = [], onFilter }) => (
     ) : (
       <div>No publications matching your criteria ...</div>
     )}
-  </>
+  </div>
 );

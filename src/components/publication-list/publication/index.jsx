@@ -1,30 +1,19 @@
 import Link from 'gatsby-link';
 import React from 'react';
 
+import AuthorList from '../../author-list';
+import Constraint from '../../constraint';
 import style, { linkTitle } from './style';
-import Tag from '../../tag';
+import TagList from '../../tag-list';
 
-export default ({
-  acf: { author },
-  tags,
-  title,
-  featuredImage,
-  url,
-  onFilter
-}) => (
-  <div className="publication">
-    <style jsx>{style}</style>
-    {linkTitle.styles}
+export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
+  <Constraint>
+    <div className="publication">
+      <style jsx>{style}</style>
+      {linkTitle.styles}
 
-    <header className="header">
-      <h2 className="title">
-        <Link to={url} className={linkTitle.className}>
-          <span dangerouslySetInnerHTML={{ __html: title }} />
-        </Link>
-      </h2>
-
-      {featuredImage && featuredImage.localFile && (
-        <div className="cover-image-container">
+      <div className="cover-image-container">
+        {featuredImage && featuredImage.localFile && (
           <picture className="cover-image">
             <source
               type="image/webp"
@@ -41,44 +30,22 @@ export default ({
               loading="lazy"
             />
           </picture>
-        </div>
-      )}
-    </header>
+        )}
+      </div>
 
-    {author && (
-      <ul>
-        {author.map(({ name }) => (
-          <li key={`publication-author-${title}-${name}`}>
-            <Link
-              to={`/publications/?authors=${name}`}
-              onClick={event => {
-                event.preventDefault();
-                onFilter({ authors: [name] });
-              }}
-            >
-              {name}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    )}
+      <div className="content-container">
+        <h2 className="title">
+          <Link to={url} className={linkTitle.className}>
+            <span dangerouslySetInnerHTML={{ __html: title }} />
+          </Link>
+        </h2>
 
-    {tags && (
-      <ul>
-        {tags.map(({ slug, name }) => (
-          <li key={`publication-tag-${title}-${slug}`}>
-            <Tag
-              to={`/publications/?keywords=${slug}`}
-              onClick={event => {
-                event.preventDefault();
-                onFilter({ tags: [slug] });
-              }}
-            >
-              {name}
-            </Tag>
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
+        <p className="year">{year}</p>
+
+        {author && <AuthorList authors={author} trim={5} />}
+
+        {tags && <TagList tags={tags} />}
+      </div>
+    </div>
+  </Constraint>
 );

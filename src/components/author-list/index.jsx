@@ -3,20 +3,26 @@ import React from 'react';
 
 import style, { linkStyle } from './style';
 
-export default ({ authors }) => (
+export default ({ authors, trim = false }) => (
   <ul>
     <style jsx>{style}</style>
     {linkStyle.styles}
 
-    {authors.map(({ name }) => (
-      <li>
-        <Link
-          to={`/publications/?authors=${encodeURIComponent(name)}`}
-          className={linkStyle.className}
-        >
-          {name}
-        </Link>
-      </li>
-    ))}
+    {authors.map(({ name }, index) => {
+      if (trim !== false && trim <= index) {
+        return null;
+      }
+
+      return (
+        <li>
+          <Link
+            to={`/publications/?authors=${encodeURIComponent(name)}`}
+            className={linkStyle.className}
+          >
+            {name}
+          </Link>
+        </li>
+      );
+    })}
   </ul>
 );

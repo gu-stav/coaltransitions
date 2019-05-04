@@ -1,15 +1,29 @@
 import css from 'styled-jsx/css';
 
+import { colors, mixins } from '../../token';
+
 export default css`
+  .publications-container {
+    margin-top: 4rem;
+  }
+
+  .title {
+    ${mixins.text()};
+
+    color: ${colors.blueBrand};
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
   ul {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     list-style: none;
+
     padding-left: 0;
   }
 
-  li {
-    width: 50%;
+  li + li {
+    border-top: 1px solid ${colors.blueBrand};
   }
 `;
