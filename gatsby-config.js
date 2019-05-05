@@ -2,7 +2,8 @@ const config = require('./config.json');
 
 module.exports = {
   siteMetadata: {
-    title: 'Coal Transitions'
+    title: 'Coal Transitions',
+    menu: [['Arguments', '/arguments/'], ['Publications', '/publications/']]
   },
 
   plugins: [

@@ -8,7 +8,8 @@ export default css`
   .publication {
     display: flex;
     flex-direction: row;
-    padding: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
   }
 
   .title {
