@@ -30,7 +30,7 @@ export default css`
   .cover-image-container {
     flex: 0 0 auto;
     margin-right: 1.5rem;
-    width: 25%;
+    width: 15%;
   }
 
   .cover-image img {
@@ -40,7 +40,7 @@ export default css`
 
 export const linkTitle = css.resolve`
   a {
-    ${mixins.text('big')};
+    ${mixins.text('medium')};
 
     text-decoration: none;
   }
