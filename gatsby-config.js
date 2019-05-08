@@ -3,7 +3,10 @@ const config = require('./config.json');
 module.exports = {
   siteMetadata: {
     title: 'Coal Transitions',
-    menu: [['Arguments', '/arguments/'], ['Publications', '/publications/']]
+    menu: [
+      ['Coal Phase-out', '/coal-phase-out/'],
+      ['Publications', '/publications/']
+    ]
   },
 
   plugins: [

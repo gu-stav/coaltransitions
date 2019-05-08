@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ArgumentListItem from '../../components/argument-list-item';
-import style from './style';
 import withLayout from '../../components/with-layout';
 
 const DATA = {
@@ -37,8 +36,6 @@ const DATA = {
 
 const Page = ({ data = DATA }) => (
   <ul>
-    <style jsx>{style}</style>
-
     {data.arguments.map((argument, index) => (
       <li key={argument}>
         <ArgumentListItem
