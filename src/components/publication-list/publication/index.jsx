@@ -14,22 +14,26 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
 
       <div className="cover-image-container">
         {featuredImage && featuredImage.localFile && (
-          <picture className="cover-image">
-            <source
-              type="image/webp"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSetWebp}
-            />
-            <source
-              type="image/png"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
-            />
+          <Link to={url} className={linkTitle.className} rel="nofollow">
+            <picture className="cover-image">
+              <source
+                type="image/webp"
+                srcSet={
+                  featuredImage.localFile.childImageSharp.fluid.srcSetWebp
+                }
+              />
+              <source
+                type="image/png"
+                srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
+              />
 
-            <img
-              src={featuredImage.localFile.childImageSharp.fluid.src}
-              alt={`Cover of publication ${title}`}
-              loading="lazy"
-            />
-          </picture>
+              <img
+                src={featuredImage.localFile.childImageSharp.fluid.src}
+                alt={`Cover of publication ${title}`}
+                loading="lazy"
+              />
+            </picture>
+          </Link>
         )}
       </div>
 
