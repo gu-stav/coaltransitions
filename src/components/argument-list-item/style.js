@@ -23,7 +23,7 @@ export default css`
   }
 
   .intro-container {
-    background-color: ${colors.blueMedium};
+    background-color: ${colors.blueBrand};
     color: white;
     justify-self: flex-end;
     margin-left: auto;
@@ -33,7 +33,7 @@ export default css`
   }
 
   .argument--has-theme-green .intro-container {
-    background-color: ${colors.yellowMedium};
+    background-color: ${colors.greenBrand};
   }
 
   .title {

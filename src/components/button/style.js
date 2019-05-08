@@ -12,7 +12,7 @@ export const linkStyle = css.resolve`
 
     background-color: white;
     border-radius: 0.75rem;
-    color: ${colors.blueMedium};
+    color: ${colors.blueBrand};
     padding: 0.5rem;
     text-decoration: none;
   }
