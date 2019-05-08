@@ -1,8 +1,8 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import React, { useState } from 'react';
-import { Range } from 'rc-slider';
 
+import Button from '../../components/button';
 import Constraint from '../../components/constraint';
 import {
   extractPublicationsAuthors,
@@ -15,9 +15,8 @@ import UrlSideEffects from './url-side-effects';
 import { getFilterFromUrl } from '../../lib/url';
 import PublicationsList from '../../components/publication-list';
 import Select from '../../components/select';
+import Slider from '../../components/slider';
 import withLayout from '../../components/with-layout';
-
-import 'rc-slider/assets/index.css';
 
 const generateRangeMarks = (min, max) => {
   const marks = {};
@@ -117,7 +116,7 @@ const Page = ({
             ],
 
             [
-              <Range
+              <Slider
                 min={minPublicationYear}
                 max={maxPublicationYear}
                 value={filter.range || [minPublicationYear, maxPublicationYear]}
@@ -133,24 +132,26 @@ const Page = ({
                   minPublicationYear,
                   maxPublicationYear
                 )}
-              />
+              />,
+
+              <Button
+                type="button"
+                form
+                onClick={event => {
+                  event.preventDefault();
+                  setFilter(state => ({
+                    ...state,
+                    authors: [],
+                    tags: [],
+                    range: null
+                  }));
+                }}
+              >
+                Reset filter
+              </Button>
             ]
           ]}
         />
-
-        <button
-          type="button"
-          onClick={() => {
-            setFilter(state => ({
-              ...state,
-              authors: [],
-              tags: [],
-              range: null
-            }));
-          }}
-        >
-          Reset filter
-        </button>
       </Constraint>
 
       {filteredPublications && (

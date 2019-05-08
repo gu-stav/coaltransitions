@@ -10,11 +10,17 @@ export default css`
     margin-top: 1.5rem;
   }
 
+  /* Reset button */
+  .row:nth-child(2) .column:last-child {
+    flex: 0 1 auto;
+    padding-left: 3.5rem;
+  }
+
   .column {
     flex: 1 0 50%;
   }
 
   .column + .column {
-    margin-left: 1.5rem;
+    padding-left: 1.5rem;
   }
 `;
