@@ -71,6 +71,10 @@ export const fragment = graphql`
         }
       }
     }
+    tags {
+      slug
+      name
+    }
     acf {
       author {
         name
