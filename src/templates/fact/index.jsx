@@ -41,9 +41,6 @@ const Page = ({
             case 'WordPressAcf_text':
               return <div dangerouslySetInnerHTML={{ __html: block.text }} />;
 
-            case 'WordPressAcf_image':
-              return <p>Image</p>;
-
             default:
               return <p>Block not yet implemented</p>;
           }
