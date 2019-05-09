@@ -2,7 +2,7 @@ import classnames from 'classnames';
 import Link from 'gatsby-link';
 import React from 'react';
 
-import Button from '../button';
+import Button from '../../button';
 import style, { titleLink } from './style';
 
 export default ({ slug, title, excerpt, figureCaption, theme }) => {
