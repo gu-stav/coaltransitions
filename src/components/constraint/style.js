@@ -5,4 +5,8 @@ export default css`
     max-width: 1024px;
     width: 100%;
   }
+
+  .constraint--wide {
+    max-width: 1280px;
+  }
 `;

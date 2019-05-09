@@ -66,29 +66,29 @@ export default css`
     margin-top: 0;
   }
 
-  .body {
-    flex: 2 1 55%;
+  .header {
+    flex: 0 0 35%;
   }
 
-  .header {
-    flex: 0 0 30%;
+  .body {
+    flex: 1 0 45%;
   }
 
   .meta {
-    flex: 0 0 15%;
+    flex: 0 0 20%;
   }
 
   @media ${mq.tablet} {
     .body,
     .meta {
-      margin-left: 1.5rem;
+      padding-left: 2rem;
     }
   }
 
   @media ${mq.tablet} {
     .meta {
       align-self: flex-start;
-      margin-top: 20%;
+      margin-top: 25%;
       position: sticky;
       top: 1rem;
     }
@@ -99,15 +99,20 @@ export default css`
   }
 
   .meta-block-title {
-    ${mixins.text('small')}
+    ${mixins.text('mini')}
 
     background: ${colors.blueBrand};
+    box-decoration-break: clone;
     color: white;
-    display: inline-block;
+    display: inline;
     font-weight: 700;
     margin-bottom: 0.5rem;
     margin-top: 0;
-    padding: 0 0.3rem;
+    padding: 0.17rem 0.4rem;
+  }
+
+  .meta-block-title ~ * {
+    margin-top: 0.5rem;
   }
 
   .meta-block-content {

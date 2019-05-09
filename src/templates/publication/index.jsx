@@ -18,7 +18,7 @@ const Page = ({
     }
   }
 }) => (
-  <Constraint>
+  <Constraint wide>
     <Helmet title={title} />
 
     <article className="publication">
@@ -77,14 +77,18 @@ const Page = ({
           <div className="meta-block">
             <h3 className="meta-block-title">Keywords</h3>
 
-            <TagList tags={tags} />
+            <div>
+              <TagList tags={tags} />
+            </div>
           </div>
         )}
 
         {author && (
           <div className="meta-block">
             <h3 className="meta-block-title">Authors</h3>
-            <AuthorList authors={author} />
+            <div>
+              <AuthorList authors={author} />
+            </div>
           </div>
         )}
 

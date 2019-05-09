@@ -8,9 +8,11 @@ export default css`
   ul {
     ${mixins.resetList()}
 
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: inline-block;
+  }
+
+  li {
+    display: inline;
   }
 
   li + li:before {
@@ -27,5 +29,10 @@ export default css`
 export const linkStyle = css.resolve`
   a {
     ${mixins.text('small')}
+  }
+
+  a:hover,
+  a:focus {
+    color: ${colors.blueAction};
   }
 `;

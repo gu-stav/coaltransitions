@@ -38,6 +38,15 @@ export const mixins = {
 
   text(size) {
     switch (size) {
+      case 'mini':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 0.75rem;
+          font-weight: 400;
+          letter-spacing: 0.05rem;
+          line-height: 1.3;
+        `;
+
       case 'small':
         return `
           font-family: ${fonts.publicSans.family};

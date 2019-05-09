@@ -4,7 +4,7 @@ import { mixins, colors } from '../../token';
 
 export default css`
   label {
-    ${mixins.text('small')}
+    ${mixins.text('mini')}
 
     background-color: ${colors.blueBrand};
     color: white;

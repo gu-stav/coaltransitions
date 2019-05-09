@@ -66,11 +66,10 @@ export default css`
   }
 
   :global(.rc-slider-mark-text) {
-    ${mixins.text('small')}
+    ${mixins.text('mini')}
 
     position: absolute;
     display: inline-block;
-    font-size: 0.7rem;
     vertical-align: middle;
     text-align: center;
     cursor: pointer;

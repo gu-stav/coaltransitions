@@ -44,4 +44,10 @@ export const linkTitle = css.resolve`
 
     text-decoration: none;
   }
+
+  a:hover,
+  a:focus {
+    color: ${colors.blueAction};
+    text-decoration: underline;
+  }
 `;

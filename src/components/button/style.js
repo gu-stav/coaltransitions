@@ -7,13 +7,30 @@ import React from 'react';
 import { colors, mixins } from '../../token';
 
 export const linkStyle = css.resolve`
-  a {
-    ${mixins.text()}
+  a,
+  button {
+    ${mixins.text('mini')}
 
-    background-color: white;
-    border-radius: 0.75rem;
-    color: ${colors.blueBrand};
-    padding: 0.5rem;
+    border-radius: 1rem;
+    padding: 0.4rem 1rem;
     text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  a {
+    background-color: white;
+    color: ${colors.blueBrand};
+  }
+
+  button {
+    background-color: ${colors.greyDark};
+    border: none;
+    color: white;
+    cursor: pointer;
+  }
+
+  button:hover,
+  button:focus {
+    background-color: ${colors.blueAction};
   }
 `;

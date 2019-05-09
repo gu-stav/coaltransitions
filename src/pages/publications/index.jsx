@@ -147,7 +147,7 @@ const Page = ({
                   }));
                 }}
               >
-                Reset filter
+                Reset
               </Button>
             ]
           ]}

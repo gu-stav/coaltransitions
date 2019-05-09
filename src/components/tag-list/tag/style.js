@@ -20,7 +20,12 @@ export const linkStyle = css.resolve`
   }
 
   a::before {
-    color: ${colors.greyDarkLight};
+    opacity: 0.7;
+    transition: opacity 200ms ease-in-out;
+  }
+
+  a::before {
+    color: ${colors.blueAction};
     content: '#';
     display: inline-block;
     margin-right: 0.05rem;
@@ -28,6 +33,12 @@ export const linkStyle = css.resolve`
 
   a:hover,
   a:focus {
+    color: ${colors.blueActionActive};
     text-decoration: underline;
+  }
+
+  a:hover::before,
+  a:focus::before {
+    opacity: 1;
   }
 `;
