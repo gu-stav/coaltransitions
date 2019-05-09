@@ -3,7 +3,7 @@ import React from 'react';
 import Publication from './publication';
 import style from './style';
 
-export default ({ title, publications = [], onFilter }) => (
+export default ({ title, publications = [], onFilter = () => {} }) => (
   <div className="publications-container">
     <style jsx>{style}</style>
 

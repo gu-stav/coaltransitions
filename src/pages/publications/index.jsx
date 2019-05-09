@@ -175,29 +175,7 @@ export const query = graphql`
   query {
     publications: allWordpressWpPublications {
       nodes {
-        slug
-        title
-        featuredImage: featured_media {
-          localFile {
-            childImageSharp {
-              fluid(maxWidth: 400) {
-                src
-                srcSet
-                srcSetWebp
-              }
-            }
-          }
-        }
-        tags {
-          slug
-          name
-        }
-        acf {
-          year
-          author {
-            name
-          }
-        }
+        ...publicationListItem
       }
     }
   }

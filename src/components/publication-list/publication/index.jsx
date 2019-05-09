@@ -1,5 +1,6 @@
 import Link from 'gatsby-link';
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import AuthorList from '../../author-list';
 import Constraint from '../../constraint';
@@ -53,3 +54,28 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
     </div>
   </Constraint>
 );
+
+export const fragment = graphql`
+  fragment publicationListItem on wordpress__wp_publications {
+    wordpress_id
+    slug
+    title
+    featuredImage: featured_media {
+      localFile {
+        childImageSharp {
+          fluid(maxWidth: 400) {
+            src
+            srcSet
+            srcSetWebp
+          }
+        }
+      }
+    }
+    acf {
+      author {
+        name
+      }
+      year
+    }
+  }
+`;

@@ -1,9 +1,15 @@
+const {
+  createCoalPhaseOutPages
+} = require('./src/lib/create-coal-phase-out-page');
 const { createPublicationPages } = require('./src/lib/create-publication-page');
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  return createPublicationPages(graphql, createPage);
+  return Promise.all([
+    createPublicationPages(graphql, createPage),
+    createCoalPhaseOutPages(graphql, createPage)
+  ]);
 };
 
 exports.onCreateNode = ({ node }) => {

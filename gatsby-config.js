@@ -15,7 +15,12 @@ module.exports = {
       options: {
         baseUrl: config.endpoint,
         protocol: 'https',
-        includedRoutes: ['**/publications', '**/media', '**/tags'],
+        includedRoutes: [
+          '**/publications',
+          '**/coal-phase-out',
+          '**/media',
+          '**/tags'
+        ],
         auth: {
           htaccess_user: config.auth_username,
           htaccess_pass: config.auth_password
