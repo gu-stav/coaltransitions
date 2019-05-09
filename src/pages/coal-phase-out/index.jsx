@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -8,7 +9,12 @@ const Page = ({
   data: {
     facts: { nodes: facts }
   }
-}) => <FactsList facts={facts} />;
+}) => (
+  <>
+    <Helmet title="Coal Phase-Out" />
+    <FactsList facts={facts} />
+  </>
+);
 
 export default withLayout(Page);
 

@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import Link from 'gatsby-link';
 import React from 'react';
 
@@ -11,25 +10,33 @@ export default ({
   theme,
   ...attributes
 }) => {
-  const Tag = to ? 'Link' : 'button';
   const props = {
     ...attributes,
     ...(to && { to })
   };
 
-  return (
-    <>
-      {linkStyle.styles}
+  if (to) {
+    return (
+      <>
+        {linkStyle.styles}
 
-      {external ? (
-        <a href={to} className={linkStyle.className} {...attributes}>
-          {children}
-        </a>
-      ) : (
-        <Tag className={linkStyle.className} {...props}>
-          {children}
-        </Tag>
-      )}
-    </>
+        {external ? (
+          <a href={to} className={linkStyle.className} {...attributes}>
+            {children}
+          </a>
+        ) : (
+          <Link className={linkStyle.className} {...props}>
+            {children}
+          </Link>
+        )}
+      </>
+    );
+  }
+
+  return (
+    <button type="button" className={linkStyle.className} {...attributes}>
+      {linkStyle.styles}
+      {children}
+    </button>
   );
 };
