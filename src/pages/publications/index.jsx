@@ -21,6 +21,12 @@ import withLayout from '../../components/with-layout';
 const generateRangeMarks = (min, max) => {
   const marks = {};
 
+  /*
+    TODO: on small screens, we could print the first and last mark, or remove
+          every second/ third: (max - i) % 2 === 0; also years could consist
+          of 2 digits then: '91 '92 ...
+  */
+
   // eslint-disable-next-line no-plusplus
   for (let i = min; i <= max; ++i) {
     marks[i] = i;
