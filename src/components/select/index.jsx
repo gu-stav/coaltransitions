@@ -14,9 +14,14 @@ export default ({ placeholder, name, ...attrs }) => (
       placeholder={`Select ${placeholder}`}
       {...attrs}
       styles={{
-        control: provided => ({
+        control: (provided, state) => ({
           ...provided,
-          borderRadius: 0
+          borderColor: state.isFocused ? colors.blueBrand : colors.greyLight,
+          borderRadius: 0,
+          boxShadow: 0,
+          '&:hover': {
+            borderColor: colors.greyDark
+          }
         }),
         multiValue: provided => ({
           ...provided,
