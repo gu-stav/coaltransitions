@@ -1,12 +1,13 @@
 import classnames from 'classnames';
 import Link from 'gatsby-link';
 import React from 'react';
+import { graphql } from 'gatsby';
 
 import Button from '../../button';
 import style, { titleLink } from './style';
 
-export default ({ slug, title, excerpt, figureCaption, theme }) => {
-  const url = `/arguments/${slug}/`;
+export default ({ slug, title, intro, figureCaption, theme }) => {
+  const url = `/coal-phase-out/${slug}/`;
 
   return (
     <section
@@ -34,11 +35,8 @@ export default ({ slug, title, excerpt, figureCaption, theme }) => {
           </Link>
         </h2>
 
-        {excerpt && (
-          <div
-            className="excerpt"
-            dangerouslySetInnerHTML={{ __html: excerpt }}
-          />
+        {intro && (
+          <div className="intro" dangerouslySetInnerHTML={{ __html: intro }} />
         )}
 
         <Button to={url} rel="nofollow">
@@ -48,3 +46,23 @@ export default ({ slug, title, excerpt, figureCaption, theme }) => {
     </section>
   );
 };
+
+export const fragment = graphql`
+  fragment factListItem on wordpress__wp_coal_phase_out {
+    slug
+    title
+    featuredImage: featured_media {
+      localFile {
+        childImageSharp {
+          fluid(maxWidth: 600) {
+            src
+            srcSet
+          }
+        }
+      }
+    }
+    acf {
+      intro
+    }
+  }
+`;

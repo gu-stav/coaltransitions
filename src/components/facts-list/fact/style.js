@@ -41,7 +41,7 @@ export default css`
     margin-top: 0;
   }
 
-  .excerpt {
+  .intro {
     ${mixins.text()}
   }
 `;
