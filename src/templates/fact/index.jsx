@@ -106,19 +106,6 @@ export const query = graphql`
           ... on WordPressAcf_text {
             text
           }
-
-          ... on WordPressAcf_image {
-            image {
-              localFile {
-                childImageSharp {
-                  fluid(maxWidth: 600) {
-                    src
-                    srcSet
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
