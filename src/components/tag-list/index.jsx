@@ -8,14 +8,14 @@ export default ({ tags, trim = false }) => (
     <style jsx>{style}</style>
     {linkStyle.styles}
 
-    {tags.map(({ name }, index) => {
+    {tags.map(({ name, slug }, index) => {
       if (trim !== false && trim <= index) {
         return null;
       }
 
       return (
-        <li>
-          <Tag>{name}</Tag>
+        <li key={`tag-${slug}`}>
+          <Tag slug={slug}>{name}</Tag>
         </li>
       );
     })}

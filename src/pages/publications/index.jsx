@@ -136,7 +136,6 @@ const Page = ({
 
               <Button
                 type="button"
-                form
                 onClick={event => {
                   event.preventDefault();
                   setFilter(state => ({

@@ -40,7 +40,9 @@ const Page = ({
         {language &&
           language.map(
             ({ language: downloadLanguage, external_url: externalUrl }) => (
-              <a href={externalUrl}>{downloadLanguage}</a>
+              <a key={`language-${downloadLanguage}`} href={externalUrl}>
+                {downloadLanguage}
+              </a>
             )
           )}
 

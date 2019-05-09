@@ -3,8 +3,12 @@ import React from 'react';
 
 import { linkStyle } from './style';
 
-export default ({ to, children, ...attributes }) => (
-  <Link to={to} className={linkStyle.className} {...attributes}>
+export default ({ to, slug, children, ...attributes }) => (
+  <Link
+    to={`/publications/?keywords=${slug}`}
+    className={linkStyle.className}
+    {...attributes}
+  >
     {linkStyle.styles}
     {children}
   </Link>

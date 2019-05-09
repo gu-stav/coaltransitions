@@ -24,14 +24,14 @@ export default ({ items = [] }) => (
       {linkActive.styles}
 
       <ul>
-        <li>
+        <li key="menu-start`">
           <Item to="/" partiallyActive={false}>
             Start
           </Item>
         </li>
 
         {items.map(([label, path]) => (
-          <li>
+          <li key={`menu-${label}`}>
             <Item to={path}>{label}</Item>
           </li>
         ))}

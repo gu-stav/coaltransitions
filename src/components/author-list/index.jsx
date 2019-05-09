@@ -14,7 +14,7 @@ export default ({ authors, trim = false }) => (
       }
 
       return (
-        <li>
+        <li key={`author-${name}`}>
           <Link
             to={`/publications/?authors=${encodeURIComponent(name)}`}
             className={linkStyle.className}
