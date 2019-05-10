@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Button from '../../components/button';
 import Constraint from '../../components/constraint';
@@ -11,10 +11,9 @@ import {
   filterPublications
 } from '../../lib/publication';
 import Filter from '../../components/filter';
-import UrlSideEffects from './url-side-effects';
-import { getFilterFromUrl } from '../../lib/url';
 import PublicationsList from '../../components/publication-list';
 import Select from '../../components/select';
+import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
 import Slider from '../../components/slider';
 import withLayout from '../../components/with-layout';
 
@@ -35,46 +34,72 @@ const generateRangeMarks = (min, max) => {
   return marks;
 };
 
-// Read initial state from the URL
-const INITIAL_STATE = {
-  authors: getFilterFromUrl('authors') || [],
-  tags: getFilterFromUrl('keywords') || [],
-  range: getFilterFromUrl('range', year => parseInt(year, 10)) || null
-};
-
 const Page = ({
   data: {
-    publications: { nodes: publications }
+    publications: { nodes: initialPublications }
   }
 }) => {
-  const tags = extractPublicationsTags(publications);
+  const tags = extractPublicationsTags(initialPublications);
   const [
     minPublicationYear,
     maxPublicationYear
-  ] = extractPublicationYearExtremes(publications);
+  ] = extractPublicationYearExtremes(initialPublications);
+  const authors = extractPublicationsAuthors(initialPublications);
 
   // eslint-disable-next-line no-unused-vars
   const [filter, setFilter] = useState({
-    ...INITIAL_STATE
+    authors: [],
+    tags: [],
+    range: null
   });
 
-  const filteredPublications = filterPublications(publications, {
-    authors: filter.authors,
-    tags: filter.tags,
-    range: filter.range
-  });
+  const [count, setCount] = useState(0);
+
+  const [publications, setPublications] = useState(initialPublications);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      if (count === 0) {
+        setFilter({
+          authors: getFilterFromUrl('authors') || [],
+          tags: getFilterFromUrl('keywords') || [],
+          range: getFilterFromUrl('range', year => parseInt(year, 10)) || null
+        });
+      }
+
+      setPublications(
+        filterPublications(initialPublications, {
+          authors: filter.authors,
+          tags: filter.tags,
+          range: filter.range
+        })
+      );
+
+      if (count > 0) {
+        setUrlForFilter('authors', filter.authors);
+        setUrlForFilter('keywords', filter.tags);
+
+        // Only set the URL parameter, if the start and beginning are different
+        // than the default
+        if (filter.range !== null) {
+          if (
+            filter.range[0] !== minPublicationYear ||
+            filter.range[1] !== maxPublicationYear
+          ) {
+            setUrlForFilter('range', filter.range);
+          }
+        } else {
+          setUrlForFilter('range', null);
+        }
+      }
+    }
+
+    setCount(count + 1);
+  }, [filter]);
 
   return (
     <>
       <Helmet title="Publications" />
-
-      {typeof window !== 'undefined' && (
-        <UrlSideEffects
-          state={filter}
-          maxPublicationYear={maxPublicationYear}
-          minPublicationYear={minPublicationYear}
-        />
-      )}
 
       <Constraint>
         <Filter
@@ -83,17 +108,17 @@ const Page = ({
               <Select
                 placeholder="Authors"
                 name="author"
-                options={extractPublicationsAuthors(publications)}
+                options={authors}
                 value={filter.authors.map(author => ({
                   value: author,
                   label: author
                 }))}
                 onChange={selected => {
-                  const authors = selected.map(({ value }) => value);
+                  const updatedAuthors = selected.map(({ value }) => value);
 
                   setFilter(state => ({
                     ...state,
-                    authors
+                    authors: updatedAuthors
                   }));
                 }}
                 isMulti
@@ -158,10 +183,10 @@ const Page = ({
         />
       </Constraint>
 
-      {filteredPublications && (
+      {publications && (
         <PublicationsList
-          title={`Publications (${filteredPublications.length})`}
-          publications={filteredPublications}
+          title={`Publications (${publications.length})`}
+          publications={publications}
           onFilter={filterItem => {
             setFilter(state => ({
               ...state,
