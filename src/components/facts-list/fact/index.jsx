@@ -4,9 +4,16 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Button from '../../button';
-import style, { titleLink } from './style';
+import style, { titleLink, imageLink } from './style';
 
-export default ({ slug, title, intro, figureCaption, theme }) => {
+export default ({
+  slug,
+  title,
+  figureCaption,
+  featuredImage,
+  acf: { intro },
+  theme
+}) => {
   const url = `/coal-phase-out/${slug}/`;
 
   return (
@@ -17,11 +24,32 @@ export default ({ slug, title, intro, figureCaption, theme }) => {
     >
       <style jsx>{style}</style>
       {titleLink.styles}
+      {imageLink.styles}
 
       <figure className="image-container">
-        <Link to={url} rel="nofollow">
-          <picture>
-            <img src="https://dummyimage.com/1040x741/000/fff" alt="" />
+        <Link to={url} className={imageLink.className} rel="nofollow">
+          <picture className="image">
+            {featuredImage && featuredImage.localFile && (
+              <>
+                <source
+                  type="image/webp"
+                  srcSet={
+                    featuredImage.localFile.childImageSharp.fluid.srcSetWebp
+                  }
+                />
+
+                <source
+                  type="image/png"
+                  srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
+                />
+
+                <img
+                  src={featuredImage.localFile.childImageSharp.fluid.src}
+                  alt=""
+                  loading="lazy"
+                />
+              </>
+            )}
           </picture>
         </Link>
 
@@ -54,9 +82,10 @@ export const fragment = graphql`
     featuredImage: featured_media {
       localFile {
         childImageSharp {
-          fluid(maxWidth: 600) {
+          fluid(maxWidth: 1200) {
             src
             srcSet
+            srcSetWebp
           }
         }
       }

@@ -20,7 +20,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    facts: allWordpressWpCoalPhaseOut {
+    facts: allWordpressWpCoalPhaseOut(sort: { fields: [acf___fact_number] }) {
       nodes {
         ...factListItem
       }
