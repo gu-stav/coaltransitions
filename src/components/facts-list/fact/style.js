@@ -35,12 +35,28 @@ export default css`
     flex: 1 0 auto;
     margin-left: auto;
     padding: 2.5rem 4.5rem 2.5rem 2.5rem;
+    position: relative;
     transform: translateY(-50%);
     width: 55%;
   }
 
   .argument--has-theme-green .intro-container {
     background-color: ${colors.greenBrand};
+  }
+
+  .index {
+    ${mixins.text('medium')}
+
+    background-color: ${colors.greenBrand};
+    left: 0;
+    padding: 0.25rem 1.5rem;
+    position: absolute;
+    top: 0;
+    transform: translateY(-100%);
+  }
+
+  .argument--has-theme-green .index {
+    background-color: ${colors.blueBrand};
   }
 
   .title {

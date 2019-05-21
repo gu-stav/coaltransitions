@@ -4,6 +4,7 @@ import React from 'react';
 
 import AuthorList from '../../components/author-list';
 import Constraint from '../../components/constraint';
+import Richtext from '../../components/richtext';
 import style from './style';
 import TagList from '../../components/tag-list';
 import withLayout from '../../components/with-layout';
@@ -67,10 +68,9 @@ const Page = ({
 
       <div className="body">
         {abstract && (
-          <div
-            className="abstract"
-            dangerouslySetInnerHTML={{ __html: abstract }}
-          />
+          <div className="abstract">
+            <Richtext content={abstract} />
+          </div>
         )}
       </div>
 

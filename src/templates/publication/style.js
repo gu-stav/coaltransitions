@@ -58,10 +58,6 @@ export default css`
     text-align: right;
   }
 
-  .abstract {
-    ${mixins.text()}
-  }
-
   :global(.abstract > *:first-child) {
     margin-top: 0;
   }

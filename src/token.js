@@ -55,6 +55,14 @@ export const mixins = {
           line-height: 1.18;
         `;
 
+      case 'regular-big':
+        return `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.5rem;
+          font-weight: 700;
+          line-height: 1.2;
+        `;
+
       case 'medium':
         return `
           font-family: ${fonts.publicSans.family};

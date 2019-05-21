@@ -3,10 +3,6 @@ import css from 'styled-jsx/css';
 import { colors, mixins } from '../../token';
 
 export default css`
-  .publications-container {
-    margin-top: 4rem;
-  }
-
   .title {
     ${mixins.text()};
 

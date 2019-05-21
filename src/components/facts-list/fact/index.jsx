@@ -11,7 +11,7 @@ export default ({
   title,
   figureCaption,
   featuredImage,
-  acf: { intro },
+  acf: { intro, factNumber },
   theme
 }) => {
   const url = `/coal-phase-out/${slug}/`;
@@ -59,6 +59,7 @@ export default ({
       <div className="intro-container">
         <h2 className="title">
           <Link to={url} rel="nofollow" className={titleLink.className}>
+            <span className="index">Fact {factNumber}</span>
             {title}
           </Link>
         </h2>
@@ -92,6 +93,7 @@ export const fragment = graphql`
     }
     acf {
       intro
+      factNumber: fact_number
     }
   }
 `;

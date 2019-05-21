@@ -3,8 +3,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Constraint from '../../components/constraint';
+import MoreLinksList from '../../components/more-links-list';
 import PublicationList from '../../components/publication-list';
+import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
+
+import style from './style';
 
 const findPublicationById = (id, publications) =>
   publications.find(({ wordpress_id: wordpressId }) => wordpressId === id);
@@ -14,6 +18,7 @@ const Page = ({
     publications: { nodes: publications },
     fact: {
       title,
+      featuredImage,
       acf: {
         intro,
         content,
@@ -28,43 +33,69 @@ const Page = ({
   );
 
   return (
-    <Constraint>
+    <Constraint wide>
+      <style jsx>{style}</style>
+
       <Helmet title={title} />
 
-      <h1>{title}</h1>
+      <header className="header">
+        <h1 className="title">{title}</h1>
 
-      <p>{intro}</p>
+        <picture className="image">
+          {featuredImage && featuredImage.localFile && (
+            <>
+              <source
+                type="image/webp"
+                srcSet={
+                  featuredImage.localFile.childImageSharp.fluid.srcSetWebp
+                }
+              />
 
-      {content &&
-        content.map(({ __typename, ...block }) => {
-          switch (__typename) {
-            case 'WordPressAcf_text':
-              return <div dangerouslySetInnerHTML={{ __html: block.text }} />;
+              <source
+                type="image/png"
+                srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
+              />
 
-            default:
-              return <p>Block not yet implemented</p>;
-          }
-        })}
+              <img
+                src={featuredImage.localFile.childImageSharp.fluid.src}
+                alt=""
+                loading="lazy"
+              />
+            </>
+          )}
+        </picture>
+      </header>
 
-      {additionalLinks && (
-        <>
-          <h3>Additional Links</h3>
-          <ul>
-            {additionalLinks.map(({ link, linkText }) => (
-              <li key={`additional-link-${link}`}>
-                <a href={link}>{linkText || link}</a>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
+      <div className="body">
+        <Constraint>
+          <p className="intro">{intro}</p>
 
-      {additionalPublications && (
-        <>
-          <h3>Publications</h3>
-          <PublicationList publications={publicationListItems} />
-        </>
-      )}
+          {content &&
+            content.map(({ __typename, ...block }) => {
+              switch (__typename) {
+                case 'WordPressAcf_text':
+                  return <Richtext content={block.text} />;
+
+                default:
+                  return <p>Block not yet implemented</p>;
+              }
+            })}
+
+          {additionalLinks && (
+            <>
+              <h3 className="section-headline">Further reading</h3>
+              <MoreLinksList items={additionalLinks} />
+            </>
+          )}
+
+          {additionalPublications && (
+            <>
+              <h3 className="section-headline">Related Publications</h3>
+              <PublicationList publications={publicationListItems} />
+            </>
+          )}
+        </Constraint>
+      </div>
     </Constraint>
   );
 };
@@ -82,6 +113,7 @@ export const query = graphql`
     fact: wordpressWpCoalPhaseOut(wordpress_id: { eq: $wordpressId }) {
       title
       featuredImage: featured_media {
+        caption
         localFile {
           childImageSharp {
             fluid(maxWidth: 600) {
