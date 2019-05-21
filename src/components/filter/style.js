@@ -1,6 +1,10 @@
 import css from 'styled-jsx/css';
 
 export default css`
+  .filter {
+    margin-bottom: 4rem;
+  }
+
   .row {
     display: flex;
     flex-direction: row;

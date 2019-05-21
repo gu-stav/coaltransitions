@@ -4,10 +4,10 @@ import { colors, mixins } from '../../token';
 
 export default css`
   .title {
-    ${mixins.text()};
+    ${mixins.text('regular-big')};
 
     color: ${colors.blueBrand};
-    font-weight: 700;
+    margin-left: 14.5rem;
     text-transform: uppercase;
   }
 

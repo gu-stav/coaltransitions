@@ -13,16 +13,24 @@ export default css`
 
   li {
     display: inline;
+    position: relative;
+  }
+
+  li + li {
+    padding-left: 1.25rem;
   }
 
   li + li:before {
     color: ${colors.blueBrand};
     content: '·';
-    font-size: 1.25rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    line-height: 1;
+    left: -0.05rem;
+    line-height: 0.5;
     margin-left: 0.35rem;
     margin-right: 0.35rem;
+    position: absolute;
+    top: 0;
   }
 `;
 

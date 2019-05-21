@@ -13,6 +13,8 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
       <style jsx>{style}</style>
       {linkTitle.styles}
 
+      <p className="year">{year}</p>
+
       <div className="cover-image-container">
         {featuredImage && featuredImage.localFile && (
           <Link to={url} className={linkTitle.className} rel="nofollow">
@@ -45,11 +47,13 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
           </Link>
         </h2>
 
-        <p className="year">{year}</p>
-
         {author && <AuthorList authors={author} trim={5} />}
 
-        {tags && <TagList tags={tags} />}
+        {tags && (
+          <div className="tags-container">
+            <TagList tags={tags} />
+          </div>
+        )}
       </div>
     </div>
   </Constraint>

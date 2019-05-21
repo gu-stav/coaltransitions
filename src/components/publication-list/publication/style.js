@@ -13,34 +13,50 @@ export default css`
   }
 
   .title {
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-top: 0;
   }
 
   .year {
     ${mixins.text('small')}
 
+    align-self: flex-start;
     background-color: ${colors.greenBrand};
     color: white;
     display: inline-block;
     font-weight: 700;
-    padding: 0 0.25rem;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0.15rem 0.5rem;
   }
 
   .cover-image-container {
+    background-color: ${colors.greyLight};
+    border: 1px solid ${colors.greyDark};
     flex: 0 0 auto;
     margin-right: 1.5rem;
+    min-height: 11rem;
     width: 15%;
   }
 
   .cover-image img {
     max-width: 100%;
   }
+
+  .content-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tags-container {
+    justify-self: flex-end;
+    margin-top: auto;
+  }
 `;
 
 export const linkTitle = css.resolve`
   a {
-    ${mixins.text('medium')};
+    ${mixins.text('regular-big')};
 
     text-decoration: none;
   }
