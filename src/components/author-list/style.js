@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { colors, mixins } from '../../token';
+import { colors, mixins, mq } from '../../token';
 
 export default css`
   ul {
@@ -37,6 +37,12 @@ export default css`
 export const linkStyle = css.resolve`
   a {
     ${mixins.text('small')}
+  }
+
+  @media ${mq.tablet} {
+    a {
+      ${mixins.text('small', 'tablet')}
+    }
   }
 
   a:hover,

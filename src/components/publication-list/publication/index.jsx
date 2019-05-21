@@ -47,7 +47,11 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
           </Link>
         </h2>
 
-        {author && <AuthorList authors={author} trim={5} />}
+        {author && (
+          <div className="author-container">
+            <AuthorList authors={author} trim={5} />
+          </div>
+        )}
 
         {tags && (
           <div className="tags-container">

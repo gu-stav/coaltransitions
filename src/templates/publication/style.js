@@ -107,6 +107,14 @@ export default css`
     padding: 0.17rem 0.4rem;
   }
 
+  @media ${mq.tablet} {
+    .meta-block-title {
+      ${mixins.text('mini', 'tablet')}
+
+      font-weight: 700;
+    }
+  }
+
   .meta-block-title ~ * {
     margin-top: 0.5rem;
   }
@@ -116,6 +124,12 @@ export default css`
 
     margin-bottom: 0;
     margin-top: 0;
+  }
+
+  @media ${mq.tablet} {
+    .meta-block-content {
+      ${mixins.text('small', 'tablet')}
+    }
   }
 
   .meta-block-list {

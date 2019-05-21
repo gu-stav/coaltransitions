@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 const MQ_SIZES = [['phone', 500], ['tablet', 768], ['desktop', 1024]];
 
 export const fonts = {
@@ -26,6 +27,8 @@ export const colors = {
   greenAction: '#629A27'
 };
 
+let steps;
+
 export const mixins = {
   resetList() {
     return `
@@ -36,10 +39,21 @@ export const mixins = {
     `;
   },
 
-  text(size) {
+  text(size, screenSize = 'phone') {
     switch (size) {
       case 'mini':
-        return `
+        steps = {
+          phone: `
+            font-family: ${fonts.publicSans.family};
+            font-size: 0.7rem;
+            font-weight: 400;
+            line-height: 1.18;
+          `
+        };
+
+        return screenSize && steps[screenSize]
+          ? steps[screenSize]
+          : `
           font-family: ${fonts.publicSans.family};
           font-size: 0.75rem;
           font-weight: 400;
@@ -48,20 +62,42 @@ export const mixins = {
         `;
 
       case 'small':
-        return `
+        steps = {
+          phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1rem;
+          font-size: 0.8rem;
           font-weight: 400;
           line-height: 1.18;
-        `;
+        `
+        };
+
+        return screenSize && steps[screenSize]
+          ? steps[screenSize]
+          : `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.18;
+      `;
 
       case 'regular-big':
-        return `
+        steps = {
+          phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1.5rem;
+          font-size: 1.15rem;
           font-weight: 700;
           line-height: 1.2;
-        `;
+        `
+        };
+
+        return screenSize && steps[screenSize]
+          ? steps[screenSize]
+          : `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+      `;
 
       case 'medium':
         return `

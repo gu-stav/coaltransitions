@@ -3,6 +3,11 @@ import css from 'styled-jsx/css';
 import { colors, mixins } from '../../token';
 
 export default css`
+  .slider-container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   :global(.rc-slider) {
     position: relative;
     height: 14px;

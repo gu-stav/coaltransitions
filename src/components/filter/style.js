@@ -1,13 +1,31 @@
 import css from 'styled-jsx/css';
 
+import { mq } from '../../token';
+
 export default css`
   .filter {
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    .filter {
+      margin-bottom: 4rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   .row {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+  }
+
+  @media ${mq.tablet} {
+    .row {
+      flex-direction: row;
+    }
   }
 
   .row + .row {
@@ -17,7 +35,14 @@ export default css`
   /* Reset button */
   .row:nth-child(2) .column:last-child {
     flex: 0 1 auto;
-    padding-left: 3.5rem;
+    margin-top: 2.5rem;
+  }
+
+  @media ${mq.tablet} {
+    .row:nth-child(2) .column:last-child {
+      margin-top: 0;
+      padding-left: 3.5rem;
+    }
   }
 
   .column {
@@ -25,6 +50,13 @@ export default css`
   }
 
   .column + .column {
-    padding-left: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media ${mq.tablet} {
+    .column + .column {
+      margin-top: 0;
+      padding-left: 1.5rem;
+    }
   }
 `;

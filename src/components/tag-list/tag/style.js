@@ -4,7 +4,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { colors, mixins } from '../../../token';
+import { colors, mixins, mq } from '../../../token';
 
 export const linkStyle = css.resolve`
   a {
@@ -17,6 +17,15 @@ export const linkStyle = css.resolve`
     ${mixins.text('small')};
 
     font-weight: 700;
+  }
+
+  @media ${mq.tablet} {
+    a,
+    a::before {
+      ${mixins.text('small', 'tablet')};
+
+      font-weight: 700;
+    }
   }
 
   a::before {
