@@ -185,20 +185,20 @@ const Page = ({
             ]
           ]}
         />
-      </Constraint>
 
-      {publications && (
-        <PublicationsList
-          title={`Publications (${publications.length})`}
-          publications={publications}
-          onFilter={filterItem => {
-            setFilter(state => ({
-              ...state,
-              ...filterItem
-            }));
-          }}
-        />
-      )}
+        {publications && (
+          <PublicationsList
+            title={`Publications (${publications.length})`}
+            publications={publications}
+            onFilter={filterItem => {
+              setFilter(state => ({
+                ...state,
+                ...filterItem
+              }));
+            }}
+          />
+        )}
+      </Constraint>
     </>
   );
 };

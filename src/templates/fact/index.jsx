@@ -33,7 +33,7 @@ const Page = ({
   );
 
   return (
-    <Constraint wide>
+    <>
       <style jsx>{style}</style>
 
       <Helmet title={title} />
@@ -66,8 +66,8 @@ const Page = ({
         </picture>
       </header>
 
-      <div className="body">
-        <Constraint>
+      <Constraint topLevel wide>
+        <div className="body">
           <p className="intro">{intro}</p>
 
           {content &&
@@ -94,9 +94,9 @@ const Page = ({
               <PublicationList publications={publicationListItems} />
             </>
           )}
-        </Constraint>
-      </div>
-    </Constraint>
+        </div>
+      </Constraint>
+    </>
   );
 };
 

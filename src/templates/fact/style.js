@@ -38,13 +38,6 @@ export default css`
     padding-right: 1.5rem;
   }
 
-  @media ${mq.tablet} {
-    .body {
-      padding-left: 15%;
-      padding-right: 10%;
-    }
-  }
-
   @media ${mq.desktop} {
     .body {
       padding-left: 25%;

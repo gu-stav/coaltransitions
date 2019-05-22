@@ -27,8 +27,6 @@ export const colors = {
   greenAction: '#629A27'
 };
 
-let steps;
-
 export const mixins = {
   resetList() {
     return `
@@ -40,104 +38,127 @@ export const mixins = {
   },
 
   text(size, screenSize = 'phone') {
-    switch (size) {
-      case 'mini':
-        steps = {
-          phone: `
-            font-family: ${fonts.publicSans.family};
-            font-size: 0.7rem;
-            font-weight: 400;
-            line-height: 1.18;
-          `
-        };
-
-        return screenSize && steps[screenSize]
-          ? steps[screenSize]
-          : `
+    const sizes = {
+      mini: {
+        phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 0.75rem;
+          font-size: 0.7rem;
           font-weight: 400;
-          letter-spacing: 0.05rem;
-          line-height: 1.3;
-        `;
+          line-height: 1.18;
+        `,
 
-      case 'small':
-        steps = {
-          phone: `
+        desktop: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.05rem;
+        line-height: 1.3;
+      `
+      },
+
+      small: {
+        phone: `
           font-family: ${fonts.publicSans.family};
           font-size: 0.8rem;
           font-weight: 400;
           line-height: 1.18;
-        `
-        };
+        `,
 
-        return screenSize && steps[screenSize]
-          ? steps[screenSize]
-          : `
+        desktop: `
         font-family: ${fonts.publicSans.family};
         font-size: 1rem;
         font-weight: 400;
         line-height: 1.18;
-      `;
+      `
+      },
 
-      case 'regular-big':
-        steps = {
-          phone: `
-          font-family: ${fonts.publicSans.family};
-          font-size: 1.15rem;
-          font-weight: 700;
-          line-height: 1.2;
-        `
-        };
-
-        return screenSize && steps[screenSize]
-          ? steps[screenSize]
-          : `
+      'regular-big': {
+        phone: `
         font-family: ${fonts.publicSans.family};
-        font-size: 1.5rem;
+        font-size: 1.15rem;
         font-weight: 700;
         line-height: 1.2;
-      `;
+      `,
 
-      case 'medium':
-        return `
-          font-family: ${fonts.publicSans.family};
-          font-size: 1.75rem;
-          font-weight: 800;
-          line-height: 1.21;
-        `;
+        desktop: `
+      font-family: ${fonts.publicSans.family};
+      font-size: 1.5rem;
+      font-weight: 700;
+      line-height: 1.2;
+    `
+      },
 
-      case 'big':
-        return `
-          font-family: ${fonts.publicSans.family};
-          font-size: 2rem;
-          font-weight: 700;
-          line-height: 1.11;
-        `;
-
-      case 'extra-big':
-        return `
-          font-family: ${fonts.publicSans.family};
-          font-size: 3.18rem;
-          font-weight: 700;
-          line-height: 1.03;
-        `;
-
-      case 'huge':
-        return `
-          font-family: ${fonts.publicSans.family};
-          font-size: 4rem;
-          font-weight: 200;
-          line-height: 1.26;
-        `;
-
-      default:
-        return `
+      medium: {
+        phone: `
         font-family: ${fonts.publicSans.family};
-        font-size: 1.31rem;
-        font-weight: 400;
-        line-height: 1.71;
-      `;
-    }
+        font-size: 1.15rem;
+        font-weight: 800;
+        line-height: 1.2;
+      `,
+
+        tablet: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1.25rem;
+        font-weight: 800;
+        line-height: 1.2;
+      `,
+
+        desktop: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1.75rem;
+        font-weight: 800;
+        line-height: 1.2;
+      `
+      },
+
+      big: {
+        desktop: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.11;
+      `
+      },
+
+      'extra-big': {
+        phone: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 2rem;
+        font-weight: 700;
+        line-height: 1.03;
+      `,
+        tablet: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 2.5rem;
+        font-weight: 700;
+        line-height: 1.03;
+      `,
+        desktop: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 3.18rem;
+        font-weight: 700;
+        line-height: 1.03;
+      `
+      },
+
+      huge: {
+        desktop: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 4rem;
+        font-weight: 200;
+        line-height: 1.26;
+      `
+      }
+    };
+
+    return (
+      (sizes[size] && sizes[size][screenSize]) ||
+      `
+    font-family: ${fonts.publicSans.family};
+    font-size: 1.31rem;
+    font-weight: 400;
+    line-height: 1.71;
+  `
+    );
   }
 };
