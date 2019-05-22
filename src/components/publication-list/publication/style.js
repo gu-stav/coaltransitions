@@ -15,13 +15,7 @@ export default css`
 
   .title {
     margin-bottom: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  @media ${mq.tablet} {
-    .title {
-      margin-top: 0;
-    }
+    margin-top: 0;
   }
 
   .year {
@@ -32,11 +26,11 @@ export default css`
     color: white;
     display: inline-block;
     font-weight: 700;
-    left: calc(15% + 1rem);
     margin-bottom: 0;
     margin-top: 0;
     padding: 0.15rem 0.5rem;
-    position: absolute;
+    text-align: right;
+    width: 100%;
   }
 
   @media ${mq.tablet} {
@@ -44,7 +38,10 @@ export default css`
       ${mixins.text('small', 'tablet')}
 
       font-weight: 700;
-      position: static;
+      position: absolute;
+      text-align: left;
+      transform: translateX(-100%);
+      width: auto;
     }
   }
 
@@ -54,13 +51,21 @@ export default css`
     border: 1px solid ${colors.greyDark};
     flex: 0 0 auto;
     margin-right: 1rem;
-    width: 15%;
+    position: relative;
+    width: 25%;
   }
 
   @media ${mq.tablet} {
     .cover-image-container {
       margin-right: 1.5rem;
       min-height: 11rem;
+      width: 20%;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .cover-image-container {
+      width: 15%;
     }
   }
 
@@ -94,6 +99,12 @@ export const linkTitle = css.resolve`
   @media ${mq.tablet} {
     a {
       ${mixins.text('regular-big', 'tablet')};
+    }
+  }
+
+  @media ${mq.desktop} {
+    a {
+      ${mixins.text('regular-big', 'desktop')};
     }
   }
 

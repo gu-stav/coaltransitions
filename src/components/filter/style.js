@@ -11,6 +11,12 @@ export default css`
 
   @media ${mq.tablet} {
     .filter {
+      margin-bottom: 3rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .filter {
       margin-bottom: 4rem;
       padding-left: 0;
       padding-right: 0;

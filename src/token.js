@@ -80,6 +80,13 @@ export const mixins = {
         line-height: 1.2;
       `,
 
+        tablet: `
+        font-family: ${fonts.publicSans.family};
+        font-size: 1.25rem;
+        font-weight: 700;
+        line-height: 1.2;
+      `,
+
         desktop: `
       font-family: ${fonts.publicSans.family};
       font-size: 1.5rem;

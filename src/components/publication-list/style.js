@@ -10,6 +10,12 @@ export default css`
 
   @media ${mq.tablet} {
     .publications-container {
+      padding-left: 5rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .publications-container {
       padding-left: 0;
       padding-right: 0;
     }

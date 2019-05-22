@@ -11,9 +11,9 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
     <style jsx>{style}</style>
     {linkTitle.styles}
 
-    <p className="year">{year}</p>
-
     <div className="cover-image-container">
+      <p className="year">{year}</p>
+
       {featuredImage && featuredImage.localFile && (
         <Link to={url} className={linkTitle.className} rel="nofollow">
           <picture className="cover-image">
