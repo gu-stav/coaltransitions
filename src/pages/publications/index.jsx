@@ -85,7 +85,7 @@ const Page = ({
 
         // Only set the URL parameter, if the start and beginning are different
         // than the default
-        if (filter.range !== null) {
+        if (filter.range && filter.range.length > 0) {
           if (
             filter.range[0] !== minPublicationYear ||
             filter.range[1] !== maxPublicationYear
@@ -113,10 +113,13 @@ const Page = ({
                 placeholder="Authors"
                 name="author"
                 options={authors}
-                value={filter.authors.map(author => ({
-                  value: author,
-                  label: author
-                }))}
+                value={
+                  filter.authors &&
+                  filter.authors.map(author => ({
+                    value: author,
+                    label: author
+                  }))
+                }
                 onChange={selected => {
                   const updatedAuthors = selected.map(({ value }) => value);
 
@@ -133,10 +136,13 @@ const Page = ({
                 placeholder="Keywords"
                 name="tags"
                 options={tags}
-                value={filter.tags.map(tag => ({
-                  value: tag,
-                  label: tags.find(({ value }) => value === tag).label
-                }))}
+                value={
+                  filter.tags &&
+                  filter.tags.map(tag => ({
+                    value: tag,
+                    label: tags.find(({ value }) => value === tag).label
+                  }))
+                }
                 onChange={selected => {
                   const selectedTags = selected.map(({ value }) => value);
 
@@ -190,11 +196,10 @@ const Page = ({
           <PublicationsList
             title={`Publications (${publications.length})`}
             publications={publications}
-            onFilter={filterItem => {
-              setFilter(state => ({
-                ...state,
-                ...filterItem
-              }));
+            onFilter={(filterKey, filterValue) => {
+              setFilter({
+                [filterKey]: filterValue
+              });
             }}
           />
         )}

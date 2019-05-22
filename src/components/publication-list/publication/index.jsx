@@ -6,7 +6,14 @@ import AuthorList from '../../author-list';
 import style, { linkTitle } from './style';
 import TagList from '../../tag-list';
 
-export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
+export default ({
+  acf: { author, year },
+  tags,
+  title,
+  featuredImage,
+  url,
+  onFilter
+}) => (
   <div className="publication">
     <style jsx>{style}</style>
     {linkTitle.styles}
@@ -45,13 +52,13 @@ export default ({ acf: { author, year }, tags, title, featuredImage, url }) => (
 
       {author && (
         <div className="author-container">
-          <AuthorList authors={author} trim={5} />
+          <AuthorList authors={author} onFilter={onFilter} trim={5} />
         </div>
       )}
 
       {tags && (
         <div className="tags-container">
-          <TagList tags={tags} />
+          <TagList onFilter={onFilter} tags={tags} />
         </div>
       )}
     </div>
