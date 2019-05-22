@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-import Constraint from '../constraint';
-import style, { link, linkActive } from './style';
+import style, { link, linkActive, logo, logoLink } from './style';
+
+import Logo from '../../../static/logos/coal-transitions.svg';
 
 const Item = ({ to, children, ...attributes }) => (
   <Link
@@ -17,25 +18,23 @@ const Item = ({ to, children, ...attributes }) => (
 );
 
 export default ({ items = [] }) => (
-  <Constraint>
-    <nav className="menu">
-      <style jsx>{style}</style>
-      {link.styles}
-      {linkActive.styles}
+  <nav className="menu">
+    <style jsx>{style}</style>
+    {link.styles}
+    {linkActive.styles}
+    {logo.styles}
+    {logoLink.styles}
 
-      <ul>
-        <li key="menu-start`">
-          <Item to="/" partiallyActive={false}>
-            Start
-          </Item>
+    <Link to="/" className={logoLink.className}>
+      <Logo className={logo.className} />
+    </Link>
+
+    <ul>
+      {items.map(([label, path]) => (
+        <li key={`menu-${label}`}>
+          <Item to={path}>{label}</Item>
         </li>
-
-        {items.map(([label, path]) => (
-          <li key={`menu-${label}`}>
-            <Item to={path}>{label}</Item>
-          </li>
-        ))}
-      </ul>
-    </nav>
-  </Constraint>
+      ))}
+    </ul>
+  </nav>
 );

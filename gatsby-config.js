@@ -5,7 +5,8 @@ module.exports = {
     title: 'Coal Transitions',
     menu: [
       ['Coal Phase-out', '/coal-phase-out/'],
-      ['Publications', '/publications/']
+      ['Publications', '/publications/'],
+      ['About', '/about/research-hub/']
     ]
   },
 
@@ -32,7 +33,7 @@ module.exports = {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /static/
+          include: /static\/logos/
         }
       }
     },
