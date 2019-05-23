@@ -119,6 +119,7 @@ export default css`
     .intro {
       ${mixins.text('medium', 'tablet')}
 
+      font-weight: 400;
       margin-top: 2.5rem;
     }
   }
@@ -126,26 +127,28 @@ export default css`
   @media ${mq.desktop} {
     .intro {
       ${mixins.text('medium', 'desktop')}
+
+      font-weight: 400;
     }
   }
 `;
 
 export const titleLink = css.resolve`
   a {
-    ${mixins.text('extra-big')}
+    ${mixins.text('huge')}
 
     text-decoration: none;
   }
 
   @media ${mq.tablet} {
     a {
-      ${mixins.text('extra-big', 'tablet')}
+      ${mixins.text('huge', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     a {
-      ${mixins.text('extra-big', 'desktop')}
+      ${mixins.text('huge', 'desktop')}
     }
   }
 `;
@@ -153,5 +156,13 @@ export const titleLink = css.resolve`
 export const imageLink = css.resolve`
   a {
     flex: 1 0 100%;
+  }
+`;
+
+export const arrowIcon = css.resolve`
+  svg {
+    height: 1.75rem;
+    margin-left: 1rem;
+    width: 1.75rem;
   }
 `;

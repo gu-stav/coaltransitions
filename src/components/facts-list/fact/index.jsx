@@ -3,8 +3,9 @@ import Link from 'gatsby-link';
 import React from 'react';
 import { graphql } from 'gatsby';
 
+import ArrowIcon from '../../../../static/icons/arrow-alt-right.svg';
 import Button from '../../button';
-import style, { titleLink, imageLink } from './style';
+import style, { titleLink, imageLink, arrowIcon } from './style';
 
 export default ({
   slug,
@@ -25,6 +26,7 @@ export default ({
       <style jsx>{style}</style>
       {titleLink.styles}
       {imageLink.styles}
+      {arrowIcon.styles}
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
@@ -69,7 +71,8 @@ export default ({
         )}
 
         <Button to={url} rel="nofollow">
-          Mehr lesen
+          More about this fact
+          <ArrowIcon className={arrowIcon.className} />
         </Button>
       </div>
     </section>

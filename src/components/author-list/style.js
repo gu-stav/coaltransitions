@@ -45,6 +45,12 @@ export const linkStyle = css.resolve`
     }
   }
 
+  @media ${mq.desktop} {
+    a {
+      ${mixins.text('small', 'desktop')}
+    }
+  }
+
   a:hover,
   a:focus {
     color: ${colors.blueAction};
