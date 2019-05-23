@@ -11,13 +11,13 @@ export default css`
   @media ${mq.tablet} {
     .publications-container {
       padding-left: 5rem;
+      padding-right: 0;
     }
   }
 
   @media ${mq.desktop} {
     .publications-container {
-      padding-left: 0;
-      padding-right: 0;
+      padding-left: 7.5rem;
     }
   }
 
@@ -25,12 +25,23 @@ export default css`
     ${mixins.text('regular-big')};
 
     color: ${colors.blueBrand};
+    margin-left: calc(25% + 1rem);
     text-transform: uppercase;
   }
 
   @media ${mq.tablet} {
     .title {
-      margin-left: 14.5rem;
+      ${mixins.text('regular-big', 'tablet')};
+
+      margin-left: calc(20% + 1.5rem);
+    }
+  }
+
+  @media ${mq.desktop} {
+    .title {
+      ${mixins.text('regular-big', 'desktop')};
+
+      margin-left: calc(15% + 1.5rem);
     }
   }
 

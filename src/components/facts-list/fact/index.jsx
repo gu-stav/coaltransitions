@@ -62,7 +62,7 @@ export default ({
         <h2 className="title">
           <Link to={url} rel="nofollow" className={titleLink.className}>
             <span className="index">Finding {factNumber}</span>
-            {title}
+            <span dangerouslySetInnerHTML={{ __html: title }} />
           </Link>
         </h2>
 

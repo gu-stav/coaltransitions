@@ -54,7 +54,7 @@ export default css`
 
   @media ${mq.tablet} {
     .intro-container {
-      padding: 2rem 4.5rem 2rem 2.5rem;
+      padding: 2rem;
       transform: translateY(-25%);
       width: 60%;
     }
