@@ -7,8 +7,10 @@ export default ({ to, slug, children, onFilter, ...attributes }) => (
   <Link
     to={`/publications/?keywords=${slug}`}
     onClick={event => {
-      event.preventDefault();
-      onFilter('tags', [slug]);
+      if (onFilter) {
+        event.preventDefault();
+        onFilter('tags', [slug]);
+      }
     }}
     className={linkStyle.className}
     {...attributes}

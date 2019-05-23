@@ -11,7 +11,10 @@ export const linkStyle = css.resolve`
   button {
     ${mixins.text('mini')}
 
+    align-items: center;
     border-radius: 1rem;
+    display: flex;
+    flex-direction: row;
     padding: 0.4rem 1rem;
     text-decoration: none;
     text-transform: uppercase;

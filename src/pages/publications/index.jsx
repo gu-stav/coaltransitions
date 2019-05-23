@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 
 import Button from '../../components/button';
 import Constraint from '../../components/constraint';
@@ -10,12 +10,14 @@ import {
   extractPublicationYearExtremes,
   filterPublications
 } from '../../lib/publication';
-import Filter from '../../components/filter';
+import FilterButton from '../../components/filter/button';
 import PublicationsList from '../../components/publication-list';
 import Select from '../../components/select';
 import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
 import Slider from '../../components/slider';
 import withLayout from '../../components/with-layout';
+
+const Filter = React.lazy(() => import('../../components/filter'));
 
 const generateRangeMarks = (min, max) => {
   const marks = {};
@@ -58,7 +60,7 @@ const Page = ({
   });
 
   const [count, setCount] = useState(0);
-
+  const [showFilter, setShowFilter] = useState(false);
   const [publications, setPublications] = useState(initialPublications);
 
   useEffect(() => {
@@ -98,6 +100,12 @@ const Page = ({
       }
     }
 
+    // Show the filter interface if at least one is set
+    setShowFilter(
+      (filter.authors && filter.authors.length > 0) ||
+        (filter.tags && filter.tags.length > 0) ||
+        filter.range
+    );
     setCount(count + 1);
   }, [filter]);
 
@@ -106,91 +114,101 @@ const Page = ({
       <Helmet title="Publications" />
 
       <Constraint>
-        <Filter
-          rows={[
-            [
-              <Select
-                placeholder="Authors"
-                name="author"
-                options={authors}
-                value={
-                  filter.authors &&
-                  filter.authors.map(author => ({
-                    value: author,
-                    label: author
-                  }))
-                }
-                onChange={selected => {
-                  const updatedAuthors = selected.map(({ value }) => value);
+        <FilterButton onClick={() => setShowFilter(!showFilter)}>
+          {showFilter ? 'Hide' : 'Show'} Filter
+        </FilterButton>
 
-                  setFilter(state => ({
-                    ...state,
-                    authors: updatedAuthors
-                  }));
-                }}
-                isMulti
-                isSearchable
-              />,
+        {showFilter && (
+          <Suspense fallback={<div>Loading</div>}>
+            <Filter
+              rows={[
+                [
+                  <Select
+                    placeholder="Authors"
+                    name="author"
+                    options={authors}
+                    value={
+                      filter.authors &&
+                      filter.authors.map(author => ({
+                        value: author,
+                        label: author
+                      }))
+                    }
+                    onChange={selected => {
+                      const updatedAuthors = selected.map(({ value }) => value);
 
-              <Select
-                placeholder="Keywords"
-                name="tags"
-                options={tags}
-                value={
-                  filter.tags &&
-                  filter.tags.map(tag => ({
-                    value: tag,
-                    label: tags.find(({ value }) => value === tag).label
-                  }))
-                }
-                onChange={selected => {
-                  const selectedTags = selected.map(({ value }) => value);
+                      setFilter(state => ({
+                        ...state,
+                        authors: updatedAuthors
+                      }));
+                    }}
+                    isMulti
+                    isSearchable
+                  />,
 
-                  setFilter(state => ({
-                    ...state,
-                    tags: selectedTags
-                  }));
-                }}
-                isMulti
-                isSearchable
-              />
-            ],
+                  <Select
+                    placeholder="Keywords"
+                    name="tags"
+                    options={tags}
+                    value={
+                      filter.tags &&
+                      filter.tags.map(tag => ({
+                        value: tag,
+                        label: tags.find(({ value }) => value === tag).label
+                      }))
+                    }
+                    onChange={selected => {
+                      const selectedTags = selected.map(({ value }) => value);
 
-            [
-              <Slider
-                min={minPublicationYear}
-                max={maxPublicationYear}
-                value={filter.range || [minPublicationYear, maxPublicationYear]}
-                onChange={value => {
-                  setFilter(state => ({
-                    ...state,
-                    range: value
-                  }));
-                }}
-                allowCross={false}
-                dots
-                marks={generateRangeMarks(
-                  minPublicationYear,
-                  maxPublicationYear
-                )}
-              />,
+                      setFilter(state => ({
+                        ...state,
+                        tags: selectedTags
+                      }));
+                    }}
+                    isMulti
+                    isSearchable
+                  />
+                ],
 
-              <Button
-                onClick={event => {
-                  event.preventDefault();
-                  setFilter(state => ({
-                    ...state,
-                    authors: [],
-                    tags: [],
-                    range: null
-                  }));
-                }}
-              >
-                Reset
-              </Button>
-            ]
-          ]}
-        />
+                [
+                  <Slider
+                    min={minPublicationYear}
+                    max={maxPublicationYear}
+                    value={
+                      filter.range || [minPublicationYear, maxPublicationYear]
+                    }
+                    onChange={value => {
+                      setFilter(state => ({
+                        ...state,
+                        range: value
+                      }));
+                    }}
+                    allowCross={false}
+                    dots
+                    marks={generateRangeMarks(
+                      minPublicationYear,
+                      maxPublicationYear
+                    )}
+                  />,
+
+                  <Button
+                    onClick={event => {
+                      event.preventDefault();
+                      setFilter(state => ({
+                        ...state,
+                        authors: [],
+                        tags: [],
+                        range: null
+                      }));
+                    }}
+                  >
+                    Reset
+                  </Button>
+                ]
+              ]}
+            />
+          </Suspense>
+        )}
 
         {publications && (
           <PublicationsList

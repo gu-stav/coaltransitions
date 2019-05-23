@@ -21,11 +21,18 @@ export default ({
         {linkStyle.styles}
 
         {external ? (
-          <a href={to} className={linkStyle.className} {...attributes}>
+          <a
+            href={to}
+            className={`${linkStyle.className} ${theme && 'theme--'.theme}`}
+            {...attributes}
+          >
             {children}
           </a>
         ) : (
-          <Link className={linkStyle.className} {...props}>
+          <Link
+            className={`${linkStyle.className} ${theme && 'theme--'.theme}`}
+            {...props}
+          >
             {children}
           </Link>
         )}

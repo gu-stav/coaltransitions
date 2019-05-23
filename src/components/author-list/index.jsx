@@ -3,7 +3,7 @@ import React from 'react';
 
 import style, { linkStyle } from './style';
 
-export default ({ authors, trim = false, onFilter }) => (
+export default ({ authors, trim = false, onFilter = false }) => (
   <ul>
     <style jsx>{style}</style>
     {linkStyle.styles}
@@ -18,8 +18,10 @@ export default ({ authors, trim = false, onFilter }) => (
           <Link
             to={`/publications/?authors=${encodeURIComponent(name)}`}
             onClick={event => {
-              event.preventDefault();
-              onFilter('authors', [name]);
+              if (onFilter) {
+                event.preventDefault();
+                onFilter('authors', [name]);
+              }
             }}
             className={linkStyle.className}
           >

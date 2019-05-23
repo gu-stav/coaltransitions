@@ -3,7 +3,7 @@ import React from 'react';
 import style, { linkStyle } from './style';
 import Tag from './tag';
 
-export default ({ tags, trim = false, onFilter }) => (
+export default ({ tags, trim = false, onFilter = false }) => (
   <ul>
     <style jsx>{style}</style>
     {linkStyle.styles}
