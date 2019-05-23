@@ -3,16 +3,32 @@ import Helmet from 'react-helmet';
 import React from 'react';
 
 import AuthorList from '../../components/author-list';
+import Button from '../../components/button';
 import Constraint from '../../components/constraint';
+import DownloadIcon from '../../../static/icons/download.svg';
 import Richtext from '../../components/richtext';
-import style from './style';
+import style, { buttonIcon } from './style';
 import TagList from '../../components/tag-list';
 import withLayout from '../../components/with-layout';
+
+const HUMAN_READABLE_LANGUAGES = {
+  en: 'English',
+  de: 'German'
+};
 
 const Page = ({
   data: {
     publication: {
-      acf: { abstract, year, subtitle, author, language, institute, employer },
+      acf: {
+        abstract,
+        year,
+        subtitle,
+        author,
+        language,
+        institute,
+        employer,
+        published_in: publishedIn
+      },
       title,
       featuredImage,
       tags
@@ -36,16 +52,31 @@ const Page = ({
           )}
         </h1>
 
-        {subtitle && <p className="subtitle">{subtitle}</p>}
+        {subtitle && (
+          <p className="subtitle">
+            {subtitle} {subtitle && publishedIn && ' | '} {publishedIn}
+          </p>
+        )}
 
-        {language &&
-          language.map(
-            ({ language: downloadLanguage, external_url: externalUrl }) => (
-              <a key={`language-${downloadLanguage}`} href={externalUrl}>
-                {downloadLanguage}
-              </a>
-            )
-          )}
+        {language && (
+          <div className="languages-container">
+            {buttonIcon.styles}
+
+            {language.map(
+              ({ language: downloadLanguage, external_url: externalUrl }) => (
+                <Button
+                  key={`language-${downloadLanguage}`}
+                  to={externalUrl}
+                  theme="blue"
+                  external
+                >
+                  {HUMAN_READABLE_LANGUAGES[downloadLanguage]}
+                  <DownloadIcon className={buttonIcon.className} />
+                </Button>
+              )
+            )}
+          </div>
+        )}
 
         {featuredImage && featuredImage.localFile && (
           <picture className="cover-image">
@@ -151,6 +182,7 @@ export const query = graphql`
       acf {
         abstract
         year
+        published_in
         subtitle
         author {
           name

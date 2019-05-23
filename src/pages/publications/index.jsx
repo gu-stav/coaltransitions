@@ -115,7 +115,7 @@ const Page = ({
 
       <Constraint>
         <FilterButton onClick={() => setShowFilter(!showFilter)}>
-          {showFilter ? 'Hide' : 'Show'} Filter
+          Filter Publications
         </FilterButton>
 
         {showFilter && (

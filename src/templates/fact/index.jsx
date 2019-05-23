@@ -125,10 +125,6 @@ export const query = graphql`
       }
       acf {
         intro
-        additionalLinks: additional_links {
-          link
-          linktext
-        }
         publications {
           publicationId: publication
         }

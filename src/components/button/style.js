@@ -59,4 +59,10 @@ export const linkStyle = css.resolve`
   button:focus {
     background-color: ${colors.blueAction};
   }
+
+  a.theme--blue,
+  button.theme--blue {
+    background-color: ${colors.blueAction};
+    color: white;
+  }
 `;

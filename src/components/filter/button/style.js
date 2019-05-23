@@ -2,19 +2,30 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { mq } from '../../../token';
+import { colors } from '../../../token';
 
 export default css`
   .container {
     display: flex;
     justify-content: center;
     margin-bottom: 2.5rem;
+    position: relative;
   }
 
-  @media ${mq.tablet} {
-    .container {
-      justify-content: flex-start;
-    }
+  .container::before {
+    border-bottom: 1px solid ${colors.blueBrand};
+    content: '';
+    height: 1px;
+    position: absolute;
+    top: calc(50% - 1px);
+    width: 100%;
+    z-index: 1;
+  }
+
+  .button-container {
+    border: 1rem solid white;
+    position: relative;
+    z-index: 2;
   }
 `;
 

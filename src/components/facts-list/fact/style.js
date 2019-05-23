@@ -26,7 +26,7 @@ export default css`
 
   @media ${mq.desktop} {
     .image-container {
-      width: 55%;
+      width: 50%;
     }
   }
 
@@ -42,7 +42,7 @@ export default css`
 
   .intro-container {
     align-self: flex-end;
-    background-color: ${colors.blueBrand};
+    background-color: ${colors.blueAction};
     color: white;
     flex: 1 0 auto;
     margin-left: auto;
@@ -54,7 +54,7 @@ export default css`
 
   @media ${mq.tablet} {
     .intro-container {
-      padding: 2.5rem 4.5rem 2.5rem 2.5rem;
+      padding: 2rem 4.5rem 2rem 2.5rem;
       transform: translateY(-25%);
       width: 60%;
     }
@@ -62,7 +62,7 @@ export default css`
 
   @media ${mq.desktop} {
     .intro-container {
-      transform: translateY(-50%);
+      transform: translateY(-45%);
       width: 55%;
     }
   }

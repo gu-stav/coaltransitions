@@ -173,13 +173,14 @@ export const mixins = {
         font-family: ${fonts.publicSans.family};
         font-size: 3rem;
         font-weight: 600;
+        letter-spacing: 0.05rem;
         line-height: 1.26;
       `,
         desktop: `
         font-family: ${fonts.publicSans.family};
         font-size: 4rem;
         font-weight: 600;
-        line-height: 1.1;
+        line-height: 1;
       `
       }
     };

@@ -10,9 +10,9 @@ export default css`
     align-self: flex-start;
     display: flex;
     flex-direction: row;
-    margin-bottom: 6rem;
-    margin-left: 1.5rem;
-    margin-top: 2rem;
+    margin-bottom: 4rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
   }
 
   ul {
@@ -56,12 +56,12 @@ export const linkActive = css.resolve`
 export const logo = css.resolve`
   svg {
     height: 6rem;
-    width: 15rem;
+    width: 14.5rem;
   }
 `;
 
 export const logoLink = css.resolve`
   a {
-    margin-right: 2.5rem;
+    margin-right: 1rem;
   }
 `;

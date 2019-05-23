@@ -61,7 +61,7 @@ export default ({
       <div className="intro-container">
         <h2 className="title">
           <Link to={url} rel="nofollow" className={titleLink.className}>
-            <span className="index">Fact {factNumber}</span>
+            <span className="index">Finding {factNumber}</span>
             {title}
           </Link>
         </h2>
