@@ -2,7 +2,7 @@ import css from 'styled-jsx/css';
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 
-import { colors, mixins } from '../../token';
+import { colors, mixins, mq } from '../../token';
 
 export default css`
   footer {
@@ -29,5 +29,17 @@ export const item = css.resolve`
     color: ${colors.blueBrand};
     text-decoration: none;
     text-transform: uppercase;
+  }
+
+  @media ${mq.tablet} {
+    a {
+      ${mixins.text('regular-big', 'tablet')}
+    }
+  }
+
+  @media ${mq.desktop} {
+    a {
+      ${mixins.text('regular-big', 'desktop')}
+    }
   }
 `;
