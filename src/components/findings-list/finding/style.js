@@ -30,10 +30,6 @@ export default css`
     }
   }
 
-  .image img {
-    width: 100%;
-  }
-
   .caption {
     align-self: flex-end;
     padding: 1.5rem;

@@ -27,11 +27,7 @@ export default css`
     padding-left: 2.5rem;
   }
 
-  .cover-image {
-    display: flex;
-  }
-
-  .cover-image img {
+  .cover-image-container {
     justify-self: flex-end;
     margin-left: auto;
     max-width: 50%;

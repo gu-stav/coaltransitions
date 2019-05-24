@@ -28,7 +28,8 @@ module.exports = {
           '**/researchprojects',
           '**/about',
           '**/media',
-          '**/tags'
+          '**/tags',
+          '**/menus'
         ],
         auth: {
           htaccess_user: config.auth_username,

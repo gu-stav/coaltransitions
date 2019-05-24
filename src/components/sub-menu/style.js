@@ -10,6 +10,8 @@ export default css`
 
     display: flex;
     flex-direction: row;
+    margin-bottom: 4rem;
+    margin-top: -4rem;
   }
 
   li + li {

@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
+import Picture from '../../components/picture';
 import Richtext from '../../components/richtext';
 import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
@@ -18,7 +19,7 @@ const Page = ({
   <>
     <SubMenu items={pages} />
 
-    <Constraint>
+    <Constraint topLevel>
       <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
       {content &&
@@ -29,6 +30,9 @@ const Page = ({
           switch (type) {
             case 'WordPressAcf_text':
               return <Richtext content={block.text} />;
+
+            case 'WordPressAcf_image':
+              return <Picture image={block.image.localFile} />;
           }
 
           return null;
@@ -56,6 +60,20 @@ export const query = graphql`
 
           ... on WordPressAcf_text {
             text
+          }
+
+          ... on WordPressAcf_image {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    src
+                    srcSet
+                    srcWebp
+                  }
+                }
+              }
+            }
           }
         }
       }

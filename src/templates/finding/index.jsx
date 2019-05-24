@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 
 import Constraint from '../../components/constraint';
 import MoreLinksList from '../../components/more-links-list';
+import Picture from '../../components/picture';
 import PublicationList from '../../components/publication-list';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
@@ -41,29 +42,9 @@ const Page = ({
       <header className="header">
         <h1 className="title">{title}</h1>
 
-        <picture className="image">
-          {featuredImage && featuredImage.localFile && (
-            <>
-              <source
-                type="image/webp"
-                srcSet={
-                  featuredImage.localFile.childImageSharp.fluid.srcSetWebp
-                }
-              />
-
-              <source
-                type="image/png"
-                srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
-              />
-
-              <img
-                src={featuredImage.localFile.childImageSharp.fluid.src}
-                alt=""
-                loading="lazy"
-              />
-            </>
-          )}
-        </picture>
+        {featuredImage && featuredImage.localFile && (
+          <Picture image={featuredImage.localFile} />
+        )}
       </header>
 
       <Constraint topLevel wide>

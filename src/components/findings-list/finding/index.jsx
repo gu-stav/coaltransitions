@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 
 import ArrowIcon from '../../../../static/icons/arrow-alt-right.svg';
 import Button from '../../button';
+import Picture from '../../picture';
 import style, { titleLink, imageLink, arrowIcon } from './style';
 
 export default ({
@@ -30,29 +31,9 @@ export default ({
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
-          <picture className="image">
-            {featuredImage && featuredImage.localFile && (
-              <>
-                <source
-                  type="image/webp"
-                  srcSet={
-                    featuredImage.localFile.childImageSharp.fluid.srcSetWebp
-                  }
-                />
-
-                <source
-                  type="image/png"
-                  srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
-                />
-
-                <img
-                  src={featuredImage.localFile.childImageSharp.fluid.src}
-                  alt=""
-                  loading="lazy"
-                />
-              </>
-            )}
-          </picture>
+          {featuredImage && featuredImage.localFile && (
+            <Picture image={featuredImage.localFile} />
+          )}
         </Link>
 
         <figcaption className="caption">{figureCaption}</figcaption>

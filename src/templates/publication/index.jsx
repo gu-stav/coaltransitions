@@ -6,6 +6,7 @@ import AuthorList from '../../components/author-list';
 import Button from '../../components/button';
 import Constraint from '../../components/constraint';
 import DownloadIcon from '../../../static/icons/download.svg';
+import Picture from '../../components/picture';
 import Richtext from '../../components/richtext';
 import style, { buttonIcon } from './style';
 import TagList from '../../components/tag-list';
@@ -79,21 +80,9 @@ const Page = ({
         )}
 
         {featuredImage && featuredImage.localFile && (
-          <picture className="cover-image">
-            <source
-              type="image/webp"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSetWebp}
-            />
-            <source
-              type="image/png"
-              srcSet={featuredImage.localFile.childImageSharp.fluid.srcSet}
-            />
-
-            <img
-              src={featuredImage.localFile.childImageSharp.fluid.src}
-              alt=""
-            />
-          </picture>
+          <div className="cover-image-container">
+            <Picture image={featuredImage.localFile} />
+          </div>
         )}
       </header>
 
