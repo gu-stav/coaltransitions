@@ -7,6 +7,11 @@ module.exports = {
       ['Findings', '/findings/'],
       ['Publications', '/publications/'],
       ['About', '/about/']
+    ],
+    footer: [
+      ['Imprint', '/imprint/'],
+      ['Contact', '/about/contact/'],
+      ['Privacy', '/privacy/']
     ]
   },
 
