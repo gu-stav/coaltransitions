@@ -33,9 +33,9 @@ const createPages = (data, createPage) => {
   });
 };
 
-const createCoalPhaseOutPages = (graphql, createPage) =>
+const createFindingPages = (graphql, createPage) =>
   fetchFindings(graphql).then(({ data }) => createPages(data, createPage));
 
 module.exports = {
-  createCoalPhaseOutPages
+  createFindingPages
 };

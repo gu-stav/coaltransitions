@@ -6,7 +6,7 @@ module.exports = {
     menu: [
       ['Findings', '/findings/'],
       ['Publications', '/publications/'],
-      ['About', '/about/research-hub/']
+      ['About', '/about/']
     ]
   },
 
@@ -21,6 +21,7 @@ module.exports = {
           '**/findings',
           '**/researchers',
           '**/researchprojects',
+          '**/about',
           '**/media',
           '**/tags'
         ],

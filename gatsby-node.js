@@ -1,6 +1,5 @@
-const {
-  createCoalPhaseOutPages
-} = require('./src/lib/create-coal-phase-out-page');
+const { createAboutPages } = require('./src/lib/create-about-page');
+const { createFindingPages } = require('./src/lib/create-finding-page');
 const { createPublicationPages } = require('./src/lib/create-publication-page');
 
 exports.createPages = ({ actions, graphql }) => {
@@ -8,7 +7,8 @@ exports.createPages = ({ actions, graphql }) => {
 
   return Promise.all([
     createPublicationPages(graphql, createPage),
-    createCoalPhaseOutPages(graphql, createPage)
+    createFindingPages(graphql, createPage),
+    createAboutPages(graphql, createPage)
   ]);
 };
 
