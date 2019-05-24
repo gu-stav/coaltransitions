@@ -16,7 +16,7 @@ const findPublicationById = (id, publications) =>
 const Page = ({
   data: {
     publications: { nodes: publications },
-    fact: {
+    finding: {
       title,
       featuredImage,
       acf: {
@@ -110,7 +110,7 @@ export const query = graphql`
       }
     }
 
-    fact: wordpressWpCoalPhaseOut(wordpress_id: { eq: $wordpressId }) {
+    finding: wordpressWpFindings(wordpress_id: { eq: $wordpressId }) {
       title
       featuredImage: featured_media {
         caption
@@ -128,7 +128,7 @@ export const query = graphql`
         publications {
           publicationId: publication
         }
-        content: content_coal_phase_out {
+        content: content_findings {
           __typename
 
           ... on WordPressAcf_text {

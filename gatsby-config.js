@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: 'Coal Transitions',
     menu: [
-      ['Coal Phase-out', '/coal-phase-out/'],
+      ['Findings', '/findings/'],
       ['Publications', '/publications/'],
       ['About', '/about/research-hub/']
     ]
@@ -18,7 +18,9 @@ module.exports = {
         protocol: 'https',
         includedRoutes: [
           '**/publications',
-          '**/coal-phase-out',
+          '**/findings',
+          '**/researchers',
+          '**/researchprojects',
           '**/media',
           '**/tags'
         ],

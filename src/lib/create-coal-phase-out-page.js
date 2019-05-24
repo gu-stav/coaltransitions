@@ -1,9 +1,9 @@
 const path = require('path');
 
-const fetchFacts = graphql =>
+const fetchFindings = graphql =>
   graphql(`
     {
-      facts: allWordpressWpCoalPhaseOut {
+      findings: allWordpressWpFindings {
         nodes {
           slug
           wordpress_id
@@ -14,18 +14,18 @@ const fetchFacts = graphql =>
 
 const createPages = (data, createPage) => {
   const {
-    facts: { nodes: facts }
+    findings: { nodes: findings }
   } = data;
 
-  facts.forEach(({ slug, wordpress_id: wordpressId }) => {
-    const pagePath = `/coal-phase-out/${slug}/`;
+  findings.forEach(({ slug, wordpress_id: wordpressId }) => {
+    const pagePath = `/findings/${slug}/`;
 
     // eslint-disable-next-line no-console
-    console.log('Create fact:', pagePath);
+    console.log('Create finding:', pagePath);
 
     createPage({
       path: pagePath,
-      component: path.resolve('src/templates/fact/index.jsx'),
+      component: path.resolve('src/templates/finding/index.jsx'),
       context: {
         wordpressId
       }
@@ -34,7 +34,7 @@ const createPages = (data, createPage) => {
 };
 
 const createCoalPhaseOutPages = (graphql, createPage) =>
-  fetchFacts(graphql).then(({ data }) => createPages(data, createPage));
+  fetchFindings(graphql).then(({ data }) => createPages(data, createPage));
 
 module.exports = {
   createCoalPhaseOutPages

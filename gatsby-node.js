@@ -42,4 +42,13 @@ exports.onCreateNode = ({ node }) => {
       }
     });
   }
+
+  if (
+    (node.internal.type === 'wordpress__acf_findings' ||
+      node.internal.type === 'wordpress__wp_findings') &&
+    node.acf.additional_links === false
+  ) {
+    // eslint-disable-next-line no-param-reassign
+    node.acf.additional_links = [];
+  }
 };

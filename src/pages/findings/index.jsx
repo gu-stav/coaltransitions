@@ -2,17 +2,17 @@ import Helmet from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
-import FactsList from '../../components/facts-list';
+import FindingsList from '../../components/findings-list';
 import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    facts: { nodes: facts }
+    findings: { nodes: findings }
   }
 }) => (
   <>
     <Helmet title="Coal Phase-Out" />
-    <FactsList facts={facts} />
+    <FindingsList findings={findings} />
   </>
 );
 
@@ -20,9 +20,9 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    facts: allWordpressWpCoalPhaseOut(sort: { fields: [acf___fact_number] }) {
+    findings: allWordpressWpFindings(sort: { fields: [acf___fact_number] }) {
       nodes {
-        ...factListItem
+        ...findingListItem
       }
     }
   }

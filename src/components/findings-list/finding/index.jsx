@@ -15,7 +15,7 @@ export default ({
   acf: { intro, factNumber },
   theme
 }) => {
-  const url = `/coal-phase-out/${slug}/`;
+  const url = `/findings/${slug}/`;
 
   return (
     <section
@@ -71,7 +71,7 @@ export default ({
         )}
 
         <Button to={url} rel="nofollow">
-          More about this fact
+          Read more about this finding
           <ArrowIcon className={arrowIcon.className} />
         </Button>
       </div>
@@ -80,7 +80,7 @@ export default ({
 };
 
 export const fragment = graphql`
-  fragment factListItem on wordpress__wp_coal_phase_out {
+  fragment findingListItem on wordpress__wp_findings {
     slug
     title
     featuredImage: featured_media {
