@@ -55,11 +55,11 @@ export const mixins = {
         `,
 
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 0.85rem;
-        font-weight: 400;
-        letter-spacing: 0.05rem;
-        line-height: 1.3;
+          font-family: ${fonts.publicSans.family};
+          font-size: 0.85rem;
+          font-weight: 400;
+          letter-spacing: 0.05rem;
+          line-height: 1.3;
       `
       },
 
@@ -79,108 +79,131 @@ export const mixins = {
         `,
 
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.18;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.18;
+      `
+      },
+
+      regular: {
+        phone: `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1rem;
+          font-weight: 400;
+          line-height: 1.5;
+      `,
+
+        tablet: `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.2rem;
+          font-weight: 400;
+          line-height: 1.71;
+      `,
+
+        desktop: `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.31rem;
+          font-weight: 400;
+          line-height: 1.71;
       `
       },
 
       'regular-big': {
         phone: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1.15rem;
-        font-weight: 700;
-        line-height: 1.2;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.15rem;
+          font-weight: 700;
+          line-height: 1.2;
       `,
 
         tablet: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1.25rem;
-        font-weight: 700;
-        line-height: 1.2;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.25rem;
+          font-weight: 700;
+          line-height: 1.2;
       `,
 
         desktop: `
-      font-family: ${fonts.publicSans.family};
-      font-size: 1.5rem;
-      font-weight: 700;
-      line-height: 1.2;
-    `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.5rem;
+          font-weight: 700;
+          line-height: 1.2;
+      `
       },
 
       medium: {
         phone: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1.15rem;
-        font-weight: 800;
-        line-height: 1.2;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.15rem;
+          font-weight: 800;
+          line-height: 1.2;
       `,
 
         tablet: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1.25rem;
-        font-weight: 800;
-        line-height: 1.2;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.25rem;
+          font-weight: 800;
+          line-height: 1.2;
       `,
 
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 1.75rem;
-        font-weight: 800;
-        line-height: 1.2;
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.75rem;
+          font-weight: 800;
+          line-height: 1.2;
       `
       },
 
       big: {
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 2rem;
-        font-weight: 700;
-        line-height: 1.11;
+          font-family: ${fonts.publicSans.family};
+          font-size: 2rem;
+          font-weight: 700;
+          line-height: 1.11;
       `
       },
 
       'extra-big': {
         phone: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 2rem;
-        font-weight: 700;
-        line-height: 1.03;
+          font-family: ${fonts.publicSans.family};
+          font-size: 2rem;
+          font-weight: 700;
+          line-height: 1.03;
       `,
         tablet: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 2.5rem;
-        font-weight: 700;
-        line-height: 1.03;
+          font-family: ${fonts.publicSans.family};
+          font-size: 2.5rem;
+          font-weight: 700;
+          line-height: 1.03;
       `,
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 3.18rem;
-        font-weight: 700;
-        line-height: 1.03;
+          font-family: ${fonts.publicSans.family};
+          font-size: 3.18rem;
+          font-weight: 700;
+          line-height: 1.03;
       `
       },
 
       huge: {
         phone: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 2rem;
-        font-weight: 600;
-        line-height: 1.26;
+          font-family: ${fonts.publicSans.family};
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 1.26;
       `,
         tablet: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 3rem;
-        font-weight: 600;
-        letter-spacing: 0.05rem;
-        line-height: 1.26;
+          font-family: ${fonts.publicSans.family};
+          font-size: 3rem;
+          font-weight: 600;
+          letter-spacing: 0.05rem;
+          line-height: 1.26;
       `,
         desktop: `
-        font-family: ${fonts.publicSans.family};
-        font-size: 4rem;
-        font-weight: 600;
-        line-height: 1;
+          font-family: ${fonts.publicSans.family};
+          font-size: 4rem;
+          font-weight: 600;
+          line-height: 1;
       `
       }
     };

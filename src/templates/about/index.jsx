@@ -5,6 +5,7 @@ import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
 import Picture from '../../components/picture';
 import Richtext from '../../components/richtext';
+import style from './style';
 import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
 
@@ -19,28 +20,31 @@ const Page = ({
 }) => (
   <>
     <SubMenu items={pages} />
+    <article>
+      <style jsx>{style}</style>
 
-    <Constraint topLevel>
-      <h1 dangerouslySetInnerHTML={{ __html: title }} />
+      <Constraint topLevel>
+        <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
-      <Intro intro={intro} />
+        <Intro intro={intro} />
 
-      {content &&
-        content.map(block => {
-          const { __typename: type } = block;
+        {content &&
+          content.map(block => {
+            const { __typename: type } = block;
 
-          // eslint-disable-next-line default-case
-          switch (type) {
-            case 'WordPressAcf_text':
-              return <Richtext content={block.text} />;
+            // eslint-disable-next-line default-case
+            switch (type) {
+              case 'WordPressAcf_text':
+                return <Richtext content={block.text} />;
 
-            case 'WordPressAcf_image':
-              return <Picture image={block.image.localFile} />;
-          }
+              case 'WordPressAcf_image':
+                return <Picture image={block.image.localFile} />;
+            }
 
-          return null;
-        })}
-    </Constraint>
+            return null;
+          })}
+      </Constraint>
+    </article>
   </>
 );
 

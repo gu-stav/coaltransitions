@@ -4,7 +4,7 @@ import { mixins, colors, mq } from '../../token';
 
 export default css`
   p {
-    ${mixins.text()}
+    ${mixins.text('regular-big')}
 
     color: ${colors.blueAction};
     font-weight: 700;
@@ -12,7 +12,7 @@ export default css`
 
   @media ${mq.tablet} {
     p {
-      ${mixins.text('regular', 'tablet')}
+      ${mixins.text('regular-big', 'tablet')}
 
       font-weight: 700;
     }
@@ -20,7 +20,7 @@ export default css`
 
   @media ${mq.desktop} {
     p {
-      ${mixins.text('regular', 'desktop')}
+      ${mixins.text('regular-big', 'desktop')}
 
       font-weight: 700;
     }

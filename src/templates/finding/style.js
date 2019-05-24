@@ -22,12 +22,16 @@ export default css`
     z-index: 10;
   }
 
-  .intro {
-    ${mixins.text('medium')}
+  @media ${mq.tablet} {
+    .title {
+      ${mixins.text('extra-big', 'tablet')}
+    }
+  }
 
-    color: ${colors.blueBrand};
-    font-weight: 400;
-    margin-top: 0;
+  @media ${mq.desktop} {
+    .title {
+      ${mixins.text('extra-big', 'desktop')}
+    }
   }
 
   .body {

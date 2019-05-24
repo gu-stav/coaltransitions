@@ -4,7 +4,7 @@ import { mq } from '../../token';
 
 export default css`
   .constraint {
-    max-width: 900px;
+    max-width: 850px;
     width: 100%;
   }
 

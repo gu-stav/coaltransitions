@@ -8,14 +8,36 @@ export default css`
   ul {
     ${mixins.resetList()}
 
+    align-self: flex-start;
     display: flex;
-    flex-direction: row;
-    margin-bottom: 4rem;
-    margin-top: -4rem;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    margin-top: -0.5rem;
+  }
+
+  @media ${mq.tablet} {
+    ul {
+      align-self: flex-end;
+      flex-direction: row;
+      margin: -3rem 5rem 3rem auto;
+    }
+  }
+
+  @media ${mq.desktop} {
+    ul {
+      margin-top: -4rem;
+    }
   }
 
   li + li {
-    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+  }
+
+  @media ${mq.tablet} {
+    li + li {
+      margin-left: 0.5rem;
+      margin-top: 0;
+    }
   }
 `;
 

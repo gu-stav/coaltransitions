@@ -3,6 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import Constraint from '../../components/constraint';
+import Intro from '../../components/intro';
 import MoreLinksList from '../../components/more-links-list';
 import Picture from '../../components/picture';
 import PublicationList from '../../components/publication-list';
@@ -49,7 +50,7 @@ const Page = ({
 
       <Constraint topLevel wide>
         <div className="body">
-          <p className="intro">{intro}</p>
+          <Intro intro={intro} />
 
           {content &&
             content.map(({ __typename, ...block }) => {
