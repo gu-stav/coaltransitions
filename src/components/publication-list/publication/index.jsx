@@ -3,7 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 
 import AuthorList from '../../author-list';
-import style, { linkTitle } from './style';
+import style, { linkTitle, linkPicture } from './style';
 import Picture from '../../picture';
 import TagList from '../../tag-list';
 
@@ -18,12 +18,13 @@ export default ({
   <div className="publication">
     <style jsx>{style}</style>
     {linkTitle.styles}
+    {linkPicture.styles}
 
     <div className="cover-image-container">
       <p className="year">{year}</p>
 
       {featuredImage && featuredImage.localFile && (
-        <Link to={url} className={linkTitle.className} rel="nofollow">
+        <Link to={url} className={linkPicture.className} rel="nofollow">
           <Picture image={featuredImage.localFile} />
         </Link>
       )}

@@ -4,13 +4,13 @@ import { mq } from '../../token';
 
 export default css`
   .constraint {
-    max-width: 1024px;
+    max-width: 900px;
     width: 100%;
   }
 
   @media ${mq.desktop} {
     .constraint--toplevel {
-      transform: translateX(5%);
+      padding-left: 15%;
     }
   }
 

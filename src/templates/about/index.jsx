@@ -2,6 +2,7 @@ import { graphql } from 'gatsby';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
+import Intro from '../../components/intro';
 import Picture from '../../components/picture';
 import Richtext from '../../components/richtext';
 import SubMenu from '../../components/sub-menu';
@@ -12,7 +13,7 @@ const Page = ({
     pages: { nodes: pages },
     page: {
       title,
-      acf: { content }
+      acf: { content, intro }
     }
   }
 }) => (
@@ -21,6 +22,8 @@ const Page = ({
 
     <Constraint topLevel>
       <h1 dangerouslySetInnerHTML={{ __html: title }} />
+
+      <Intro intro={intro} />
 
       {content &&
         content.map(block => {
@@ -55,6 +58,7 @@ export const query = graphql`
     page: wordpressWpAbout(wordpress_id: { eq: $wordpressId }) {
       title
       acf {
+        intro
         content: content_about {
           __typename
 

@@ -48,7 +48,8 @@ export default css`
   .cover-image-container {
     align-self: flex-start;
     background-color: ${colors.greyLight};
-    border: 1px solid ${colors.greyDark};
+    border: 1px solid ${colors.greyLight};
+    font-size: 0;
     flex: 0 0 auto;
     margin-right: 1rem;
     position: relative;
@@ -58,7 +59,7 @@ export default css`
   @media ${mq.tablet} {
     .cover-image-container {
       margin-right: 1.5rem;
-      min-height: 11rem;
+      min-height: 9rem;
       width: 20%;
     }
   }
@@ -112,5 +113,12 @@ export const linkTitle = css.resolve`
   a:focus {
     color: ${colors.blueAction};
     text-decoration: underline;
+  }
+`;
+
+export const linkPicture = css.resolve`
+  a {
+    font-size: 0;
+    line-height: 1;
   }
 `;

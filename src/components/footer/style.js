@@ -6,9 +6,6 @@ import { mixins, mq } from '../../token';
 
 export default css`
   footer {
-    display: flex;
-    justify-content: center;
-    height: 35rem;
     margin-bottom: 4rem;
     position: relative;
     overflow: hidden;
@@ -16,33 +13,58 @@ export default css`
   }
 
   .background {
-    margin-left: -5rem;
-    position: absolute;
-    top: 0;
-    width: calc(100% + 20rem);
-    z-index: 1;
+    margin-left: -2.5rem;
+    width: calc(100% + 5rem);
+  }
+
+  @media ${mq.tablet} {
+    .background {
+      margin-left: -5rem;
+      width: calc(100% + 10rem);
+    }
   }
 
   ul {
     ${mixins.resetList()}
 
-    align-self: center;
     display: flex;
-    margin-left: -8rem;
-    margin-top: 12rem;
-    z-index: 2;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, 1rem);
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    ul {
+      transform: translate(-50%, 3rem);
+    }
+  }
+
+  @media ${mq.desktop} {
+    ul {
+      transform: translate(-50%, 5rem);
+    }
   }
 
   li + li {
-    margin-left: 1.5rem;
+    margin-left: 0.5rem;
+  }
+
+  @media ${mq.tablet} {
+    li + li {
+      margin-left: 1.5rem;
+    }
   }
 `;
 
 export const item = css.resolve`
   a {
-    ${mixins.text('regular-big')}
+    ${mixins.text('small')}
 
     color: white;
+    font-weight: 700;
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -50,12 +72,6 @@ export const item = css.resolve`
   @media ${mq.tablet} {
     a {
       ${mixins.text('regular-big', 'tablet')}
-    }
-  }
-
-  @media ${mq.desktop} {
-    a {
-      ${mixins.text('regular-big', 'desktop')}
     }
   }
 `;
