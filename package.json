@@ -4,9 +4,11 @@
   "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
-    "build": "gatsby build",
+    "build": "gatsby build && npm run build-functions",
     "serve": "gatsby serve",
-    "lint": "eslint --fix --ext .js,.jsx ."
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "build-functions": "netlify-lambda build functions",
+    "serve-functions": "netlify-lambda serve functions"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -21,12 +23,15 @@
     "gatsby-source-filesystem": "^2.0.37",
     "gatsby-source-wordpress": "^3.0.62",
     "gatsby-transformer-sharp": "^2.1.19",
+    "http-proxy-middleware": "^0.19.1",
     "rc-slider": "^8.6.11",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-select": "^2.4.3",
-    "styled-jsx": "^3.2.1"
+    "styled-jsx": "^3.2.1",
+    "twit": "^2.2.11",
+    "twitter-text": "^3.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
@@ -39,6 +44,7 @@
     "eslint-plugin-react": "^7.13.0",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
+    "netlify-lambda": "^1.4.13",
     "prettier": "^1.17.1"
   },
   "husky": {
