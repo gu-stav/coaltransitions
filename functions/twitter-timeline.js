@@ -1,10 +1,14 @@
 const Twit = require('twit');
 
+const {
+  siteMetadata: { twitter: twitterOptions }
+} = require('../gatsby-config');
+
 const Client = new Twit({
   consumer_key: process.env.CONSUMER_KEY,
   consumer_secret: process.env.CONSUMER_SECRET,
   access_token: process.env.ACCESS_TOKEN,
-  access_token_secret: process.env.TOKEN_SECRET,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET,
   timeout_ms: 60 * 1000,
   strictSSL: true
 });
@@ -14,8 +18,7 @@ const getTweets = () =>
     Client.get(
       'statuses/user_timeline',
       {
-        screen_name: 'CoalTransitions',
-        count: 9,
+        ...twitterOptions,
         tweet_mode: 'extended'
       },
       (error, data) => {

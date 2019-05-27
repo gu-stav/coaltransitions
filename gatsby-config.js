@@ -13,7 +13,11 @@ module.exports = {
       ['Imprint', '/imprint/'],
       ['Contact', '/about/contact/'],
       ['Privacy', '/privacy/']
-    ]
+    ],
+    twitter: {
+      screen_name: 'CoalTransitions',
+      count: 9
+    }
   },
 
   plugins: [
