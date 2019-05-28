@@ -1,3 +1,4 @@
+const proxy = require('http-proxy-middleware');
 const config = require('./config.json');
 
 module.exports = {
@@ -12,7 +13,11 @@ module.exports = {
       ['Imprint', '/imprint/'],
       ['Contact', '/about/contact/'],
       ['Privacy', '/privacy/']
-    ]
+    ],
+    twitter: {
+      screen_name: 'CoalTransitions',
+      count: 9
+    }
   },
 
   plugins: [
@@ -51,5 +56,14 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet'
-  ]
+  ],
+
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      proxy({
+        target: 'http://localhost:9000'
+      })
+    );
+  }
 };
