@@ -17,11 +17,15 @@ export default ({ endpoint, title }) => {
     <section>
       <style jsx>{style}</style>
 
-      <h2 className="title">{title}</h2>
+      <h2 className="title">
+        {title}
 
-      <Button to="https://twitter.com/coaltransitions" external theme="blue">
-        Follow @coaltransitions
-      </Button>
+        <hr />
+
+        <Button to="https://twitter.com/coaltransitions" external theme="blue">
+          Follow @coaltransitions
+        </Button>
+      </h2>
 
       {tweets && (
         <ul>
