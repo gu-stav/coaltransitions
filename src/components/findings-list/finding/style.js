@@ -12,12 +12,6 @@ export default css`
     position: relative;
   }
 
-  @media ${mq.tablet} {
-    .argument {
-      padding-bottom: 10rem;
-    }
-  }
-
   .image-container {
     display: flex;
     flex: 0 0 auto;

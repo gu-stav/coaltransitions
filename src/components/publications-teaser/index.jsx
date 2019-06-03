@@ -1,15 +1,19 @@
 import React from 'react';
 
+import Intro from '../intro';
 import Picture from '../picture';
 import PublicationList from '../publication-list';
+import style from './style';
 
 export default ({ title, summary, image, publications }) => (
   <section>
-    <h2>{title}</h2>
+    <style jsx>{style}</style>
+
+    <h2 className="title">{title}</h2>
 
     <Picture image={image.localFile} />
 
-    {summary}
+    <Intro intro={summary} />
 
     <PublicationList
       publications={publications}

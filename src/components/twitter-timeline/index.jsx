@@ -17,7 +17,7 @@ export default ({ endpoint, title }) => {
     <section>
       <style jsx>{style}</style>
 
-      <h2>{title}</h2>
+      <h2 className="title">{title}</h2>
 
       <Button to="https://twitter.com/coaltransitions" external theme="blue">
         Follow @coaltransitions
