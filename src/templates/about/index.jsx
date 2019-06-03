@@ -4,6 +4,7 @@ import React from 'react';
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
 import Picture from '../../components/picture';
+import ResearchersList from '../../components/researchers-list';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
 import style from './style';
@@ -13,6 +14,7 @@ import withLayout from '../../components/with-layout';
 const Page = ({
   data: {
     pages: { nodes: pages },
+    researchers: { nodes: researchers },
     researchProjects: { nodes: researchProjects },
     page: {
       title,
@@ -44,6 +46,9 @@ const Page = ({
 
               case 'WordPressAcf_researchProjects':
                 return <ResearchProjectsList items={researchProjects} />;
+
+              case 'WordPressAcf_researchers':
+                return <ResearchersList items={researchers} />;
             }
 
             return null;
@@ -64,7 +69,7 @@ export const query = graphql`
       }
     }
 
-    researchers: allWordpressWpResearchers {
+    researchers: allWordpressWpResearchers(sort: { fields: title }) {
       nodes {
         title
         acf {
@@ -73,7 +78,7 @@ export const query = graphql`
           image {
             localFile {
               childImageSharp {
-                fluid(maxWidth: 400) {
+                fixed(height: 400, width: 400) {
                   src
                   srcSet
                   srcSetWebp
@@ -88,7 +93,9 @@ export const query = graphql`
       }
     }
 
-    researchProjects: allWordpressWpResearchprojects {
+    researchProjects: allWordpressWpResearchprojects(
+      sort: { fields: acf___start, order: DESC }
+    ) {
       nodes {
         title
         acf {
