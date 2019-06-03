@@ -9,8 +9,14 @@ export default css`
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    padding-bottom: 6rem;
+    padding-bottom: 4rem;
     position: relative;
+  }
+
+  @media ${mq.tablet} {
+    .argument {
+      padding-bottom: 6rem;
+    }
   }
 
   .image-container {

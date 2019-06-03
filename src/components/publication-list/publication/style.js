@@ -8,20 +8,20 @@ export default css`
   .publication {
     display: flex;
     flex-direction: row;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
     position: relative;
   }
 
   @media ${mq.tablet} {
     .publication {
-      padding-bottom: 1.5rem;
-      padding-top: 1.5rem;
+      padding-bottom: 1.75rem;
+      padding-top: 1.75rem;
     }
   }
 
   .title {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     margin-top: 0;
   }
 
@@ -93,7 +93,7 @@ export default css`
   }
 
   .author-container {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
 
   @media ${mq.tabket} {
