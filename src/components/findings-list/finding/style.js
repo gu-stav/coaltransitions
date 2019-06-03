@@ -8,6 +8,14 @@ export default css`
   .argument {
     display: flex;
     flex-direction: column;
+    padding-bottom: 6rem;
+    position: relative;
+  }
+
+  @media ${mq.tablet} {
+    .argument {
+      padding-bottom: 10rem;
+    }
   }
 
   .image-container {
@@ -126,6 +134,13 @@ export default css`
 
       font-weight: 400;
     }
+  }
+
+  .background-strokes-container {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    z-index: -1;
   }
 `;
 

@@ -8,6 +8,19 @@ import Button from '../../button';
 import Picture from '../../picture';
 import style, { titleLink, imageLink, arrowIcon } from './style';
 
+import Stroke1Green from '../../../../static/strokes/stroke-1-green.svg';
+import Stroke1Blue from '../../../../static/strokes/stroke-1-blue.svg';
+
+import Stroke2Green from '../../../../static/strokes/stroke-2-green.svg';
+import Stroke2Blue from '../../../../static/strokes/stroke-2-blue.svg';
+
+const STROKES = [
+  [Stroke1Green, Stroke1Blue],
+  [Stroke1Green, Stroke2Blue],
+  [Stroke2Green, Stroke2Blue],
+  [Stroke2Green, Stroke1Blue]
+];
+
 export default ({
   slug,
   title,
@@ -17,6 +30,9 @@ export default ({
   theme
 }) => {
   const url = `/findings/${slug}/`;
+  const [Stroke1, Stroke2] = STROKES[
+    Math.floor(Math.random() * STROKES.length)
+  ];
 
   return (
     <section
@@ -55,6 +71,11 @@ export default ({
           Read more about this finding
           <ArrowIcon className={arrowIcon.className} />
         </Button>
+      </div>
+
+      <div className="background-strokes-container">
+        <Stroke1 />
+        <Stroke2 />
       </div>
     </section>
   );
