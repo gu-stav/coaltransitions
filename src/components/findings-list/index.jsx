@@ -11,7 +11,11 @@ export default ({ findings = null }) => (
       findings.map((finding, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <li key={`finding=${index}`}>
-          <Finding {...finding} theme={index % 2 === 0 ? null : 'green'} />
+          <Finding
+            {...finding}
+            theme={index % 2 === 0 ? null : 'green'}
+            indexTitle={`Finding ${finding.acf.factNumber}`}
+          />
         </li>
       ))}
   </ul>

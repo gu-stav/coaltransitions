@@ -34,7 +34,8 @@ module.exports = {
           '**/about',
           '**/media',
           '**/tags',
-          '**/menus'
+          '**/menus',
+          '**/pages'
         ],
         auth: {
           htaccess_user: config.auth_username,

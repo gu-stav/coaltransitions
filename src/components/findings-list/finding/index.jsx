@@ -26,8 +26,10 @@ export default ({
   title,
   figureCaption,
   featuredImage,
-  acf: { intro, factNumber },
-  theme
+  acf: { intro },
+  indexTitle,
+  theme = 'blue',
+  buttonLabel = 'Read more about this finding'
 }) => {
   const url = `/findings/${slug}/`;
   const [Stroke1, Stroke2] = STROKES[
@@ -58,7 +60,7 @@ export default ({
       <div className="intro-container">
         <h2 className="title">
           <Link to={url} rel="nofollow" className={titleLink.className}>
-            <span className="index">Finding {factNumber}</span>
+            <span className="index">{indexTitle}</span>
             <span dangerouslySetInnerHTML={{ __html: title }} />
           </Link>
         </h2>
@@ -68,7 +70,7 @@ export default ({
         )}
 
         <Button to={url} rel="nofollow">
-          Read more about this finding
+          {buttonLabel}
           <ArrowIcon className={arrowIcon.className} />
         </Button>
       </div>

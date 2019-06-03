@@ -107,8 +107,14 @@ export default css`
   }
 
   .title {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
     margin-top: 0;
+  }
+
+  @media ${mq.tablet} {
+    .title {
+      margin-bottom: 2.5rem;
+    }
   }
 
   .intro {
@@ -116,7 +122,6 @@ export default css`
 
     font-weight: 400;
     margin-bottom: 1.5rem;
-    margin-top: 1rem;
   }
 
   @media ${mq.tablet} {
@@ -124,7 +129,7 @@ export default css`
       ${mixins.text('medium', 'tablet')}
 
       font-weight: 400;
-      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
     }
   }
 
