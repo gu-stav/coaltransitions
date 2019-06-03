@@ -25,9 +25,7 @@ const Page = ({
       switch (typename) {
         case 'WordPressAcf_featured_publications':
           return (
-            <Constraint>
-              <PublicationsTeaser publications={publications} {...blockProps} />
-            </Constraint>
+            <PublicationsTeaser publications={publications} {...blockProps} />
           );
 
         case 'WordPressAcf_about_teaser':

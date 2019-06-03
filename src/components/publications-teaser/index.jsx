@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Constraint from '../constraint';
 import Intro from '../intro';
 import Picture from '../picture';
 import PublicationList from '../publication-list';
@@ -9,15 +10,22 @@ export default ({ title, summary, image, publications }) => (
   <section>
     <style jsx>{style}</style>
 
-    <h2 className="title">{title}</h2>
+    <Constraint wide>
+      <div className="content-container">
+        <Picture image={image.localFile} />
 
-    <Picture image={image.localFile} />
+        <div className="intro-container">
+          <h2 className="title">{title}</h2>
+          <Intro intro={summary} />
+        </div>
+      </div>
+    </Constraint>
 
-    <Intro intro={summary} />
-
-    <PublicationList
-      publications={publications}
-      title={`Featured Publications (${publications.length})`}
-    />
+    <Constraint>
+      <PublicationList
+        publications={publications}
+        title={`Featured Publications (${publications.length})`}
+      />
+    </Constraint>
   </section>
 );

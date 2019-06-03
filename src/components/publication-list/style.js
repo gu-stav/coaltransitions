@@ -25,7 +25,8 @@ export default css`
     ${mixins.text('regular-big')};
 
     color: ${colors.blueBrand};
-    margin-left: calc(25% + 1rem);
+    margin-bottom: 0;
+    margin-top: 0;
     text-transform: uppercase;
   }
 
