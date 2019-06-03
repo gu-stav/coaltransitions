@@ -3,8 +3,8 @@ import { graphql } from 'gatsby';
 
 import AboutTeaser from '../../components/about-teaser';
 import Constraint from '../../components/constraint';
+import PublicationsTeaser from '../../components/publications-teaser';
 import FindingsTeaser from '../../components/findings-teaser';
-import PublicationList from '../../components/publication-list';
 import TwitterTimeline from '../../components/twitter-timeline';
 import withLayout from '../../components/with-layout';
 
@@ -23,10 +23,7 @@ const Page = ({
         case 'WordPressAcf_featured_publications':
           return (
             <Constraint>
-              <PublicationList
-                title="Featured Publications"
-                publications={publications}
-              />
+              <PublicationsTeaser publications={publications} {...blockProps} />
             </Constraint>
           );
 
@@ -68,6 +65,17 @@ export const query = graphql`
           ... on WordPressAcf_featured_publications {
             title
             summary
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    src
+                    srcSet
+                    srcSetWebp
+                  }
+                }
+              }
+            }
           }
 
           ... on WordPressAcf_findings {
