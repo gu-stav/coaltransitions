@@ -47,6 +47,7 @@ export const item = css.resolve`
 
     background-color: ${colors.blueAction};
     color: white;
+    font-weight: 700;
     padding: 0.15rem 0.5rem;
     text-decoration: none;
     text-transform: uppercase;

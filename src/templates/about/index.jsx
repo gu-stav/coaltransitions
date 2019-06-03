@@ -62,7 +62,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    pages: allWordpressWpAbout {
+    pages: allWordpressWpAbout(sort: { fields: id, order: DESC }) {
       nodes {
         title
         slug
