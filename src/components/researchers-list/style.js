@@ -6,13 +6,20 @@ export default css`
   ul {
     ${mixins.resetList()}
 
-    margin-left: calc(-17.5% - 3.5rem);
+    width: 100%;
+  }
+
+  @media ${mq.desktop} {
+    ul {
+      margin-left: calc(-25% - 1.5rem);
+    }
   }
 
   li {
     border-bottom: 1px solid ${colors.blueAction};
-    padding-bottom: 1.5rem;
-    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+    width: 100%;
   }
 
   h2 {

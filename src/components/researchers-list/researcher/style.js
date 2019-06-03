@@ -7,17 +7,36 @@ import { mixins, mq } from '../../../token';
 export default css`
   .researcher {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    .researcher {
+      flex-direction: row;
+    }
   }
 
   .image-container {
-    overflow: hidden;
-    width: 17.5%;
+    width: 35%;
+  }
+
+  @media ${mq.tablet} {
+    .image-container {
+      width: 25%;
+    }
   }
 
   .content-container {
-    padding-left: 1.5rem;
-    width: 80%;
+    margin-top: 1.5rem;
+  }
+
+  @media ${mq.tablet} {
+    .content-container {
+      margin-top: 0;
+      padding-left: 2rem;
+      width: 80%;
+    }
   }
 
   dt,
@@ -56,19 +75,19 @@ export default css`
     }
   }
 
-  dl {
-    display: flex;
-    flex-wrap: wrap;
+  dd {
+    display: inline;
+    margin-left: 0;
+  }
+
+  dd::after {
+    display: block;
+    content: '';
   }
 
   dt {
-    display: inline-flex;
-  }
-
-  dd {
-    flex: 1 0 auto;
-    margin-left: 0.25rem;
-    width: 80%;
+    display: inline-block;
+    margin-right: 0.5rem;
   }
 
   dd > p {
