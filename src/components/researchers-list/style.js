@@ -6,7 +6,7 @@ export default css`
   ul {
     ${mixins.resetList()}
 
-    margin-left: calc(-20% - 3.5rem);
+    margin-left: calc(-17.5% - 3.5rem);
   }
 
   li {
@@ -19,7 +19,13 @@ export default css`
     ${mixins.text('regular-big')};
 
     color: ${colors.blueAction};
+    margin-bottom: 0.5rem;
+    margin-top: 0;
     text-transform: uppercase;
+  }
+
+  ul + h2 {
+    margin-top: 4.5rem;
   }
 
   @media ${mq.tablet} {

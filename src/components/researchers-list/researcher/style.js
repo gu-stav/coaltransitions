@@ -12,7 +12,7 @@ export default css`
 
   .image-container {
     overflow: hidden;
-    width: 20%;
+    width: 17.5%;
   }
 
   .content-container {
