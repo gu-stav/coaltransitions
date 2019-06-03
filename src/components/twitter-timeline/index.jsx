@@ -4,7 +4,7 @@ import Button from '../button';
 import style from './style';
 import Tweet from './tweet';
 
-export default ({ endpoint }) => {
+export default ({ endpoint, title }) => {
   const [tweets, setTweets] = useState(null);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default ({ endpoint }) => {
     <section>
       <style jsx>{style}</style>
 
-      <h2>News</h2>
+      <h2>{title}</h2>
 
       <Button to="https://twitter.com/coaltransitions" external theme="blue">
         Follow @coaltransitions

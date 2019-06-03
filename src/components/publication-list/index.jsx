@@ -7,7 +7,7 @@ export default ({ title, publications = [], onFilter }) => (
   <div className="publications-container">
     <style jsx>{style}</style>
 
-    <h2 className="title">{title}</h2>
+    {title && <h2 className="title">{title}</h2>}
 
     {publications.length > 0 ? (
       <ul>
