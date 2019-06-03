@@ -230,7 +230,9 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    publications: allWordpressWpPublications {
+    publications: allWordpressWpPublications(
+      sort: { fields: acf___year, order: DESC }
+    ) {
       nodes {
         ...publicationListItem
       }

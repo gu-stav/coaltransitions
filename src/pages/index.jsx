@@ -12,10 +12,12 @@ const Page = ({
   }
 }) => (
   <>
-    <PublicationList
-      title={`Featured Publications (${publications.length})`}
-      publications={publications}
-    />
+    <Constraint>
+      <PublicationList
+        title="Featured Publications"
+        publications={publications}
+      />
+    </Constraint>
 
     <Constraint>
       <TwitterTimeline
@@ -30,6 +32,8 @@ export const query = graphql`
   query {
     publications: allWordpressWpPublications(
       filter: { acf: { featured: { eq: true } } }
+      limit: 5
+      sort: { fields: acf___year, order: DESC }
     ) {
       nodes {
         ...publicationListItem
