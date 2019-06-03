@@ -1,3 +1,4 @@
+import Helmet from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -17,6 +18,8 @@ const Page = ({
   }
 }) => (
   <>
+    <Helmet title="Home" />
+
     {blocks.map(({ __typename: typename, ...blockProps }) => {
       // eslint-disable-next-line default-case
       switch (typename) {
@@ -28,11 +31,7 @@ const Page = ({
           );
 
         case 'WordPressAcf_about_teaser':
-          return (
-            <Constraint>
-              <AboutTeaser {...blockProps} />
-            </Constraint>
-          );
+          return <AboutTeaser {...blockProps} />;
 
         case 'WordPressAcf_findings':
           return <FindingsTeaser {...blockProps} />;

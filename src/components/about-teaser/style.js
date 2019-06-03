@@ -3,6 +3,12 @@ import css from 'styled-jsx/css';
 import { mixins, colors, mq } from '../../token';
 
 export default css`
+  section {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
   .title {
     ${mixins.text('extra-big')}
 
