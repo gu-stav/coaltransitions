@@ -21,8 +21,14 @@ export default css`
   }
 
   .title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     margin-top: 0;
+  }
+
+  @media ${mq.tablet} {
+    .title {
+      margin-bottom: 1.5rem;
+    }
   }
 
   .year {
@@ -87,7 +93,13 @@ export default css`
   }
 
   .author-container {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media ${mq.tabket} {
+    .author-container {
+      margin-bottom: 1.5rem;
+    }
   }
 
   .tags-container {

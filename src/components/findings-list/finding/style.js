@@ -8,6 +8,7 @@ export default css`
   .argument {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
     padding-bottom: 6rem;
     position: relative;
   }

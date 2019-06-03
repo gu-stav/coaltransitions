@@ -112,14 +112,14 @@ export const mixins = {
       'regular-big': {
         phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1.15rem;
+          font-size: 1.05rem;
           font-weight: 700;
           line-height: 1.2;
       `,
 
         tablet: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1.25rem;
+          font-size: 1.15rem;
           font-weight: 700;
           line-height: 1.2;
       `,
@@ -167,13 +167,13 @@ export const mixins = {
       'extra-big': {
         phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 2rem;
+          font-size: 1.8rem;
           font-weight: 700;
           line-height: 1.03;
       `,
         tablet: `
           font-family: ${fonts.publicSans.family};
-          font-size: 2.5rem;
+          font-size: 2.25rem;
           font-weight: 700;
           line-height: 1.03;
       `,
@@ -188,16 +188,16 @@ export const mixins = {
       huge: {
         phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 2rem;
+          font-size: 1.95rem;
           font-weight: 600;
-          line-height: 1.26;
+          line-height: 1.2;
       `,
         tablet: `
           font-family: ${fonts.publicSans.family};
-          font-size: 3rem;
+          font-size: 2.75rem;
           font-weight: 600;
           letter-spacing: 0.05rem;
-          line-height: 1.26;
+          line-height: 1.2;
       `,
         desktop: `
           font-family: ${fonts.publicSans.family};

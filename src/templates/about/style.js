@@ -4,8 +4,15 @@ import { mixins, colors, mq } from '../../token';
 
 export default css`
   article {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    article {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   }
 
   h1 {
