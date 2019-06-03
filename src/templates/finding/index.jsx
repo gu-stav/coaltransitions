@@ -58,6 +58,9 @@ const Page = ({
                 case 'WordPressAcf_text':
                   return <Richtext content={block.text} />;
 
+                case 'WordPressAcf_image':
+                  return <Picture image={block.image.localFile} />;
+
                 default:
                   return <p>Block not yet implemented</p>;
               }
@@ -115,6 +118,20 @@ export const query = graphql`
 
           ... on WordPressAcf_text {
             text
+          }
+
+          ... on WordPressAcf_image {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    src
+                    srcSet
+                    srcWebp
+                  }
+                }
+              }
+            }
           }
         }
       }

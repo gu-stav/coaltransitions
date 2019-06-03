@@ -4,6 +4,7 @@ import React from 'react';
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
 import Picture from '../../components/picture';
+import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
 import style from './style';
 import SubMenu from '../../components/sub-menu';
@@ -12,6 +13,7 @@ import withLayout from '../../components/with-layout';
 const Page = ({
   data: {
     pages: { nodes: pages },
+    researchProjects: { nodes: researchProjects },
     page: {
       title,
       acf: { content, intro }
@@ -39,6 +41,9 @@ const Page = ({
 
               case 'WordPressAcf_image':
                 return <Picture image={block.image.localFile} />;
+
+              case 'WordPressAcf_researchProjects':
+                return <ResearchProjectsList items={researchProjects} />;
             }
 
             return null;
@@ -56,6 +61,43 @@ export const query = graphql`
       nodes {
         title
         slug
+      }
+    }
+
+    researchers: allWordpressWpResearchers {
+      nodes {
+        title
+        acf {
+          background
+          email
+          image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  src
+                  srcSet
+                  srcSetWebp
+                }
+              }
+            }
+          }
+          part_of_coalexit_group
+          phone
+          topics
+        }
+      }
+    }
+
+    researchProjects: allWordpressWpResearchprojects {
+      nodes {
+        title
+        acf {
+          acronym
+          end(formatString: "YYYY")
+          externalLink: external_link
+          start(formatString: "YYYY")
+          summary
+        }
       }
     }
 
@@ -82,6 +124,14 @@ export const query = graphql`
                 }
               }
             }
+          }
+
+          ... on WordPressAcf_researchProjects {
+            showResearchProjects
+          }
+
+          ... on WordPressAcf_researchers {
+            showResearchers
           }
         }
       }
