@@ -113,7 +113,7 @@ const Page = ({
     <>
       <Helmet title="Publications" />
 
-      <Constraint>
+      <Constraint wide>
         <FilterButton onClick={() => setShowFilter(!showFilter)}>
           Filter
         </FilterButton>

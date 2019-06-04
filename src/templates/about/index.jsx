@@ -7,7 +7,7 @@ import Picture from '../../components/picture';
 import ResearchersList from '../../components/researchers-list';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
-import style from './style';
+import style, { aboutPicture } from './style';
 import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
 
@@ -26,6 +26,7 @@ const Page = ({
     <SubMenu items={pages} />
     <article>
       <style jsx>{style}</style>
+      {aboutPicture.styles}
 
       <Constraint topLevel>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
@@ -42,7 +43,12 @@ const Page = ({
                 return <Richtext content={block.text} />;
 
               case 'WordPressAcf_image':
-                return <Picture image={block.image.localFile} />;
+                return (
+                  <Picture
+                    image={block.image.localFile}
+                    className={aboutPicture.className}
+                  />
+                );
 
               case 'WordPressAcf_researchProjects':
                 return <ResearchProjectsList items={researchProjects} />;

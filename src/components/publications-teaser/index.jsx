@@ -21,7 +21,7 @@ export default ({ title, summary, image, publications }) => (
       </div>
     </Constraint>
 
-    <Constraint>
+    <Constraint wide>
       <PublicationList
         publications={publications}
         title={`Featured Publications (${publications.length})`}

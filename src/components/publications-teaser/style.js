@@ -56,10 +56,11 @@ export default css`
 
   @media ${mq.tablet} {
     .intro-container {
+      flex: 1 0 auto;
       margin-left: 2rem;
       padding-left: 0.5rem;
       padding-right: 0.5rem;
-      width: 80%;
+      width: 50%;
     }
   }
 
