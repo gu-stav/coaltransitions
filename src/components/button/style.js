@@ -18,7 +18,7 @@ export const linkStyle = css.resolve`
     flex-direction: row;
     font-weight: 700;
     letter-spacing: 0.075rem;
-    padding: 0.65rem 1.25rem;
+    padding: 0.4rem 1.25rem;
     text-decoration: none;
     text-transform: uppercase;
   }
@@ -31,8 +31,7 @@ export const linkStyle = css.resolve`
       border-radius: 1.5rem;
       font-weight: 700;
       letter-spacing: 0.1rem;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+      padding: 0.65rem 1.5rem;
     }
   }
 
