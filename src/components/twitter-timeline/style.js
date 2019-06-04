@@ -1,4 +1,6 @@
 import css from 'styled-jsx/css';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 
 import { mixins, colors, mq } from '../../token';
 
@@ -96,6 +98,22 @@ export default css`
     hr {
       margin-left: 1.5rem;
       margin-right: 1.5rem;
+    }
+  }
+`;
+
+export const twitterIcon = css.resolve`
+  svg {
+    height: 1rem;
+    margin-left: 1rem;
+    width: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    svg {
+      height: 1.15rem;
+      margin-left: 1.5rem;
+      width: 1.15rem;
     }
   }
 `;
