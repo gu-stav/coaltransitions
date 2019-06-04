@@ -52,7 +52,7 @@ const createPages = (data, createPage) => {
       }
 
       // eslint-disable-next-line no-console
-      console.log('Create page:', template, pagePath);
+      console.log('Create page:', pagePath);
 
       createPage({
         path: pagePath,
