@@ -11,7 +11,7 @@ const Page = ({
   }
 }) => (
   <>
-    <Helmet title="Coal Phase-Out" />
+    <Helmet title="Findings" />
     <FindingsList findings={findings} />
   </>
 );
