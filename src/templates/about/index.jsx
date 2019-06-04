@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
@@ -23,7 +24,10 @@ const Page = ({
   }
 }) => (
   <>
+    <Helmet title={title} />
+
     <SubMenu items={pages} />
+
     <article>
       <style jsx>{style}</style>
       {aboutPicture.styles}
