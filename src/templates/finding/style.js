@@ -38,14 +38,21 @@ export default css`
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    .body {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
   }
 
   @media ${mq.desktop} {
     .body {
-      padding-left: 25%;
-      padding-right: 15%;
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 

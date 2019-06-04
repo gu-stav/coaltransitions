@@ -48,7 +48,7 @@ const Page = ({
         )}
       </header>
 
-      <Constraint topLevel wide>
+      <Constraint topLevel>
         <div className="body">
           <Intro intro={intro} />
 
