@@ -11,7 +11,7 @@ module.exports = {
     ],
     footer: [
       ['Imprint', '/imprint/'],
-      ['Contact', '/about/contact/'],
+      ['Contact', '/contact/'],
       ['Privacy', '/privacy/']
     ],
     twitter: {
