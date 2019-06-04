@@ -67,7 +67,7 @@ export const mixins = {
       small: {
         phone: `
           font-family: ${fonts.publicSans.family};
-          font-size: 0.7rem;
+          font-size: 0.8rem;
           font-weight: 400;
           line-height: 1.2;
         `,
