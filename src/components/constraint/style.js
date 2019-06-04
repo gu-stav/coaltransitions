@@ -16,13 +16,14 @@ export default css`
 
   @media ${mq.tablet} {
     .constraint--toplevel {
-      padding-left: 10%;
+      padding-left: 5rem;
     }
   }
 
   @media ${mq.desktop} {
     .constraint--toplevel {
       margin-left: 20%;
+      padding-left: 0;
     }
   }
 
