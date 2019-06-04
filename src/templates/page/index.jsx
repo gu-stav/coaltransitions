@@ -5,6 +5,7 @@ import React from 'react';
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
 import Richtext from '../../components/richtext';
+import style from './style';
 import withLayout from '../../components/with-layout';
 
 const Page = ({
@@ -16,6 +17,8 @@ const Page = ({
   }
 }) => (
   <>
+    <style jsx>{style}</style>
+
     <Helmet title={title} />
 
     <article>
