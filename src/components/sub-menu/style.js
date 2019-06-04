@@ -12,19 +12,21 @@ export default css`
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    margin-top: -0.5rem;
+    margin-top: 0;
   }
 
   @media ${mq.tablet} {
     ul {
       align-self: flex-end;
       flex-direction: row;
-      margin: -2rem 5rem 3rem auto;
+      flex-wrap: wrap;
+      margin: -1rem 1rem 3rem 1rem;
     }
   }
 
   @media ${mq.desktop} {
     ul {
+      margin-right: 5rem;
       margin-top: -3rem;
     }
   }
@@ -46,25 +48,28 @@ export const item = css.resolve`
     ${mixins.text('small')}
 
     background-color: ${colors.blueAction};
+    box-decoration-break: clone;
     color: white;
     font-weight: 700;
     letter-spacing: 0.025rem;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem 0.5rem 0.25rem 1rem;
     text-decoration: none;
     text-transform: uppercase;
+    white-space: nowrap;
   }
 
-  @mdia ${mq.tablet} {
+  @media ${mq.tablet} {
     a {
       ${mixins.text('small', 'tablet')}
 
-      padding: 0.3rem 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem;
     }
   }
 
-  @mdia ${mq.desktop} {
+  @media ${mq.desktop} {
     a {
-      ${mixins.text('small', 'desktop')}
+      padding: 0.3rem 0.5rem;
     }
   }
 
