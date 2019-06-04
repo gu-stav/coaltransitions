@@ -1,12 +1,18 @@
 import css from 'styled-jsx/css';
 
-import { mixins, colors } from '../../token';
+import { mixins, colors, mq } from '../../token';
 
 export default css`
   ul {
     ${mixins.resetList()}
 
-    margin-left: calc(-15% - 3.5rem);
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    ul {
+      margin-left: calc(-15% - 3.5rem);
+    }
   }
 
   li {

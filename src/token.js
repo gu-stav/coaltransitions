@@ -69,21 +69,21 @@ export const mixins = {
           font-family: ${fonts.publicSans.family};
           font-size: 0.7rem;
           font-weight: 400;
-          line-height: 1.18;
+          line-height: 1.2;
         `,
 
         tablet: `
           font-family: ${fonts.publicSans.family};
           font-size: 0.85rem;
           font-weight: 400;
-          line-height: 1.18;
+          line-height: 1.2;
         `,
 
         desktop: `
           font-family: ${fonts.publicSans.family};
-          font-size: 0.95rem;
+          font-size: 1rem;
           font-weight: 400;
-          line-height: 1.18;
+          line-height: 1.3;
       `
       },
 

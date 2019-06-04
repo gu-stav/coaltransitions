@@ -7,10 +7,19 @@ import { mixins, colors, mq } from '../../../token';
 export default css`
   .project {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    padding-bottom: 2.5rem;
-    padding-top: 2.5rem;
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    .project {
+      flex-direction: row;
+      padding-bottom: 2.5rem;
+      padding-top: 2.5rem;
+    }
   }
 
   .duration-container {
@@ -26,6 +35,8 @@ export default css`
     background-color: ${colors.greenBrand};
     color: white;
     display: inline-block;
+    margin-bottom: 0;
+    margin-top: 0;
     padding: 0.15rem 0.5rem;
     white-space: nowrap;
   }
@@ -39,18 +50,36 @@ export default css`
   @media ${mq.desktop} {
     .duration {
       ${mixins.text('small', 'desktop')}
+
+      padding-bottom: 0.2rem;
+      padding-top: 0.2rem;
     }
   }
 
   .title-container {
+    flex: 1 1 auto;
     margin-bottom: 0;
-    margin-left: 2rem;
-    margin-top: 0;
-    width: 80%;
+    margin-top: 0.5rem;
+  }
+
+  @media ${mq.tablet} {
+    .title-container {
+      margin-left: 1.5rem;
+      margin-top: 0;
+      width: 80%;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .title-container {
+      margin-left: 2rem;
+    }
   }
 
   .title {
     ${mixins.text('medium')}
+
+    text-decoration: none;
   }
 
   @media ${mq.tablet} {
@@ -65,26 +94,37 @@ export default css`
     }
   }
 
+  .title:hover,
+  .title:focus {
+    color: ${colors.blueAction};
+    text-decoration: underline;
+  }
+
   .content-container {
-    margin-left: calc(15% + 2rem);
     width: 100%;
   }
 
+  @media ${mq.tablet} {
+    .content-container {
+      margin-left: calc(15% + 2rem);
+    }
+  }
+
   .summary {
-    ${mixins.text('regular')}
+    ${mixins.text('small')}
 
     margin-bottom: 2.5rem;
   }
 
   @media ${mq.tablet} {
     .summary {
-      ${mixins.text('regular', 'tablet')}
+      ${mixins.text('small', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     .summary {
-      ${mixins.text('regular', 'desktop')}
+      ${mixins.text('small', 'desktop')}
     }
   }
 `;

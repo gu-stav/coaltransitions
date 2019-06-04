@@ -10,15 +10,17 @@ export default ({ title, acf: { start, end, summary, externalLink } }) => (
     {buttonIcon.styles}
 
     <div className="duration-container">
-      <span className="duration">
-        {start} - {end}
-      </span>
+      <p className="duration">
+        {start} – {end}
+      </p>
     </div>
 
     <h3 className="title-container">
-      <a href={externalLink} className="title">
-        {title}
-      </a>
+      <a
+        href={externalLink}
+        className="title"
+        dangerouslySetInnerHTML={{ __html: title }}
+      />
     </h3>
 
     <div className="content-container">
