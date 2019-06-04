@@ -20,6 +20,7 @@ export const colors = {
 
   // Grey
   greyLight: '#E2E2E2',
+  greyMedium: '#C5C5C5',
   greyDark: '#9C9C9C',
 
   // Green
@@ -80,7 +81,7 @@ export const mixins = {
 
         desktop: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1rem;
+          font-size: 0.95rem;
           font-weight: 400;
           line-height: 1.18;
       `
@@ -126,7 +127,7 @@ export const mixins = {
 
         desktop: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           font-weight: 700;
           line-height: 1.2;
       `

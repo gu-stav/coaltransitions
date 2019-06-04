@@ -17,6 +17,7 @@ export const linkStyle = css.resolve`
     flex: 0 0 auto;
     flex-direction: row;
     font-weight: 700;
+    letter-spacing: 0.075rem;
     padding: 0.65rem 1.25rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -29,6 +30,7 @@ export const linkStyle = css.resolve`
 
       border-radius: 1.5rem;
       font-weight: 700;
+      letter-spacing: 0.1rem;
       padding-left: 1.5rem;
       padding-right: 1.5rem;
     }
@@ -40,6 +42,7 @@ export const linkStyle = css.resolve`
       ${mixins.text('mini', 'desktop')}
 
       font-weight: 700;
+      letter-spacing: 0.15rem;
     }
   }
 
@@ -49,7 +52,7 @@ export const linkStyle = css.resolve`
   }
 
   button {
-    background-color: ${colors.greyDark};
+    background-color: ${colors.greyMedium};
     border: none;
     color: white;
     cursor: pointer;
@@ -64,5 +67,12 @@ export const linkStyle = css.resolve`
   button.theme--blue {
     background-color: ${colors.blueAction};
     color: white;
+  }
+
+  a.theme--blue:hover,
+  a.theme--blue:focus,
+  button.theme--blue:hover,
+  button.theme--blue:focus {
+    background-color: ${colors.blueActionActive};
   }
 `;

@@ -27,7 +27,7 @@ export default css`
 
   @media ${mq.tablet} {
     .title {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
   }
 
@@ -98,7 +98,7 @@ export default css`
 
   @media ${mq.tabket} {
     .author-container {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
   }
 

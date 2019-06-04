@@ -19,13 +19,13 @@ export default css`
     ul {
       align-self: flex-end;
       flex-direction: row;
-      margin: -3rem 5rem 3rem auto;
+      margin: -2rem 5rem 3rem auto;
     }
   }
 
   @media ${mq.desktop} {
     ul {
-      margin-top: -4rem;
+      margin-top: -3rem;
     }
   }
 
@@ -48,18 +48,17 @@ export const item = css.resolve`
     background-color: ${colors.blueAction};
     color: white;
     font-weight: 700;
-    padding: 0.15rem 0.5rem;
+    letter-spacing: 0.025rem;
+    padding: 0.25rem 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
-  }
-
-  a[aria-current="page"] {
-    background-color: ${colors.greenAction};
   }
 
   @mdia ${mq.tablet} {
     a {
       ${mixins.text('small', 'tablet')}
+
+      padding: 0.3rem 0.75rem;
     }
   }
 
@@ -67,5 +66,14 @@ export const item = css.resolve`
     a {
       ${mixins.text('small', 'desktop')}
     }
+  }
+
+  a[aria-current="page"] {
+    background-color: ${colors.greenAction};
+  }
+
+  a:not([aria-current="page"]):hover,
+  a:not([aria-current="page"]):focus {
+    background-color: ${colors.blueActionActive};
   }
 `;

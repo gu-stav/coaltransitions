@@ -8,6 +8,8 @@ import { colors, mixins, mq } from '../../../token';
 
 export const linkStyle = css.resolve`
   a {
+    color: ${colors.blueAction};
+    letter-spacing: 0.01rem;
     margin-right: 0.5rem;
     text-decoration: none;
   }
@@ -24,30 +26,29 @@ export const linkStyle = css.resolve`
     a::before {
       ${mixins.text('small', 'tablet')};
 
-      font-weight: 700;
+      font-weight: 600;
+    }
+  }
+
+  @media ${mq.desktop} {
+    a,
+    a::before {
+      ${mixins.text('small', 'desktop')};
+
+      font-weight: 600;
     }
   }
 
   a::before {
-    opacity: 0.7;
-    transition: opacity 200ms ease-in-out;
-  }
-
-  a::before {
-    color: ${colors.blueAction};
     content: '#';
     display: inline-block;
     margin-right: 0.05rem;
+    opacity: 0.5;
   }
 
   a:hover,
   a:focus {
     color: ${colors.blueActionActive};
     text-decoration: underline;
-  }
-
-  a:hover::before,
-  a:focus::before {
-    opacity: 1;
   }
 `;

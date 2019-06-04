@@ -17,13 +17,7 @@ export default css`
   @media ${mq.tablet} {
     .menu {
       flex-direction: row;
-      padding: 1rem 1rem 3rem 1rem;
-    }
-  }
-
-  @media ${mq.desktop} {
-    .menu {
-      padding-bottom: 4rem;
+      padding: 0.85rem 1rem 2rem 1rem;
     }
   }
 
@@ -62,6 +56,8 @@ export const link = css.resolve`
     color: ${colors.blueBrand};
     display: inline-block;
     font-weight: 700;
+    letter-spacing: 0.05rem;
+    line-height: 1.3;
     padding-top: 0.2rem;
     text-decoration: none;
     text-transform: uppercase;
@@ -71,8 +67,9 @@ export const link = css.resolve`
     a {
       ${mixins.text('regular', 'tablet')}
 
-      border-bottom-width: 0.4rem;
+      border-bottom-width: 0.3rem;
       font-weight: 700;
+      line-height: 1.4;
     }
   }
 

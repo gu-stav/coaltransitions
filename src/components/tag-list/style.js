@@ -13,9 +13,3 @@ export default css`
     flex-wrap: wrap;
   }
 `;
-
-export const linkStyle = css.resolve`
-  a {
-    ${mixins.text('small')}
-  }
-`;

@@ -51,6 +51,8 @@ export default css`
 export const linkStyle = css.resolve`
   a {
     ${mixins.text('small')}
+
+    text-decoration: none;
   }
 
   @media ${mq.tablet} {
@@ -68,5 +70,6 @@ export const linkStyle = css.resolve`
   a:hover,
   a:focus {
     color: ${colors.blueAction};
+    text-decoration: underline;
   }
 `;

@@ -1,12 +1,11 @@
 import React from 'react';
 
-import style, { linkStyle } from './style';
+import style from './style';
 import Tag from './tag';
 
 export default ({ tags, trim = false, onFilter = false }) => (
   <ul>
     <style jsx>{style}</style>
-    {linkStyle.styles}
 
     {tags.map(({ name, slug }, index) => {
       if (trim !== false && trim <= index) {
