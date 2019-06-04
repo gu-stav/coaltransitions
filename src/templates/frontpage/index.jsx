@@ -12,13 +12,14 @@ import withLayout from '../../components/with-layout';
 const Page = ({
   data: {
     page: {
+      title,
       acf: { content_page: blocks }
     },
     publications: { nodes: publications }
   }
 }) => (
   <>
-    <Helmet title="Home" />
+    <Helmet title={title} />
 
     {blocks.map(({ __typename: typename, ...blockProps }) => {
       // eslint-disable-next-line default-case
@@ -50,6 +51,7 @@ const Page = ({
 export const query = graphql`
   query($publicationsCount: Int, $wordpressId: Int) {
     page: wordpressPage(wordpress_id: { eq: $wordpressId }) {
+      title
       acf {
         content_page {
           __typename
