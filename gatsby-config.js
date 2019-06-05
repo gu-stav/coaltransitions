@@ -53,6 +53,20 @@ module.exports = {
       }
     },
 
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'CoalTransitions | Research Hub',
+        short_name: 'CoalTransitions',
+        start_url: '/',
+        background_color: '#0D47A1',
+        theme_color: 'white',
+        display: 'standalone',
+        icon: './static/favicon-200.png',
+        legacy: false
+      }
+    },
+
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
