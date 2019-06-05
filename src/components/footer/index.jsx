@@ -1,12 +1,16 @@
 import Link from 'gatsby-link';
 import React from 'react';
 
-import style, { item } from './style';
+import GreenStroke from '../../../static/strokes/stroke-1-green.svg';
+import style, { item, greenStroke } from './style';
 
 export default ({ items }) => (
   <footer>
     <style jsx>{style}</style>
     {item.styles}
+    {greenStroke.styles}
+
+    <GreenStroke className={greenStroke.className} />
 
     <svg
       xmlns="http://www.w3.org/2000/svg"

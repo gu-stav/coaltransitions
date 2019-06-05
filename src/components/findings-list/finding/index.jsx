@@ -14,11 +14,13 @@ import Stroke1Blue from '../../../../static/strokes/stroke-1-blue.svg';
 import Stroke2Green from '../../../../static/strokes/stroke-2-green.svg';
 import Stroke2Blue from '../../../../static/strokes/stroke-2-blue.svg';
 
+import Stroke3Green from '../../../../static/strokes/stroke-3-green.svg';
+import Stroke3Blue from '../../../../static/strokes/stroke-3-blue.svg';
+
 const STROKES = [
   [Stroke1Green, Stroke1Blue],
-  [Stroke1Green, Stroke2Blue],
   [Stroke2Green, Stroke2Blue],
-  [Stroke2Green, Stroke1Blue]
+  [Stroke3Green, Stroke3Blue]
 ];
 
 export default ({
