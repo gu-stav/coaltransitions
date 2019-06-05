@@ -7,9 +7,22 @@ import { mixins, mq } from '../../token';
 export default css`
   footer {
     margin-bottom: 4rem;
+    margin-top: 2rem;
     position: relative;
     overflow: hidden;
     width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    footer {
+      margin-top: 6rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    footer {
+      margin-top: 8rem;
+    }
   }
 
   .background {
@@ -72,6 +85,27 @@ export const item = css.resolve`
   @media ${mq.tablet} {
     a {
       ${mixins.text('regular-big', 'tablet')}
+    }
+  }
+`;
+
+export const greenStroke = css.resolve`
+  svg {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    svg {
+      top: 1rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    svg {
+      top: 2rem;
     }
   }
 `;
