@@ -4,8 +4,8 @@ import React from 'react';
 import Button from '../button';
 import Constraint from '../constraint';
 import Intro from '../intro';
-import StrokeBottom from '../../../static/strokes/stroke-2-blue.svg';
-import StrokeTop from '../../../static/strokes/stroke-1-green.svg';
+import StrokeBottom from '../../../static/strokes/stroke-4-blue.svg';
+import StrokeTop from '../../../static/strokes/stroke-4-green.svg';
 import style, { stroke, strokeTop, strokeBottom } from './style';
 
 export default ({ title, summary }) => (
