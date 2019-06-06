@@ -31,11 +31,19 @@ export default css`
     .image-container {
       width: 75%;
     }
+
+    .argument--has-fullsize-image .image-container {
+      width: 95%;
+    }
   }
 
   @media ${mq.desktop} {
     .image-container {
       width: 50%;
+    }
+
+    .argument--has-fullsize-image .image-container {
+      width: 95%;
     }
   }
 

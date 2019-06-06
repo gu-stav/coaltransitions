@@ -11,6 +11,7 @@ export default ({ title, image }) => (
       indexTitle="Main Finding"
       featuredImage={image}
       buttonLabel="More about our findings"
+      fullsizeImage
     />
   </>
 );

@@ -31,7 +31,8 @@ export default ({
   acf: { intro },
   indexTitle,
   theme = 'blue',
-  buttonLabel = 'Read more about this finding'
+  buttonLabel = 'Read more about this finding',
+  fullsizeImage = false
 }) => {
   const url = `/findings/${slug}/`;
   const [Stroke1, Stroke2] = STROKES[
@@ -40,9 +41,13 @@ export default ({
 
   return (
     <section
-      className={classnames('argument', {
-        'argument--has-theme-green': theme === 'green'
-      })}
+      className={classnames(
+        'argument',
+        {
+          'argument--has-theme-green': theme === 'green'
+        },
+        { 'argument--has-fullsize-image': fullsizeImage }
+      )}
     >
       <style jsx>{style}</style>
       {titleLink.styles}
