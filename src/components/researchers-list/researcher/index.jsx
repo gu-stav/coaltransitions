@@ -23,43 +23,29 @@ export default ({
 
     <div className="content-container">
       <h3 className="title">{title}</h3>
-      <dl>
-        {email && (
-          <>
-            <dt>Email:</dt>
-            <dd>
-              <a href={`mailto:${email}`}>{email}</a>
-            </dd>
-          </>
-        )}
+      {background && (
+        <p>
+          <strong>Background:</strong> {background}
+        </p>
+      )}
 
-        {phone && (
-          <>
-            <dt>Telephone:</dt>
-            <dd>
-              <a href={`tel:${phone}`}>{phone}</a>
-            </dd>
-          </>
-        )}
+      {topics && (
+        <p>
+          <strong>Focus topics:</strong> {topics}
+        </p>
+      )}
 
-        {background && (
-          <>
-            <dt>Background:</dt>
-            <dd>
-              <p>{background}</p>
-            </dd>
-          </>
-        )}
+      {email && (
+        <p>
+          <strong>Email:</strong> <a href={`mailto:${email}`}>{email}</a>
+        </p>
+      )}
 
-        {topics && (
-          <>
-            <dt>Focus topics:</dt>
-            <dd>
-              <p>{topics}</p>
-            </dd>
-          </>
-        )}
-      </dl>
+      {phone && (
+        <p>
+          <strong>Telephone:</strong> <a href={`tel:${phone}`}>{phone}</a>
+        </p>
+      )}
     </div>
   </div>
 );

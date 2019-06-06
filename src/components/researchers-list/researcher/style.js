@@ -39,60 +39,48 @@ export default css`
     }
   }
 
-  dt,
-  dd,
   .title {
-    ${mixins.text('regular')}
-  }
+    ${mixins.text('medium')}
 
-  .title {
-    margin-bottom: 0;
-    margin-top: 0;
+    margin-bottom: 1rem;
+    margin-top: 0.25rem;
     font-weight: 700;
   }
 
   @media ${mq.tablet} {
-    dt,
-    dd,
     .title {
-      ${mixins.text('regular', 'tablet')}
-    }
+      ${mixins.text('medium', 'tablet')}
 
-    .title {
       font-weight: 700;
     }
   }
 
   @media ${mq.desktop} {
-    dt,
-    dd,
     .title {
-      ${mixins.text('regular', 'desktop')}
-    }
+      ${mixins.text('medium', 'desktop')}
 
-    .title {
       font-weight: 700;
+      margin-bottom: 1rem;
     }
   }
 
-  dd {
-    display: inline;
-    margin-left: 0;
-  }
+  p {
+    ${mixins.text('regular')}
 
-  dd::after {
-    display: block;
-    content: '';
-  }
-
-  dt {
-    display: inline-block;
-    margin-right: 0.5rem;
-  }
-
-  dd > p {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
     margin-top: 0;
+  }
+
+  @media ${mq.tablet} {
+    p {
+      ${mixins.text('regular', 'tablet')}
+    }
+  }
+
+  @media ${mq.desktop} {
+    p {
+      ${mixins.text('regular', 'dekstop')}
+    }
   }
 `;
 
