@@ -29,7 +29,14 @@ export default css`
 
   :global(.richtext ul) {
     list-style: none;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.richtext ul) {
+      list-style: none;
+      padding-left: 1rem;
+    }
   }
 
   :global(.richtext li) {
@@ -40,11 +47,18 @@ export default css`
     color: ${colors.blueBrand};
     content: '·';
     font-size: 1.75rem;
-    left: -0.75rem;
+    left: -0.65rem;
     line-height: 1;
     position: absolute;
-    top: 0.25rem;
+    top: -0.1rem;
     vertical-align: middle;
+  }
+
+  @media ${mq.tablet} {
+    :global(.richtext li:before) {
+      left: -0.75rem;
+      top: 0.25rem;
+    }
   }
 
   :global(.richtext li + li) {
