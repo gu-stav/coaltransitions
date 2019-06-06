@@ -52,7 +52,6 @@ export const aboutPicture = css.resolve`
   @media ${mq.tablet} {
     img {
       margin-bottom: 1.25rem;
-      margin-left: -4rem;
       margin-top: 1.25rem;
     }
   }
@@ -60,7 +59,6 @@ export const aboutPicture = css.resolve`
   @media ${mq.desktop} {
     img {
       margin-bottom: 2rem;
-      margin-left: -20%;
       margin-top: 2rem;
     }
   }

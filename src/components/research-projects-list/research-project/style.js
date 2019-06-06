@@ -25,7 +25,7 @@ export default css`
   .duration-container {
     align-self: flex-start;
     margin-top: 0.25rem;
-    width: 15%;
+    width: 12%;
   }
 
   .duration {
@@ -106,7 +106,7 @@ export default css`
 
   @media ${mq.tablet} {
     .content-container {
-      margin-left: calc(15% + 2rem);
+      margin-left: calc(12% + 2rem);
     }
   }
 

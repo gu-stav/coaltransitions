@@ -11,7 +11,7 @@ export default css`
 
   @media ${mq.tablet} {
     ul {
-      margin-left: calc(-15% - 3.5rem);
+      margin-left: calc(-12% - 2rem);
     }
   }
 
