@@ -13,7 +13,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "dotenv": "^8.0.0",
-    "gatsby": "^2.8.2",
+    "gatsby": "^2.8.5",
     "gatsby-image": "^2.1.2",
     "gatsby-link": "^2.1.1",
     "gatsby-plugin-manifest": "^2.1.1",
@@ -25,7 +25,7 @@
     "gatsby-source-wordpress": "^3.0.64",
     "gatsby-transformer-sharp": "^2.1.21",
     "http-proxy-middleware": "^0.19.1",
-    "rc-slider": "^8.6.11",
+    "rc-slider": "^8.6.12",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
@@ -43,8 +43,8 @@
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-react": "^7.13.0",
-    "husky": "^2.3.0",
-    "lint-staged": "^8.1.7",
+    "husky": "^2.4.0",
+    "lint-staged": "^8.2.0",
     "netlify-lambda": "^1.4.13",
     "prettier": "^1.17.1"
   },
