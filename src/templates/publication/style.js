@@ -8,6 +8,7 @@ export default css`
   .publication {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     padding-left: 1rem;
     padding-right: 1rem;
   }
@@ -21,13 +22,21 @@ export default css`
     }
   }
 
+  @media ${mq.desktop} {
+    .publication {
+      flex-wrap: nowrap;
+    }
+  }
+
   .header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   @media ${mq.tablet} {
     .header {
+      flex-direction: column;
       padding-left: 1.5rem;
     }
   }
@@ -39,16 +48,29 @@ export default css`
   }
 
   .cover-image-container {
-    justify-self: flex-end;
-    margin-left: auto;
-    max-width: 50%;
+    flex: 0 1 auto;
+    max-width: 35%;
+    order: 2;
+  }
+
+  @media ${mq.tablet} {
+    .cover-image-container {
+      justify-self: flex-end;
+      margin-left: auto;
+      margin-right: 0;
+      margin-top: 0;
+      max-width: 50%;
+      order: 3;
+    }
   }
 
   .title {
     ${mixins.text('extra-big')}
 
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     margin-top: 0;
+    order: 1;
+    width: 100%;
   }
 
   @media ${mq.tablet} {
@@ -56,6 +78,7 @@ export default css`
       ${mixins.text('extra-big', 'tablet')}
 
       margin-bottom: 1.5rem;
+      order: 1;
       text-align: right;
     }
   }
@@ -66,11 +89,32 @@ export default css`
     }
   }
 
+  .title-meta-container {
+    order: 3;
+    padding-left: 1.5rem;
+    width: 40%;
+  }
+
+  @media ${mq.tablet} {
+    .title-meta-container {
+      order: 2;
+      width: 100%;
+    }
+  }
+
   .year {
-    align-self: flex-end;
-    margin-bottom: 2.5rem;
-    margin-left: auto;
-    margin-top: 2.5rem;
+    display: flex;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    .year {
+      justify-content: flex-end;
+      margin-bottom: 2.5rem;
+      margin-left: auto;
+      margin-top: 2.5rem;
+    }
   }
 
   .year-text {
@@ -102,14 +146,14 @@ export default css`
   }
 
   .subtitle {
-    ${mixins.text('medium')}
+    ${mixins.text('small')}
 
     color: ${colors.blueBrand};
     display: block;
     font-weight: 400;
     margin-bottom: 0;
     margin-top: 0;
-    text-align: right;
+    order: 2;
   }
 
   @media ${mq.tablet} {
@@ -117,6 +161,7 @@ export default css`
       ${mixins.text('medium', 'tablet')}
 
       font-weight: 400;
+      text-align: right;
     }
   }
 
@@ -130,21 +175,62 @@ export default css`
 
   .languages-container {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 4rem;
-    margin-top: 2rem;
+  }
+
+  @media ${mq.tablet} {
+    .languages-container {
+      justify-content: flex-end;
+      margin-bottom: 4rem;
+      margin-top: 2rem;
+    }
   }
 
   .header {
-    flex: 0 0 40%;
+    margin-bottom: 1.5rem;
+  }
+
+  @media ${mq.tablet} {
+    .header {
+      flex: 0 0 40%;
+    }
   }
 
   .body {
-    flex: 1 0 40%;
+    flex: 1 0 100%;
+  }
+
+  @media ${mq.tablet} {
+    .body {
+      flex-basis: 60%;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .body {
+      flex-basis: 40%;
+      padding-right: 0;
+    }
   }
 
   .meta {
-    flex: 0 0 20%;
+    flex: 0 0 100%;
+
+  }
+
+  @media ${mq.tablet} {
+    .meta {
+      flex-basis: 40%;
+      margin-left: 40%;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .meta {
+      flex-basis: 20%;
+      margin-left: 0;
+      padding-right: 0.5rem;
+    }
   }
 
   @media ${mq.tablet} {
@@ -161,9 +247,14 @@ export default css`
   @media ${mq.tablet} {
     .meta {
       align-self: flex-start;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .meta {
+      top: 1rem;
       margin-top: 25%;
       position: sticky;
-      top: 1rem;
     }
   }
 

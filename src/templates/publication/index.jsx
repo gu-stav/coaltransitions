@@ -47,37 +47,38 @@ const Page = ({
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </h1>
 
-        {subtitle && (
-          <p className="subtitle">
-            {subtitle} {subtitle && publishedIn && ' | '} {publishedIn}
-          </p>
-        )}
+        <div className="title-meta-container">
+          {subtitle && (
+            <p className="subtitle">
+              {subtitle} {subtitle && publishedIn && ' | '} {publishedIn}
+            </p>
+          )}
+          {year && (
+            <div className="year">
+              <small className="year-text">{year}</small>
+            </div>
+          )}
 
-        {year && (
-          <div className="year">
-            <small className="year-text">{year}</small>
-          </div>
-        )}
+          {language && (
+            <div className="languages-container">
+              {buttonIcon.styles}
 
-        {language && (
-          <div className="languages-container">
-            {buttonIcon.styles}
-
-            {language.map(
-              ({ language: downloadLanguage, external_url: externalUrl }) => (
-                <Button
-                  key={`language-${downloadLanguage}`}
-                  to={externalUrl}
-                  theme="blue"
-                  external
-                >
-                  {HUMAN_READABLE_LANGUAGES[downloadLanguage]}
-                  <DownloadIcon className={buttonIcon.className} />
-                </Button>
-              )
-            )}
-          </div>
-        )}
+              {language.map(
+                ({ language: downloadLanguage, external_url: externalUrl }) => (
+                  <Button
+                    key={`language-${downloadLanguage}`}
+                    to={externalUrl}
+                    theme="blue"
+                    external
+                  >
+                    {HUMAN_READABLE_LANGUAGES[downloadLanguage]}
+                    <DownloadIcon className={buttonIcon.className} />
+                  </Button>
+                )
+              )}
+            </div>
+          )}
+        </div>
 
         {featuredImage && featuredImage.localFile && (
           <div className="cover-image-container">
