@@ -18,9 +18,9 @@ import Stroke3Green from '../../../../static/strokes/stroke-3-green.svg';
 import Stroke3Blue from '../../../../static/strokes/stroke-3-blue.svg';
 
 const STROKES = [
-  [Stroke1Green, Stroke1Blue],
-  [Stroke2Green, Stroke2Blue],
-  [Stroke3Green, Stroke3Blue]
+  [Stroke1Blue, Stroke1Green],
+  [Stroke2Blue, Stroke2Green],
+  [Stroke3Blue, Stroke3Green]
 ];
 
 export default ({

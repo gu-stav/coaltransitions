@@ -9,7 +9,7 @@ export default css`
     align-items: center;
     display: flex;
     flex-direction: column;
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     position: relative;
     width: 100%;
   }
@@ -22,7 +22,7 @@ export default css`
 
   @media ${mq.desktop} {
     section {
-      padding: 10rem 0;
+      padding: 14rem 0 12rem 0;
     }
   }
 
