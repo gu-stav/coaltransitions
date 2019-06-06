@@ -8,7 +8,8 @@ export default css`
   ul {
     ${mixins.resetList()}
 
-    align-self: flex-start;
+    align-items: flex-end;
+    align-self: flex-end;
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
@@ -52,7 +53,7 @@ export const item = css.resolve`
     color: white;
     font-weight: 700;
     letter-spacing: 0.025rem;
-    padding: 0.25rem 0.5rem 0.25rem 1rem;
+    padding: 0.25rem 1rem 0.25rem 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;

@@ -9,12 +9,6 @@ export default css`
     width: 100%;
   }
 
-  @media ${mq.desktop} {
-    ul {
-      margin-left: calc(-25% - 1.5rem);
-    }
-  }
-
   li {
     border-bottom: 1px solid ${colors.blueAction};
     padding-bottom: 2rem;
@@ -29,6 +23,12 @@ export default css`
     margin-bottom: 0.5rem;
     margin-top: 0;
     text-transform: uppercase;
+  }
+
+  @media ${mq.tablet} {
+    h2 {
+      margin-left: calc(25% + 1.5rem);
+    }
   }
 
   ul + h2 {
