@@ -39,7 +39,7 @@ export default css`
 
   @media ${mq.desktop} {
     .image-container {
-      width: 50%;
+      width: 60%;
     }
 
     .argument--has-fullsize-image .image-container {
