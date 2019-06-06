@@ -38,4 +38,8 @@ export default css`
       max-width: 62rem;
     }
   }
+
+  .constraint--superwide {
+    max-width: 80rem;
+  }
 `;

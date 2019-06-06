@@ -81,7 +81,7 @@ export const mixins = {
 
         desktop: `
           font-family: ${fonts.publicSans.family};
-          font-size: 1rem;
+          font-size: 0.9rem;
           font-weight: 400;
           line-height: 1.3;
       `

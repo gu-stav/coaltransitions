@@ -36,7 +36,7 @@ const Page = ({
     }
   }
 }) => (
-  <Constraint wide>
+  <Constraint superwide>
     <Helmet title={title} />
 
     <article className="publication">
@@ -45,18 +45,18 @@ const Page = ({
       <header className="header">
         <h1 className="title">
           <span dangerouslySetInnerHTML={{ __html: title }} />
-
-          {year && (
-            <div className="year">
-              <small className="year-text">{year}</small>
-            </div>
-          )}
         </h1>
 
         {subtitle && (
           <p className="subtitle">
             {subtitle} {subtitle && publishedIn && ' | '} {publishedIn}
           </p>
+        )}
+
+        {year && (
+          <div className="year">
+            <small className="year-text">{year}</small>
+          </div>
         )}
 
         {language && (
@@ -132,14 +132,6 @@ const Page = ({
             <h3 className="meta-block-title">Employer</h3>
 
             <p className="meta-block-content">{employer}</p>
-          </div>
-        )}
-
-        {year && (
-          <div className="meta-block">
-            <h3 className="meta-block-title">Year of publication</h3>
-
-            <p className="meta-block-content">2019</p>
           </div>
         )}
       </div>

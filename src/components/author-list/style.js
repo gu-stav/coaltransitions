@@ -52,18 +52,24 @@ export const linkStyle = css.resolve`
   a {
     ${mixins.text('small')}
 
+    letter-spacing: 0.01rem;
+    line-height: 1;
     text-decoration: none;
   }
 
   @media ${mq.tablet} {
     a {
       ${mixins.text('small', 'tablet')}
+
+      line-height: 1;
     }
   }
 
   @media ${mq.desktop} {
     a {
       ${mixins.text('small', 'desktop')}
+
+      line-height: 1;
     }
   }
 
