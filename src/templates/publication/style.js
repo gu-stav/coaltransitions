@@ -48,7 +48,9 @@ export default css`
   }
 
   .cover-image-container {
+    border: 1px solid ${colors.greyLight};
     flex: 0 1 auto;
+    font-size: 0;
     max-width: 35%;
     order: 2;
   }
