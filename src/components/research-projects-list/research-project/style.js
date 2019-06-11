@@ -31,7 +31,6 @@ export default css`
   .duration {
     ${mixins.text('small', 'phone')}
 
-
     background-color: ${colors.greenBrand};
     color: white;
     display: inline-block;
@@ -111,20 +110,20 @@ export default css`
   }
 
   .summary {
-    ${mixins.text('small')}
+    ${mixins.text('regular')}
 
     margin-bottom: 2.5rem;
   }
 
   @media ${mq.tablet} {
     .summary {
-      ${mixins.text('small', 'tablet')}
+      ${mixins.text('regular', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     .summary {
-      ${mixins.text('small', 'desktop')}
+      ${mixins.text('regular', 'desktop')}
     }
   }
 `;
