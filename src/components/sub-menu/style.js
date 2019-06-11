@@ -16,7 +16,7 @@ export default css`
     margin-top: 0;
   }
 
-  @media ${mq.tablet} {
+  @media ${mq.phoneWide} {
     ul {
       align-self: flex-end;
       flex-direction: row;
