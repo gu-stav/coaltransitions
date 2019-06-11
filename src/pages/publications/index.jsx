@@ -135,7 +135,8 @@ const Page = ({
                       }))
                     }
                     onChange={selected => {
-                      const updatedAuthors = selected.map(({ value }) => value);
+                      const updatedAuthors =
+                        selected && selected.map(({ value }) => value);
 
                       setFilter(state => ({
                         ...state,
@@ -158,7 +159,8 @@ const Page = ({
                       }))
                     }
                     onChange={selected => {
-                      const selectedTags = selected.map(({ value }) => value);
+                      const selectedTags =
+                        selected && selected.map(({ value }) => value);
 
                       setFilter(state => ({
                         ...state,
