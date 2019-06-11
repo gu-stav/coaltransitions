@@ -30,7 +30,7 @@ export default css`
     h1 {
       ${mixins.text('huge', 'tablet')}
 
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
   }
 
@@ -38,7 +38,7 @@ export default css`
     h1 {
       ${mixins.text('huge', 'desktop')}
 
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
   }
 `;
