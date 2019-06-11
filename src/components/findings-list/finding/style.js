@@ -33,7 +33,7 @@ export default css`
     }
 
     .argument--has-fullsize-image .image-container {
-      width: 95%;
+      width: 85%;
     }
   }
 
@@ -43,7 +43,7 @@ export default css`
     }
 
     .argument--has-fullsize-image .image-container {
-      width: 95%;
+      width: 80%;
     }
   }
 
