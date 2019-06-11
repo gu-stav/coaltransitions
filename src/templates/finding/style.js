@@ -8,7 +8,7 @@ export default css`
   }
 
   .title {
-    ${mixins.text('extra-big')}
+    ${mixins.text('huge')}
 
     align-self: flex-end;
     background-color: ${colors.blueBrand};
@@ -24,13 +24,13 @@ export default css`
 
   @media ${mq.tablet} {
     .title {
-      ${mixins.text('extra-big', 'tablet')}
+      ${mixins.text('huge', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     .title {
-      ${mixins.text('extra-big', 'desktop')}
+      ${mixins.text('huge', 'desktop')}
     }
   }
 
