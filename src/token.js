@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-const MQ_SIZES = [['phone', 500], ['tablet', 768], ['desktop', 1024]];
+const MQ_SIZES = [['phone', 480], ['tablet', 768], ['desktop', 1024]];
 
 export const fonts = {
   publicSans: {

@@ -14,7 +14,7 @@ export default css`
     width: 100%;
   }
 
-  @media ${mq.tablet} {
+  @media ${mq.phone} {
     .menu {
       flex-direction: row;
       padding: 0.85rem 1rem 2rem 1rem;
@@ -27,12 +27,14 @@ export default css`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-top: 1rem;
     width: 100%;
   }
 
-  @media ${mq.tablet} {
+  @media ${mq.phone} {
     ul {
       justify-content: flex-start;
+      margin-top: 0;
       width: auto;
     }
   }
