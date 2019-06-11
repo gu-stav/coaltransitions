@@ -1,13 +1,36 @@
 import React from 'react';
 
+import Button from '../button';
 import Publication from './publication';
 import style from './style';
 
-export default ({ title, publications = [], onFilter }) => (
+export default ({
+  title,
+  publications = [],
+  onFilter,
+  showAllLink = false
+}) => (
   <div className="publications-container">
     <style jsx>{style}</style>
 
-    {title && <h2 className="title">{title}</h2>}
+    {title && (
+      <h2 className="title">
+        {title}
+
+        {showAllLink && (
+          <>
+            <hr />
+            <Button
+              to="/publications/"
+              theme="blue"
+              aria-label="Show all Publications"
+            >
+              All
+            </Button>
+          </>
+        )}
+      </h2>
+    )}
 
     {publications.length > 0 ? (
       <ul>

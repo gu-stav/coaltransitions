@@ -24,7 +24,10 @@ export default css`
   .title {
     ${mixins.text('regular-big')};
 
+    align-items: center;
     color: ${colors.blueBrand};
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 0;
     margin-top: 2.5rem;
     text-transform: uppercase;
@@ -45,6 +48,30 @@ export default css`
 
       margin-left: calc(15% + 1.5rem);
       margin-top: 1.5rem;
+    }
+  }
+
+  hr {
+    background-color: ${colors.blueAction};
+    border: none;
+    flex: 1 0 auto;
+    height: 1px;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    min-width: 3rem;
+  }
+
+  @media ${mq.tablet} {
+    hr {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    hr {
+      margin-left: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
 

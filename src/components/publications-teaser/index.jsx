@@ -19,12 +19,11 @@ export default ({ title, summary, image, publications }) => (
           <Intro intro={summary} />
         </div>
       </div>
-    </Constraint>
 
-    <Constraint wide>
       <PublicationList
         publications={publications}
-        title={`Featured Publications (${publications.length})`}
+        title="Featured Publications"
+        showAllLink
       />
     </Constraint>
   </section>
