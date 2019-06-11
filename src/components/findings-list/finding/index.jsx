@@ -31,7 +31,8 @@ export default ({
   acf: { intro },
   indexTitle,
   theme = 'blue',
-  buttonLabel = 'Read more about this finding',
+  buttonLabel = 'Read more',
+  buttonLabelAria = 'Read more about this finding',
   fullsizeImage = false
 }) => {
   const url = `/findings/${slug}/`;
@@ -76,7 +77,7 @@ export default ({
           <div className="intro" dangerouslySetInnerHTML={{ __html: intro }} />
         )}
 
-        <Button to={url} rel="nofollow">
+        <Button to={url} aria-label={buttonLabelAria} rel="nofollow">
           {buttonLabel}
           <ArrowIcon className={arrowIcon.className} />
         </Button>

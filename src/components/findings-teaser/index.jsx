@@ -10,7 +10,8 @@ export default ({ title, image }) => (
       acf={{ intro: null, factNumber: 1 }}
       indexTitle="Main Finding"
       featuredImage={image}
-      buttonLabel="More about our findings"
+      buttonLabel="Read More"
+      buttonLabelArial="Read more about our findings"
       fullsizeImage
     />
   </>
