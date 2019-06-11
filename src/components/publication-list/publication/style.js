@@ -39,6 +39,7 @@ export default css`
     color: white;
     display: inline-block;
     font-weight: 700;
+    letter-spacing: 0.05rem;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0.15rem 0.5rem;

@@ -124,6 +124,7 @@ export default css`
     color: white;
     display: inline-block;
     font-weight: 700;
+    letter-spacing: 0.05rem;
     padding: 0 0.5rem;
   }
 
