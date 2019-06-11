@@ -78,6 +78,7 @@ export const item = css.resolve`
 
     color: white;
     font-weight: 700;
+    letter-spacing: 0.05rem;
     text-decoration: none;
     text-transform: uppercase;
   }
