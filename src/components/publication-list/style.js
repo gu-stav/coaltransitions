@@ -26,7 +26,7 @@ export default css`
 
     color: ${colors.blueBrand};
     margin-bottom: 0;
-    margin-top: 0;
+    margin-top: 2.5rem;
     text-transform: uppercase;
   }
 
@@ -35,6 +35,7 @@ export default css`
       ${mixins.text('regular-big', 'tablet')};
 
       margin-left: calc(20% + 1.5rem);
+      margin-top: 2rem;
     }
   }
 
@@ -43,6 +44,7 @@ export default css`
       ${mixins.text('regular-big', 'desktop')};
 
       margin-left: calc(15% + 1.5rem);
+      margin-top: 1.5rem;
     }
   }
 

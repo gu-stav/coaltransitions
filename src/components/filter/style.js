@@ -5,6 +5,7 @@ import { mq } from '../../token';
 export default css`
   .filter {
     margin-bottom: 2rem;
+    margin-top: 1rem;
     padding-left: 1rem;
     padding-right: 1rem;
   }

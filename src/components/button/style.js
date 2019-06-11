@@ -63,6 +63,10 @@ export const linkStyle = css.resolve`
     background-color: ${colors.blueAction};
   }
 
+  button:active {
+    background-color: ${colors.blueActionActive};
+  }
+
   a.theme--blue,
   button.theme--blue {
     background-color: ${colors.blueAction};

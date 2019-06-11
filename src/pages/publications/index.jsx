@@ -10,6 +10,7 @@ import {
   extractPublicationYearExtremes,
   filterPublications
 } from '../../lib/publication';
+import FilterLoading from '../../components/filter/loading';
 import FilterButton from '../../components/filter/button';
 import PublicationsList from '../../components/publication-list';
 import Select from '../../components/select';
@@ -119,7 +120,7 @@ const Page = ({
         </FilterButton>
 
         {showFilter && (
-          <Suspense fallback={<div>Loading</div>}>
+          <Suspense fallback={<FilterLoading text="Loading Filter …" />}>
             <Filter
               rows={[
                 [

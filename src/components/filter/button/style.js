@@ -8,7 +8,6 @@ export default css`
   .container {
     display: flex;
     justify-content: center;
-    margin-bottom: 2.5rem;
     position: relative;
   }
 
