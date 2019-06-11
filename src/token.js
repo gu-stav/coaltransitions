@@ -198,11 +198,13 @@ export const mixins = {
           font-size: 2.75rem;
           font-weight: 600;
           letter-spacing: 0.05rem;
+          line-height: 1;
       `,
         desktop: `
           font-family: ${fonts.publicSans.family};
           font-size: 3.65rem;
           font-weight: 600;
+          line-height: 1.1;
       `
       }
     };
