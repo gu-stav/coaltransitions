@@ -4,6 +4,7 @@ import React from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
+import Partner from '../../components/partner';
 import Picture from '../../components/picture';
 import ResearchersList from '../../components/researchers-list';
 import ResearchProjectsList from '../../components/research-projects-list';
@@ -41,7 +42,6 @@ const Page = ({
           content.map(block => {
             const { __typename: type } = block;
 
-            // eslint-disable-next-line default-case
             switch (type) {
               case 'WordPressAcf_text':
                 return <Richtext content={block.text} />;
@@ -59,9 +59,13 @@ const Page = ({
 
               case 'WordPressAcf_researchers':
                 return <ResearchersList items={researchers} />;
-            }
 
-            return null;
+              case 'WordPressAcf_partner':
+                return <Partner {...block} />;
+
+              default:
+                return <div>{JSON.stringify(block)}</div>;
+            }
           })}
       </Constraint>
     </article>
@@ -152,6 +156,10 @@ export const query = graphql`
 
           ... on WordPressAcf_researchers {
             showResearchers
+          }
+
+          ... on WordPressAcf_partner {
+            ...partner
           }
         }
       }

@@ -1,0 +1,45 @@
+import React from 'react';
+import { graphql } from 'gatsby';
+
+import Picture from '../picture';
+import Richtext from '../richtext';
+import style from './style';
+
+export default ({ name, summary, link, logo }) => (
+  <div className="partner">
+    <style jsx>{style}</style>
+
+    {logo && logo.localFile && (
+      <a href={link} rel="nofollow" className="image-container">
+        <Picture image={logo.localFile} />
+      </a>
+    )}
+
+    <div className="content-container">
+      <h3 className="title">
+        <a href={link}>{name}</a>
+      </h3>
+
+      <Richtext content={summary} />
+    </div>
+  </div>
+);
+
+export const fragment = graphql`
+  fragment partner on WordPressAcf_partner {
+    name
+    summary
+    link
+    logo {
+      localFile {
+        childImageSharp {
+          fluid(maxWidth: 800) {
+            src
+            srcSet
+            srcWebp
+          }
+        }
+      }
+    }
+  }
+`;
