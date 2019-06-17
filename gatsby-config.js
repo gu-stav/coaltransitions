@@ -16,7 +16,8 @@ module.exports = {
     ],
     twitter: {
       screen_name: 'CoalTransitions',
-      count: 9
+      count: 9,
+      exclude_replies: true
     }
   },
 
