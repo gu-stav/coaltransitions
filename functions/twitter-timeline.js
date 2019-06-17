@@ -27,13 +27,13 @@ const getTweets = () =>
 
         // Only pick the required properties, in order to keep the response small
         // eslint-disable-next-line camelcase
-        const { id, full_text, created_at } = data;
-
-        resolve({
+        const tweets = data.map(({ id, full_text, created_at }) => ({
           id,
           full_text,
           created_at
-        });
+        }));
+
+        resolve(tweets);
       }
     );
   });
