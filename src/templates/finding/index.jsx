@@ -44,7 +44,10 @@ const Page = ({
         <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
         {featuredImage && featuredImage.localFile && (
-          <Picture image={featuredImage.localFile} />
+          <Picture
+            image={featuredImage.localFile}
+            caption={featuredImage.caption}
+          />
         )}
       </header>
 
@@ -59,7 +62,12 @@ const Page = ({
                   return <Richtext content={block.text} />;
 
                 case 'WordPressAcf_image':
-                  return <Picture image={block.image.localFile} />;
+                  return (
+                    <Picture
+                      image={block.image.localFile}
+                      caption={block.image.caption}
+                    />
+                  );
 
                 default:
                   return <p>Block not yet implemented</p>;
@@ -131,6 +139,7 @@ export const query = graphql`
                   }
                 }
               }
+              caption
             }
           }
         }

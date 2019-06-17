@@ -48,10 +48,12 @@ const Page = ({
 
               case 'WordPressAcf_image':
                 return (
-                  <Picture
-                    image={block.image.localFile}
-                    className={aboutPicture.className}
-                  />
+                  <figure className={aboutPicture.className}>
+                    <Picture
+                      image={block.image.localFile}
+                      caption={block.image.caption}
+                    />
+                  </figure>
                 );
 
               case 'WordPressAcf_researchProjects':
@@ -147,6 +149,7 @@ export const query = graphql`
                   }
                 }
               }
+              caption
             }
           }
 

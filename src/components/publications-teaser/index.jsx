@@ -12,7 +12,7 @@ export default ({ title, summary, image, publications }) => (
 
     <Constraint wide>
       <div className="content-container">
-        <Picture image={image.localFile} />
+        <Picture image={image.localFile} caption={image.caption} />
 
         <div className="intro-container">
           <h2 className="title">{title}</h2>

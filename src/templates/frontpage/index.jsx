@@ -65,6 +65,7 @@ export const query = graphql`
             title
             summary
             image {
+              caption
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
