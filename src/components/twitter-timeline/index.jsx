@@ -35,13 +35,21 @@ export default ({ endpoint, title }) => {
           {tweets.map(
             ({
               id,
-              retweeted_status: { full_text: fullText },
+              retweeted_status: retweetedStatus,
               created_at: createdAt
-            }) => (
-              <li key={`tweet=${id}`}>
-                <Tweet createdAt={createdAt} text={fullText} />
-              </li>
-            )
+            }) => {
+              if (!retweetedStatus) {
+                return null;
+              }
+
+              const { full_text: fullText } = retweetedStatus;
+
+              return (
+                <li key={`tweet=${id}`}>
+                  <Tweet createdAt={createdAt} text={fullText} />
+                </li>
+              );
+            }
           )}
         </ul>
       )}
