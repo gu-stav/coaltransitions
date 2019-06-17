@@ -32,25 +32,11 @@ export default ({ endpoint, title }) => {
 
       {tweets && (
         <ul>
-          {tweets.map(
-            ({
-              id,
-              retweeted_status: retweetedStatus,
-              created_at: createdAt
-            }) => {
-              if (!retweetedStatus) {
-                return null;
-              }
-
-              const { full_text: fullText } = retweetedStatus;
-
-              return (
-                <li key={`tweet=${id}`}>
-                  <Tweet createdAt={createdAt} text={fullText} />
-                </li>
-              );
-            }
-          )}
+          {tweets.map(({ id, full_text: fullText, created_at: createdAt }) => (
+            <li key={`tweet=${id}`}>
+              <Tweet createdAt={createdAt} text={fullText} />
+            </li>
+          ))}
         </ul>
       )}
     </section>
