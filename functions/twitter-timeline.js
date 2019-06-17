@@ -1,4 +1,5 @@
 const Twit = require('twit');
+const { autoLink } = require('twitter-text');
 
 const {
   siteMetadata: { twitter: twitterOptions }
@@ -29,7 +30,7 @@ const getTweets = () =>
         // eslint-disable-next-line camelcase
         const tweets = data.map(({ id, full_text, created_at }) => ({
           id,
-          full_text,
+          full_text: autoLink(full_text),
           created_at
         }));
 

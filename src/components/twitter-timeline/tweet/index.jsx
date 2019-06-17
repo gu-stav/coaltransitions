@@ -1,5 +1,4 @@
 import React from 'react';
-import { autoLink } from 'twitter-text';
 
 import style from './style';
 
@@ -30,6 +29,6 @@ export default ({ createdAt, text }) => (
     <style jsx>{style}</style>
 
     <small className="date">{parseDate(createdAt)}</small>
-    <p dangerouslySetInnerHTML={{ __html: autoLink(text) }} className="text" />
+    <p dangerouslySetInnerHTML={{ __html: text }} className="text" />
   </div>
 );
