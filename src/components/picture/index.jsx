@@ -3,7 +3,8 @@ import React from 'react';
 import style from './style';
 
 export default ({ image, type = 'fluid', className, ...rest }) => {
-  const imageByType = image.childImageSharp[type];
+  const imageByType =
+    image && image.childImageSharp && image.childImageSharp[type];
 
   if (!imageByType) {
     return null;
