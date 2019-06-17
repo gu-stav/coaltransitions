@@ -25,7 +25,15 @@ const getTweets = () =>
           reject(error);
         }
 
-        resolve(data);
+        // Only pick the required properties, in order to keep the response small
+        // eslint-disable-next-line camelcase
+        const { id, full_text, created_at } = data;
+
+        resolve({
+          id,
+          full_text,
+          created_at
+        });
       }
     );
   });
