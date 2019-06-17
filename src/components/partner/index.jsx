@@ -17,7 +17,9 @@ export default ({ name, summary, link, logo }) => (
 
     <div className="content-container">
       <h3 className="title">
-        <a href={link}>{name}</a>
+        <a href={link} className="title-link">
+          {name}
+        </a>
       </h3>
 
       <Richtext content={summary} />

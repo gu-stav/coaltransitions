@@ -1,6 +1,6 @@
 import css from 'styled-jsx/css';
 
-import { mixins, mq } from '../../token';
+import { mixins, mq, colors } from '../../token';
 
 export default css`
   .partner {
@@ -19,24 +19,27 @@ export default css`
   .image-container {
     display: block;
     flex: 1 0 auto;
+    margin-bottom: 1rem;
     width: 35%;
   }
 
   @media ${mq.tablet} {
     .image-container {
-      margin-right: 1.5rem;
-      width: 12rem;
+      margin-bottom: 0;
+      margin-right: 2rem;
+      margin-top: 0.25rem;
+      width: 11rem;
     }
   }
 
   @media ${mq.desktop} {
     .image-container {
-      margin-left: -13.5rem;
+      margin-left: -13rem;
     }
   }
 
   .title {
-    ${mixins.text('regular-big')}
+    ${mixins.text('medium')}
 
     margin-bottom: 1rem;
     margin-top: 0;
@@ -44,13 +47,18 @@ export default css`
 
   @media ${mq.tablet} {
     .title {
-      ${mixins.text('regular-big', 'tablet')}
+      ${mixins.text('medium', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     .title {
-      ${mixins.text('regular-big', 'desktop')}
+      ${mixins.text('medium', 'desktop')}
     }
+  }
+
+  .title-link:hover,
+  .title-link:focus {
+    color: ${colors.blueBrand};
   }
 `;

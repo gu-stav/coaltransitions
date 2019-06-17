@@ -19,11 +19,11 @@ export default css`
     }
   }
 
-  :global(.richtext > *:first-child) {
+  :global(.richtext > *:first-child:not(:only-child)) {
     margin-top: 0;
   }
 
-  :global(.richtext > *:last-child) {
+  :global(.richtext > *:last-child:not(:only-child)) {
     margin-bottom: 0;
   }
 
@@ -63,5 +63,60 @@ export default css`
 
   :global(.richtext li + li) {
     margin-top: 1rem;
+  }
+
+  :global(.richtext h2) {
+    ${mixins.text('big')}
+
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.richtext h2) {
+      ${mixins.text('big', 'tablet')}
+
+      margin-bottom: 0.75rem;
+      margin-top: 2.5rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    :global(.richtext h2) {
+      ${mixins.text('big', 'desktop')}
+
+      margin-bottom: 1rem;
+      margin-top: 3rem;
+    }
+  }
+
+  :global(.richtext h3) {
+    ${mixins.text('medium')}
+
+    margin-bottom: 0.25rem;
+    margin-top: 1.5rem;
+  }
+
+  @media ${mq.tablet} {
+    :global(.richtext h3) {
+      ${mixins.text('medium', 'tablet')}
+
+      margin-bottom: 0.5rem;
+      margin-top: 1.75rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    :global(.richtext h3) {
+      ${mixins.text('medium', 'desktop')}
+
+      margin-bottom: 0.75rem;
+      margin-top: 2rem;
+    }
+  }
+
+  :global(.richtext a:hover),
+  :global(.richtext a:focus) {
+    color: ${colors.blueBrand};
   }
 `;

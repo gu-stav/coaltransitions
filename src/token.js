@@ -162,9 +162,21 @@ export const mixins = {
       },
 
       big: {
+        phone: `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.5rem;
+          font-weight: 700;
+          line-height: 1.11;
+      `,
+        tablet: `
+          font-family: ${fonts.publicSans.family};
+          font-size: 1.85rem;
+          font-weight: 700;
+          line-height: 1.11;
+      `,
         desktop: `
           font-family: ${fonts.publicSans.family};
-          font-size: 2rem;
+          font-size: 2.25rem;
           font-weight: 700;
           line-height: 1.11;
       `
