@@ -4,11 +4,24 @@ import ArrowRightIcon from '../../../../static/icons/arrow-alt-right.svg';
 import Button from '../../button';
 import style, { buttonIcon } from './style';
 
-export default ({ title, acf: { start, end, summary, externalLink } }) => {
+export default ({
+  title,
+  acf: { start, end, summary, externalLink, acronym },
+  tags
+}) => {
   let range = `${start}`;
+  let hasCorrespondingTag = false;
 
   if (end && start !== end) {
     range += ` – ${end}`;
+  }
+
+  if (
+    acronym &&
+    tags &&
+    tags.find(({ name: tagName }) => acronym === tagName)
+  ) {
+    hasCorrespondingTag = true;
   }
 
   return (
@@ -34,10 +47,12 @@ export default ({ title, acf: { start, end, summary, externalLink } }) => {
           className="summary"
         />
 
-        <Button to="/publications/" theme="blue">
-          Publications
-          <ArrowRightIcon className={buttonIcon.className} />
-        </Button>
+        {hasCorrespondingTag && (
+          <Button to={`/publications/?keywords=${acronym}`} theme="blue">
+            Publications
+            <ArrowRightIcon className={buttonIcon.className} />
+          </Button>
+        )}
       </div>
     </div>
   );

@@ -18,6 +18,7 @@ const Page = ({
     pages: { nodes: pages },
     researchers: { nodes: researchers },
     researchProjects: { nodes: researchProjects },
+    tags: { nodes: tags },
     page: {
       title,
       acf: { content, intro }
@@ -57,7 +58,9 @@ const Page = ({
                 );
 
               case 'WordPressAcf_researchProjects':
-                return <ResearchProjectsList items={researchProjects} />;
+                return (
+                  <ResearchProjectsList items={researchProjects} tags={tags} />
+                );
 
               case 'WordPressAcf_researchers':
                 return <ResearchersList items={researchers} />;
@@ -109,6 +112,13 @@ export const query = graphql`
           phone
           topics
         }
+      }
+    }
+
+    tags: allWordpressTag {
+      nodes {
+        name
+        slug
       }
     }
 
