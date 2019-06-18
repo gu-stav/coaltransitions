@@ -6,7 +6,7 @@ import { graphql } from 'gatsby';
 import ArrowIcon from '../../../../static/icons/arrow-alt-right.svg';
 import Button from '../../button';
 import Picture from '../../picture';
-import style, { titleLink, imageLink, arrowIcon } from './style';
+import style, { titleLink, imageLink, arrowIcon, captionStyle } from './style';
 
 import Stroke1Green from '../../../../static/strokes/stroke-1-green.svg';
 import Stroke1Blue from '../../../../static/strokes/stroke-1-blue.svg';
@@ -54,6 +54,7 @@ export default ({
       {titleLink.styles}
       {imageLink.styles}
       {arrowIcon.styles}
+      {captionStyle.styles}
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
@@ -61,6 +62,7 @@ export default ({
             <Picture
               image={featuredImage.localFile}
               caption={featuredImage.caption}
+              captionClassName={captionStyle.className}
             />
           )}
         </Link>

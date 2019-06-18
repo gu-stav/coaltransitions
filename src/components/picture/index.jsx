@@ -1,3 +1,4 @@
+import classnames from 'classnames';
 import React from 'react';
 
 import style from './style';
@@ -7,6 +8,7 @@ export default ({
   type = 'fluid',
   className,
   caption = null,
+  captionClassName = null,
   ...rest
 }) => {
   const imageByType =
@@ -30,7 +32,12 @@ export default ({
         <img src={src} loading="lazy" className={className} />
       </picture>
 
-      {caption && <figcaption dangerouslySetInnerHTML={{ __html: caption }} />}
+      {caption && (
+        <figcaption
+          className={classnames(captionClassName)}
+          dangerouslySetInnerHTML={{ __html: caption }}
+        />
+      )}
     </>
   );
 };
