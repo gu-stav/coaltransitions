@@ -15,7 +15,7 @@ export default css`
 
   @media ${mq.tablet} {
     .argument {
-      padding-bottom: 6rem;
+      padding-bottom: 5rem;
     }
   }
 
@@ -181,6 +181,7 @@ export const titleLink = css.resolve`
 export const imageLink = css.resolve`
   a {
     flex: 1 0 100%;
+    text-decoration: none;
   }
 `;
 
@@ -189,5 +190,23 @@ export const arrowIcon = css.resolve`
     height: 1.75rem;
     margin-left: 1rem;
     width: 1.75rem;
+  }
+`;
+
+export const captionStyle = css.resolve`
+  figcaption {
+    max-width: 10rem;
+  }
+
+  @media ${mq.tablet} {
+    figcaption {
+      max-width: 15rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    figcaption {
+      max-width: 27rem;
+    }
   }
 `;
