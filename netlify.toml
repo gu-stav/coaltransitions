@@ -1,2 +1,38 @@
 [build]
   functions = "public-functions"
+
+[[redirects]]
+  from = "/reports/"
+  to = "/publications/"
+
+[[redirects]]
+  from = "/reports/*"
+  to = "/publications/:splat"
+
+[[redirects]]
+  from = "/events/"
+  to = "/"
+
+[[redirects]]
+  from = "/media/"
+  to = "/about/research-projects/"
+
+[[redirects]]
+  from = "/media/related-research-projects/"
+  to = "/about/research-partners/"
+
+[[redirects]]
+  from = "/media/resources/"
+  to = "/"
+
+[[redirects]]
+  from = "/2017/*"
+  to = "/"
+
+[[redirects]]
+  from = "/2018/*"
+  to = "/"
+
+[[redirects]]
+  from = "/2019/*"
+  to = "/"
