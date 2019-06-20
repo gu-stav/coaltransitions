@@ -3,6 +3,7 @@ const config = require('./config.json');
 
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://coaltransitions.org',
     title: 'Coal Transitions',
     menu: [
       ['Findings', '/findings/'],
