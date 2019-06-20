@@ -71,7 +71,8 @@ module.exports = {
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    'gatsby-plugin-react-helmet'
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-advanced-sitemap'
   ],
 
   developMiddleware: app => {
