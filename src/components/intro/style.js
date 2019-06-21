@@ -3,6 +3,10 @@ import css from 'styled-jsx/css';
 import { mixins, colors, mq } from '../../token';
 
 export default css`
+  .intro {
+    width: 100%;
+  }
+
   p {
     ${mixins.text('medium')}
 
