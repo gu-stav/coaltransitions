@@ -24,7 +24,7 @@ const Page = ({
       acf: {
         intro,
         content,
-        additionalLinks,
+        additional_links: additionalLinks = [],
         publications: additionalPublications
       }
     }
@@ -55,37 +55,42 @@ const Page = ({
         <div className="body">
           <Intro intro={intro} />
 
-          {content &&
-            content.map(({ __typename, ...block }) => {
-              switch (__typename) {
-                case 'WordPressAcf_text':
-                  return <Richtext content={block.text} />;
+          {content && (
+            <div className="description">
+              {content.map(({ __typename, ...block }) => {
+                switch (__typename) {
+                  case 'WordPressAcf_text':
+                    return <Richtext content={block.text} />;
 
-                case 'WordPressAcf_image':
-                  return (
-                    <Picture
-                      image={block.image.localFile}
-                      caption={block.image.caption}
-                    />
-                  );
+                  case 'WordPressAcf_image':
+                    return (
+                      <Picture
+                        image={block.image.localFile}
+                        caption={block.image.caption}
+                      />
+                    );
 
-                default:
-                  return <p>Block not yet implemented</p>;
-              }
-            })}
+                  default:
+                    return <p>Block not implemented</p>;
+                }
+              })}
+            </div>
+          )}
 
-          {additionalLinks && (
-            <>
+          {additionalLinks && additionalLinks.length > 0 && (
+            <div className="additional-links-container">
               <h3 className="section-headline">Further reading</h3>
               <MoreLinksList items={additionalLinks} />
-            </>
+            </div>
           )}
 
           {additionalPublications && (
-            <>
-              <h3 className="section-headline">Related Publications</h3>
-              <PublicationList publications={publicationListItems} />
-            </>
+            <div className="publications-list-contaioner">
+              <PublicationList
+                publications={publicationListItems}
+                title="Related Publications"
+              />
+            </div>
           )}
         </div>
       </Constraint>
@@ -118,6 +123,10 @@ export const query = graphql`
       }
       acf {
         intro
+        additional_links {
+          link
+          linktext
+        }
         publications {
           publicationId: publication
         }

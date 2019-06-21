@@ -56,13 +56,57 @@ export default css`
     }
   }
 
-  .section-headline {
-    ${mixins.text()}
+  .description {
+    margin-bottom: 3rem;
+  }
 
+  @media ${mq.tablet} {
+    .description {
+      margin-bottom: 5rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .description {
+      margin-bottom: 6rem;
+    }
+  }
+
+  .additional-links-container {
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  .section-headline {
+    ${mixins.text('regular-big')};
+
+    align-items: center;
     color: ${colors.blueBrand};
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    margin-top: 4.5rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0;
     text-transform: uppercase;
+  }
+
+  @media ${mq.tablet} {
+    .section-headline {
+      ${mixins.text('regular-big', 'tablet')};
+    }
+  }
+
+  @media ${mq.desktop} {
+    .section-headline {
+      ${mixins.text('regular-big', 'desktop')};
+    }
+  }
+
+  .publications-list-contaioner {
+    margin-left: -1rem;
+  }
+
+  @media ${mq.desktop} {
+    .publications-list-contaioner {
+      margin-left: calc(-15% - 10.5rem);
+    }
   }
 `;
