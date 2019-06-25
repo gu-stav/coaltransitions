@@ -14,7 +14,7 @@
     "classnames": "^2.2.6",
     "dotenv": "^8.0.0",
     "gatsby": "^2.10.0",
-    "gatsby-image": "^2.2.1",
+    "gatsby-image": "^2.2.3",
     "gatsby-link": "^2.2.0",
     "gatsby-plugin-advanced-sitemap": "^1.1.1",
     "gatsby-plugin-manifest": "^2.2.0",
