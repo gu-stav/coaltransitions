@@ -63,41 +63,7 @@ const Page = ({
                 );
 
               case 'WordPressAcf_researchers':
-                return (
-                  <ResearchersList
-                    items={researchers.sort(
-                      ({ title: aName }, { title: bName }) => {
-                        // Sort researchers by second name
-
-                        let aSecondName = aName.split(' ');
-                        let bSecondName = bName.split(' ');
-
-                        aSecondName = aSecondName[
-                          aSecondName.length - 1
-                        ].toLowerCase();
-
-                        bSecondName = bSecondName[
-                          bSecondName.length - 1
-                        ].toLowerCase();
-
-                        // Pao-Yu Oei should always be the first person
-                        if (bSecondName === 'oei') {
-                          return 1;
-                        }
-
-                        if (aSecondName > bSecondName) {
-                          return 1;
-                        }
-
-                        if (aSecondName < bSecondName) {
-                          return -1;
-                        }
-
-                        return 0;
-                      }
-                    )}
-                  />
-                );
+                return <ResearchersList items={researchers} />;
 
               case 'WordPressAcf_partner':
                 return <Partner {...block} />;

@@ -3,13 +3,38 @@ import React from 'react';
 import Researcher from './researcher';
 import style from './style';
 
-export default ({ items = [], ...props }) => {
-  const coalExitResearchers = items.filter(
-    ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
-      partOfCoalExit === true
-  );
+const sortBySecondName = ({ title: aName }, { title: bName }) => {
+  let aSecondName = aName.split(' ');
+  let bSecondName = bName.split(' ');
 
-  const externalResearchers = items.filter(
+  aSecondName = aSecondName[aSecondName.length - 1];
+  bSecondName = bSecondName[bSecondName.length - 1];
+
+  return aSecondName.localeCompare(bSecondName);
+};
+
+const sortByBoss = ({ title: aName }, { title: bName }) => {
+  const name = 'Pao-Yu Oei';
+
+  if (aName === name || bName === name) {
+    return 1;
+  }
+
+  return 0;
+};
+
+export default ({ items = [], ...props }) => {
+  // Sort researchers by second name
+  const researchers = items.sort(sortBySecondName);
+
+  const coalExitResearchers = researchers
+    .filter(
+      ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
+        partOfCoalExit === true
+    )
+    .sort(sortByBoss);
+
+  const externalResearchers = researchers.filter(
     ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
       partOfCoalExit === false
   );
