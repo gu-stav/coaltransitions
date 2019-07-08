@@ -8,29 +8,27 @@ export default ({ authors, trim = false, onFilter = false }) => (
     <style jsx>{style}</style>
     {linkStyle.styles}
 
-    {authors
-      .sort(({ name: a }, { name: b }) => a.localeCompare(b))
-      .map(({ name }, index) => {
-        if (trim !== false && trim <= index) {
-          return null;
-        }
+    {authors.map(({ name }, index) => {
+      if (trim !== false && trim <= index) {
+        return null;
+      }
 
-        return (
-          <li key={`author-${name}`}>
-            <Link
-              to={`/publications/?authors=${encodeURIComponent(name)}`}
-              onClick={event => {
-                if (onFilter) {
-                  event.preventDefault();
-                  onFilter('authors', [name]);
-                }
-              }}
-              className={linkStyle.className}
-            >
-              {name}
-            </Link>
-          </li>
-        );
-      })}
+      return (
+        <li key={`author-${name}`}>
+          <Link
+            to={`/publications/?authors=${encodeURIComponent(name)}`}
+            onClick={event => {
+              if (onFilter) {
+                event.preventDefault();
+                onFilter('authors', [name]);
+              }
+            }}
+            className={linkStyle.className}
+          >
+            {name}
+          </Link>
+        </li>
+      );
+    })}
   </ul>
 );

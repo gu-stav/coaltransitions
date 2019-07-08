@@ -1,17 +1,8 @@
 import React from 'react';
 
 import Researcher from './researcher';
+import { sortBySecondName } from '../../lib/sort-by-second-name';
 import style from './style';
-
-const sortBySecondName = ({ title: aName }, { title: bName }) => {
-  let aSecondName = aName.split(' ');
-  let bSecondName = bName.split(' ');
-
-  aSecondName = aSecondName[aSecondName.length - 1];
-  bSecondName = bSecondName[bSecondName.length - 1];
-
-  return aSecondName.localeCompare(bSecondName);
-};
 
 const sortByBoss = ({ title: aName }, { title: bName }) => {
   const name = 'Pao-Yu Oei';

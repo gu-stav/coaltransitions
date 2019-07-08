@@ -16,6 +16,7 @@ import PublicationsList from '../../components/publication-list';
 import Select from '../../components/select';
 import { getFilterFromUrl, setUrlForFilter } from '../../lib/url';
 import Slider from '../../components/slider';
+import { sortBySecondName } from '../../lib/sort-by-second-name';
 import withLayout from '../../components/with-layout';
 
 const Filter = React.lazy(() => import('../../components/filter'));
@@ -127,7 +128,9 @@ const Page = ({
                   <Select
                     placeholder="Authors"
                     name="author"
-                    options={authors}
+                    options={authors.sort((a, b) =>
+                      sortBySecondName({ title: a.label }, { title: b.label })
+                    )}
                     value={
                       filter.authors &&
                       filter.authors.map(author => ({
@@ -151,7 +154,9 @@ const Page = ({
                   <Select
                     placeholder="Keywords"
                     name="tags"
-                    options={tags}
+                    options={tags.sort(({ label: aLabel }, { label: bLabel }) =>
+                      aLabel.toLowerCase().localeCompare(bLabel.toLowerCase())
+                    )}
                     value={
                       filter.tags &&
                       filter.tags.map(tag => ({
