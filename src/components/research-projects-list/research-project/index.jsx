@@ -12,7 +12,7 @@ export default ({
   let range = `${start}`;
   let hasCorrespondingTag = false;
 
-  if (end && start !== end) {
+  if (end && start !== end && end !== 'Invalid date') {
     range += ` – ${end}`;
   }
 
