@@ -110,6 +110,7 @@ export const query = graphql`
           }
           part_of_coalexit_group
           phone
+          pin_to_top
           topics
         }
       }
