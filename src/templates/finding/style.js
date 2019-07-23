@@ -1,9 +1,15 @@
 import css from 'styled-jsx/css';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 
 import { colors, mixins, mq } from '../../token';
 
 export default css`
   .header {
+    margin-bottom: 1.5rem;
+  }
+
+  @media ${mq.tablet} {
     margin-bottom: 4.5rem;
   }
 
@@ -16,21 +22,26 @@ export default css`
     margin-bottom: -2.5rem;
     margin-left: auto;
     margin-top: 0;
-    padding: 1.5rem 15rem 1.5rem 2.5rem;
+    padding: 1rem;
     position: relative;
-    width: 75%;
+    width: 90%;
     z-index: 10;
   }
 
   @media ${mq.tablet} {
     .title {
       ${mixins.text('huge', 'tablet')}
+
+      padding: 1.5rem 5rem 1.5rem 1.5rem;
+      width: 75%;
     }
   }
 
   @media ${mq.desktop} {
     .title {
       ${mixins.text('huge', 'desktop')}
+
+      padding: 1.5rem 15rem 1.5rem 2.5rem;
     }
   }
 
@@ -108,5 +119,12 @@ export default css`
     .publications-list-contaioner {
       margin-left: calc(-15% - 10.5rem);
     }
+  }
+`;
+
+export const pictureStyle = css.resolve`
+  figure {
+    margin-bottom: 1.5rem;
+    margin-top: 1.5rem;
   }
 `;

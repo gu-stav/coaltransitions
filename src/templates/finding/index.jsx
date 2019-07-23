@@ -10,7 +10,7 @@ import PublicationList from '../../components/publication-list';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
 
-import style from './style';
+import style, { pictureStyle } from './style';
 
 const findPublicationById = (id, publications) =>
   publications.find(({ wordpress_id: wordpressId }) => wordpressId === id);
@@ -37,6 +37,7 @@ const Page = ({
   return (
     <>
       <style jsx>{style}</style>
+      {pictureStyle.style}
 
       <Helmet title={title} />
 
@@ -64,10 +65,12 @@ const Page = ({
 
                   case 'WordPressAcf_image':
                     return (
-                      <Picture
-                        image={block.image.localFile}
-                        caption={block.image.caption}
-                      />
+                      <figure className={pictureStyle.className}>
+                        <Picture
+                          image={block.image.localFile}
+                          caption={block.image.caption}
+                        />
+                      </figure>
                     );
 
                   default:
