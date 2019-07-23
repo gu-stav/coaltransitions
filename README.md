@@ -65,3 +65,5 @@ Afterwards you should be able to access [localhost:9000](http://localhost:9000).
 
 Gatsby automatically proxies the required requests to the functions server. No
 additional setup is required.
+
+The twitter search parameters can be found in `gatsby-config.js`.

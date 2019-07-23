@@ -16,19 +16,19 @@ const Client = new Twit({
 const getTweets = () =>
   new Promise((resolve, reject) => {
     Client.get(
-      'statuses/user_timeline',
+      'search/tweets',
       {
         ...twitterOptions,
         tweet_mode: 'extended'
       },
-      (error, data) => {
+      (error, { statuses = [] }) => {
         if (error) {
           reject(error);
         }
 
         // Only pick the required properties, in order to keep the response small
         // eslint-disable-next-line camelcase
-        const tweets = data.map(({ id, full_text, created_at }) => ({
+        const tweets = statuses.map(({ id, full_text, created_at }) => ({
           id,
           full_text: autoLink(full_text),
           created_at

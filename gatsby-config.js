@@ -16,9 +16,8 @@ module.exports = {
       ['Privacy', '/privacy/']
     ],
     twitter: {
-      screen_name: 'CoalTransitions',
-      count: 9,
-      exclude_replies: true
+      q: `from:CoalTransitions exclude:retweets exclude:replies`,
+      count: 9
     }
   },
 
