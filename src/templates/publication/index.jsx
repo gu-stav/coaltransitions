@@ -48,7 +48,7 @@ const Page = ({
         </h1>
 
         <div className="title-meta-container">
-          {subtitle && (
+          {(subtitle || publishedIn) && (
             <p className="subtitle">
               {subtitle} {subtitle && publishedIn && ' | '} {publishedIn}
             </p>
