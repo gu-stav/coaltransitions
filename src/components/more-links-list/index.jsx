@@ -5,10 +5,10 @@ import style from './style';
 export default ({ items }) => (
   <ul>
     <style jsx>{style}</style>
-    {items.map(({ link, linkText }) => (
+    {items.map(({ link, linktext }) => (
       <li key={link}>
         <a href={link} className="link">
-          {linkText || link}
+          {linktext || link}
         </a>
       </li>
     ))}
