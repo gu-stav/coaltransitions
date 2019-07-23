@@ -1,7 +1,7 @@
 import Link from 'gatsby-link';
 import React from 'react';
 
-import GreenStroke from '../../../static/strokes/stroke-1-green.svg';
+import GreenStroke from '../../../static/strokes/stroke-5-green.svg';
 import style, { item, greenStroke } from './style';
 
 export default ({ items }) => (
