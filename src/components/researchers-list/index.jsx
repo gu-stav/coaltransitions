@@ -13,13 +13,15 @@ export default ({ items = [], ...props }) => {
   );
 
   const coalExitResearchers = researchers.filter(
-    ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
-      partOfCoalExit === true
+    ({
+      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
+    }) => partOfCoalExit === true && !pinToTop
   );
 
   const externalResearchers = researchers.filter(
-    ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
-      partOfCoalExit === false
+    ({
+      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
+    }) => partOfCoalExit === false && !pinToTop
   );
 
   return (
