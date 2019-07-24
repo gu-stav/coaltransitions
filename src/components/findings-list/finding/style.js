@@ -47,26 +47,21 @@ export default css`
     }
   }
 
-  .caption {
-    align-self: flex-end;
-    padding: 1.5rem;
-    transform: translateY(-4rem);
-  }
-
   .intro-container {
     align-self: flex-end;
     background-color: ${colors.blueAction};
     color: white;
     flex: 1 0 auto;
     margin-left: auto;
+    margin-top: 1.75rem;
     padding: 1.5rem;
     position: relative;
-    transform: translateY(-10%);
-    width: 95%;
+    width: 100%;
   }
 
   @media ${mq.tablet} {
     .intro-container {
+      margin-top: 0;
       padding: 1.5rem 2rem 2.5rem 2rem;
       transform: translateY(-25%);
       width: 60%;
@@ -194,10 +189,6 @@ export const arrowIcon = css.resolve`
 `;
 
 export const captionStyle = css.resolve`
-  figcaption {
-    max-width: 10rem;
-  }
-
   @media ${mq.tablet} {
     figcaption {
       max-width: 15rem;

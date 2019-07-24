@@ -26,7 +26,6 @@ const STROKES = [
 export default ({
   slug,
   title,
-  figureCaption,
   featuredImage,
   acf: { intro },
   indexTitle,
@@ -66,8 +65,6 @@ export default ({
             />
           )}
         </Link>
-
-        <figcaption className="caption">{figureCaption}</figcaption>
       </figure>
 
       <div className="intro-container">
