@@ -1,4 +1,6 @@
 import css from 'styled-jsx/css';
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
 
 import { colors, mixins, mq } from '../../token';
 
@@ -68,5 +70,13 @@ export default css`
   .link:hover,
   .link:focus {
     text-decoration: underline;
+  }
+`;
+
+export const icon = css.resolve`
+  svg {
+    height: 0.65rem;
+    margin-left: 0.25rem;
+    width: 0.65rem;
   }
 `;
