@@ -12,8 +12,8 @@ export default ({
   let range = `${start}`;
   let hasCorrespondingTag = false;
 
-  if (end && start !== end && end !== 'Invalid date') {
-    range += ` – ${end}`;
+  if (end && start !== end) {
+    range += ` – ${end === 'Invalid date' ? 'Ongoing' : end}`;
   }
 
   if (
