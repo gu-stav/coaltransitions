@@ -95,6 +95,7 @@ export const query = graphql`
       nodes {
         title
         acf {
+          affiliation
           background
           email
           image {
