@@ -5,7 +5,7 @@ import Picture from '../../picture';
 
 export default ({
   title,
-  acf: { background, email, phone, image, topics }
+  acf: { affiliation, background, email, phone, image, topics }
 }) => (
   <div className="researcher" id={title.replace(' ', '-').toLowerCase()}>
     <style jsx>{style}</style>
@@ -32,6 +32,12 @@ export default ({
       {topics && (
         <p>
           <strong>Focus topics:</strong> {topics}
+        </p>
+      )}
+
+      {affiliation && (
+        <p>
+          <strong>Affiliation:</strong> {affiliation}
         </p>
       )}
 
