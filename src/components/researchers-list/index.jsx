@@ -34,7 +34,6 @@ export default ({ items = [], ...props }) => {
     <>
       <style jsx>{style}</style>
 
-      // <h2>Coal Exit Group</h2>
       <ul {...props}>
         {pinnedResearchers.map(item => (
           <li>
