@@ -13,20 +13,28 @@ export default ({ items = [], ...props }) => {
   );
 
   const coalExitResearchers = researchers.filter(
-    ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
-      partOfCoalExit === true
+    ({
+      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
+    }) => partOfCoalExit === true && !pinToTop
   );
 
   const externalResearchers = researchers.filter(
-    ({ acf: { part_of_coalexit_group: partOfCoalExit } }) =>
-      partOfCoalExit === false
+    ({
+      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
+    }) => partOfCoalExit === false && !pinToTop
+  );
+  
+  const nonPinnedResearchers = researchers.filter(
+    ({
+      acf: { pin_to_top: pinToTop }
+    }) => !pinToTop
   );
 
   return (
     <>
       <style jsx>{style}</style>
 
-      <h2>Coal Exit Group</h2>
+      // <h2>Coal Exit Group</h2>
       <ul {...props}>
         {pinnedResearchers.map(item => (
           <li>
@@ -34,16 +42,7 @@ export default ({ items = [], ...props }) => {
           </li>
         ))}
 
-        {coalExitResearchers.map(item => (
-          <li>
-            <Researcher {...item} />
-          </li>
-        ))}
-      </ul>
-
-      <h2>External Researchers</h2>
-      <ul {...props}>
-        {externalResearchers.map(item => (
+        {nonPinnedResearchers.map(item => (
           <li>
             <Researcher {...item} />
           </li>
