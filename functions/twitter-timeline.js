@@ -16,23 +16,28 @@ const Client = new Twit({
 const getTweets = () =>
   new Promise((resolve, reject) => {
     Client.get(
-      'search/tweets',
+      'statuses/user_timeline',
       {
         ...twitterOptions,
         tweet_mode: 'extended'
       },
-      (error, { statuses = [] }) => {
+      (error, statuses) => {
         if (error) {
           reject(error);
         }
 
-        // Only pick the required properties, in order to keep the response small
-        // eslint-disable-next-line camelcase
-        const tweets = statuses.map(({ id, full_text, created_at }) => ({
-          id,
-          full_text: autoLink(full_text),
-          created_at
-        }));
+        const tweets = statuses
+          // Filter out retweets
+          .filter(({ retweeted }) => retweeted !== true)
+          // Only pick 9 tweets
+          .slice(0, 8)
+          // Only pick the required properties, in order to keep the response small
+          // eslint-disable-next-line camelcase
+          .map(({ id, full_text, created_at }) => ({
+            id,
+            full_text: autoLink(full_text),
+            created_at
+          }));
 
         resolve(tweets);
       }
