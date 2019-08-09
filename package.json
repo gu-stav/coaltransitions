@@ -22,7 +22,7 @@
     "gatsby-plugin-react-svg": "^2.1.1",
     "gatsby-plugin-sharp": "^2.2.10",
     "gatsby-plugin-styled-jsx": "^3.1.2",
-    "gatsby-source-filesystem": "^2.1.8",
+    "gatsby-source-filesystem": "^2.1.9",
     "gatsby-source-wordpress": "^3.1.13",
     "gatsby-transformer-sharp": "^2.2.6",
     "http-proxy-middleware": "^0.19.1",
