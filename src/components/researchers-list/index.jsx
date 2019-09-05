@@ -12,22 +12,8 @@ export default ({ items = [], ...props }) => {
     ({ acf: { pin_to_top: pinToTop } }) => pinToTop === true
   );
 
-  const coalExitResearchers = researchers.filter(
-    ({
-      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
-    }) => partOfCoalExit === true && !pinToTop
-  );
-
-  const externalResearchers = researchers.filter(
-    ({
-      acf: { part_of_coalexit_group: partOfCoalExit, pin_to_top: pinToTop }
-    }) => partOfCoalExit === false && !pinToTop
-  );
-  
   const nonPinnedResearchers = researchers.filter(
-    ({
-      acf: { pin_to_top: pinToTop }
-    }) => !pinToTop
+    ({ acf: { pin_to_top: pinToTop } }) => !pinToTop
   );
 
   return (

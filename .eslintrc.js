@@ -23,5 +23,6 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'react/no-danger': 'off',
+    'react/jsx-props-no-spreading': 'off'
   }
 };

@@ -73,7 +73,8 @@ module.exports = {
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-advanced-sitemap'
+    'gatsby-plugin-advanced-sitemap',
+    'gatsby-plugin-preact'
   ],
 
   developMiddleware: app => {
