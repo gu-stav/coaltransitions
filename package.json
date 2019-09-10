@@ -27,7 +27,7 @@
     "gatsby-source-wordpress": "^3.1.16",
     "gatsby-transformer-sharp": "^2.2.6",
     "http-proxy-middleware": "^0.20.0",
-    "preact": "^10.0.0-rc.1",
+    "preact": "^10.0.0-rc.2",
     "rc-slider": "^8.7.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
