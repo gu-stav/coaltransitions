@@ -24,7 +24,7 @@
     "gatsby-plugin-sharp": "^2.2.22",
     "gatsby-plugin-styled-jsx": "^3.1.5",
     "gatsby-source-filesystem": "^2.1.22",
-    "gatsby-source-wordpress": "^3.1.16",
+    "gatsby-source-wordpress": "^3.1.34",
     "gatsby-transformer-sharp": "^2.2.14",
     "http-proxy-middleware": "^0.20.0",
     "preact": "^10.0.0-rc.1",
