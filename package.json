@@ -30,7 +30,7 @@
     "preact": "^10.0.1",
     "rc-slider": "^8.7.1",
     "react": "^16.11.0",
-    "react-dom": "^16.10.2",
+    "react-dom": "^16.11.0",
     "react-helmet": "^5.2.1",
     "react-select": "^3.0.5",
     "styled-jsx": "^3.2.2",
