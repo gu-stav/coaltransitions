@@ -21,7 +21,7 @@
     "gatsby-plugin-preact": "^3.1.19",
     "gatsby-plugin-react-helmet": "^3.1.13",
     "gatsby-plugin-react-svg": "^2.1.2",
-    "gatsby-plugin-sharp": "^2.2.25",
+    "gatsby-plugin-sharp": "^2.3.7",
     "gatsby-plugin-styled-jsx": "^3.1.12",
     "gatsby-source-filesystem": "^2.1.29",
     "gatsby-source-wordpress": "^3.1.39",
