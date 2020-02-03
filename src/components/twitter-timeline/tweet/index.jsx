@@ -12,7 +12,9 @@ const MONTH_NAMES = [
   'July',
   'August',
   'September',
-  'October'
+  'October',
+  'November',
+  'December'
 ];
 
 const parseDate = date => {
