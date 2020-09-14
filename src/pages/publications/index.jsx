@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React, { useState, useEffect, Suspense } from 'react';
 
 import Button from '../../components/button';
