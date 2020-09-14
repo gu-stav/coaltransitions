@@ -14,7 +14,7 @@ import withLayout from '../../components/with-layout';
 
 const HUMAN_READABLE_LANGUAGES = {
   en: 'English',
-  de: 'German'
+  de: 'German',
 };
 
 const Page = ({
@@ -28,13 +28,13 @@ const Page = ({
         language,
         institute,
         employer,
-        published_in: publishedIn
+        published_in: publishedIn,
       },
       title,
       featuredImage,
-      tags
-    }
-  }
+      tags,
+    },
+  },
 }) => (
   <Constraint superwide>
     <Helmet title={title} />

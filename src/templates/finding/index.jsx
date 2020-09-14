@@ -25,10 +25,10 @@ const Page = ({
         intro,
         content,
         additional_links: additionalLinks = [],
-        publications: additionalPublications
-      }
-    }
-  }
+        publications: additionalPublications,
+      },
+    },
+  },
 }) => {
   const publicationListItems = additionalPublications.map(({ publicationId }) =>
     findPublicationById(publicationId, publications)

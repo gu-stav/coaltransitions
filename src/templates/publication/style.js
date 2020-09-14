@@ -218,7 +218,6 @@ export default css`
 
   .meta {
     flex: 0 0 100%;
-
   }
 
   @media ${mq.tablet} {
