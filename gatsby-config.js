@@ -1,4 +1,4 @@
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const config = require('./config.json');
 
 module.exports = {
@@ -8,18 +8,18 @@ module.exports = {
     menu: [
       ['Findings', '/findings/'],
       ['Publications', '/publications/'],
-      ['About', '/about/']
+      ['About', '/about/'],
     ],
     footer: [
       ['Imprint', '/imprint/'],
       ['Contact', '/contact/'],
-      ['Privacy', '/privacy/']
+      ['Privacy', '/privacy/'],
     ],
     twitter: {
       screen_name: 'CoalTransitions',
       count: 100,
-      exclude_replies: true
-    }
+      exclude_replies: true,
+    },
   },
 
   plugins: [
@@ -37,22 +37,22 @@ module.exports = {
           '**/media',
           '**/tags',
           '**/menus',
-          '**/pages'
+          '**/pages',
         ],
         auth: {
           htaccess_user: config.auth_username,
-          htaccess_pass: config.auth_password
-        }
-      }
+          htaccess_pass: config.auth_password,
+        },
+      },
     },
 
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /static\/logos|icons|strokes/
-        }
-      }
+          include: /static\/logos|icons|strokes/,
+        },
+      },
     },
 
     {
@@ -65,8 +65,8 @@ module.exports = {
         theme_color: 'white',
         display: 'standalone',
         icon: './static/favicon-200.png',
-        legacy: false
-      }
+        legacy: false,
+      },
     },
 
     'gatsby-plugin-styled-jsx',
@@ -74,15 +74,15 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-advanced-sitemap',
-    'gatsby-plugin-preact'
+    'gatsby-plugin-preact',
   ],
 
-  developMiddleware: app => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
-      proxy({
-        target: 'http://localhost:9000'
+      createProxyMiddleware({
+        target: 'http://localhost:9000',
       })
     );
-  }
+  },
 };

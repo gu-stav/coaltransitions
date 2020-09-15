@@ -74,12 +74,12 @@ export const item = css.resolve`
     }
   }
 
-  a[aria-current="page"] {
+  a[aria-current='page'] {
     background-color: ${colors.greenAction};
   }
 
-  a:not([aria-current="page"]):hover,
-  a:not([aria-current="page"]):focus {
+  a:not([aria-current='page']):hover,
+  a:not([aria-current='page']):focus {
     background-color: ${colors.blueActionActive};
   }
 `;

@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -7,8 +7,8 @@ import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    findings: { nodes: findings }
-  }
+    findings: { nodes: findings },
+  },
 }) => (
   <>
     <Helmet title="Findings" />

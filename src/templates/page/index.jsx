@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
@@ -12,9 +12,9 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content, intro }
-    }
-  }
+      acf: { content, intro },
+    },
+  },
 }) => (
   <>
     <style jsx>{style}</style>
@@ -28,7 +28,7 @@ const Page = ({
         <Intro intro={intro} />
 
         {content &&
-          content.map(block => {
+          content.map((block) => {
             const { __typename: type } = block;
 
             // eslint-disable-next-line default-case

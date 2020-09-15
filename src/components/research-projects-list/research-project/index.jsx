@@ -9,7 +9,7 @@ import style, { buttonIcon } from './style';
 export default ({
   title,
   acf: { start, end, summary, externalLink, acronym },
-  tags
+  tags,
 }) => {
   let range = `${start}`;
   let hasCorrespondingTag = false;

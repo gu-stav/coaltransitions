@@ -20,33 +20,33 @@ export default ({ placeholder, name, ...attrs }) => (
           borderRadius: 0,
           boxShadow: 0,
           '&:hover': {
-            borderColor: colors.greyDark
-          }
+            borderColor: colors.greyDark,
+          },
         }),
-        multiValue: provided => ({
+        multiValue: (provided) => ({
           ...provided,
-          backgroundColor: colors.blueBrand
+          backgroundColor: colors.blueBrand,
         }),
-        multiValueRemove: provided => ({
+        multiValueRemove: (provided) => ({
           ...provided,
-          color: 'white'
+          color: 'white',
         }),
-        multiValueLabel: provided => ({
+        multiValueLabel: (provided) => ({
           ...provided,
           color: 'white',
           fontFamily: fonts.publicSans.family,
-          fontSize: '0.8rem'
+          fontSize: '0.8rem',
         }),
-        placeholder: provided => ({
+        placeholder: (provided) => ({
           ...provided,
           fontFamily: fonts.publicSans.family,
-          fontSize: '0.9rem'
+          fontSize: '0.9rem',
         }),
-        option: provided => ({
+        option: (provided) => ({
           ...provided,
           fontFamily: fonts.publicSans.family,
-          fontSize: '0.8rem'
-        })
+          fontSize: '0.8rem',
+        }),
       }}
     />
   </>

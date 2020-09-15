@@ -8,7 +8,7 @@ export default ({
   title,
   publications = [],
   onFilter,
-  showAllLink = false
+  showAllLink = false,
 }) => (
   <div className="publications-container">
     <style jsx>{style}</style>

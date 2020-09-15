@@ -13,7 +13,7 @@ export const setUrlForFilter = (name, value) => {
   window.history.pushState('', '', url);
 };
 
-export const getFilterFromUrl = (name, mappingFunction = val => val) => {
+export const getFilterFromUrl = (name, mappingFunction = (val) => val) => {
   if (typeof window === 'undefined') {
     return [];
   }
