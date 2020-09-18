@@ -13,10 +13,10 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content_page: blocks },
+      acf: { content: blocks }
     },
-    publications: { nodes: publications },
-  },
+    publications: { nodes: publications }
+  }
 }) => (
   <>
     <Helmet title={title} />
@@ -24,15 +24,15 @@ const Page = ({
     {blocks.map(({ __typename: typename, ...blockProps }) => {
       // eslint-disable-next-line default-case
       switch (typename) {
-        case 'WordPressAcf_featured_publications':
+        case 'WpPage_Acf_Content_FeaturedPublications':
           return (
             <PublicationsTeaser publications={publications} {...blockProps} />
           );
 
-        case 'WordPressAcf_about_teaser':
+        case 'WpPage_Acf_Content_AboutTeaser':
           return <AboutTeaser {...blockProps} />;
 
-        case 'WordPressAcf_findings':
+        case 'WpPage_Acf_Content_Findings':
           return <FindingsTeaser {...blockProps} />;
       }
 
@@ -50,18 +50,18 @@ const Page = ({
 
 export const query = graphql`
   query($publicationsCount: Int, $wordpressId: Int) {
-    page: wordpressPage(wordpress_id: { eq: $wordpressId }) {
+    page: wpPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
-        content_page {
+        content {
           __typename
 
-          ... on WordPressAcf_about_teaser {
+          ... on WpPage_Acf_Content_AboutTeaser {
             summary
             title
           }
 
-          ... on WordPressAcf_featured_publications {
+          ... on WpPage_Acf_Content_FeaturedPublications {
             title
             summary
             image {
@@ -78,7 +78,7 @@ export const query = graphql`
             }
           }
 
-          ... on WordPressAcf_findings {
+          ... on WpPage_Acf_Content_Findings {
             title
             image {
               localFile {
@@ -96,7 +96,7 @@ export const query = graphql`
       }
     }
 
-    publications: allWordpressWpPublications(
+    publications: allWpPublication(
       filter: { acf: { featured: { eq: true } } }
       limit: $publicationsCount
       sort: { fields: acf___year, order: DESC }

@@ -14,7 +14,7 @@ import withLayout from '../../components/with-layout';
 
 const HUMAN_READABLE_LANGUAGES = {
   en: 'English',
-  de: 'German',
+  de: 'German'
 };
 
 const Page = ({
@@ -28,13 +28,13 @@ const Page = ({
         language,
         institute,
         employer,
-        published_in: publishedIn,
+        publishedIn
       },
       title,
-      featuredImage,
-      tags,
-    },
-  },
+      featuredImage: { node: featuredImage },
+      tags: { nodes: tags }
+    }
+  }
 }) => (
   <Constraint superwide>
     <Helmet title={title} />
@@ -63,24 +63,22 @@ const Page = ({
             <div className="languages-container">
               {buttonIcon.styles}
 
-              {language.map(
-                ({ language: downloadLanguage, external_url: externalUrl }) => (
-                  <Button
-                    key={`language-${downloadLanguage}`}
-                    to={externalUrl}
-                    theme="blue"
-                    external
-                  >
-                    {HUMAN_READABLE_LANGUAGES[downloadLanguage]}
-                    <DownloadIcon className={buttonIcon.className} />
-                  </Button>
-                )
-              )}
+              {language.map(({ language: downloadLanguage, externalUrl }) => (
+                <Button
+                  key={`language-${downloadLanguage}`}
+                  to={externalUrl}
+                  theme="blue"
+                  external
+                >
+                  {HUMAN_READABLE_LANGUAGES[downloadLanguage]}
+                  <DownloadIcon className={buttonIcon.className} />
+                </Button>
+              ))}
             </div>
           )}
         </div>
 
-        {featuredImage && featuredImage.localFile && (
+        {featuredImage?.localFile && (
           <div className="cover-image-container">
             <Picture image={featuredImage.localFile} />
           </div>
@@ -144,27 +142,31 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    publication: wordpressWpPublications(wordpress_id: { eq: $wordpressId }) {
+    publication: wpPublication(databaseId: { eq: $wordpressId }) {
       title
-      featuredImage: featured_media {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 800) {
-              src
-              srcSet
-              srcSetWebp
+      featuredImage {
+        node {
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                src
+                srcSet
+                srcSetWebp
+              }
             }
           }
         }
       }
       tags {
-        name
-        slug
+        nodes {
+          name
+          slug
+        }
       }
       acf {
         abstract
         year
-        published_in
+        publishedIn
         subtitle
         author {
           name
@@ -175,7 +177,7 @@ export const query = graphql`
         }
         language {
           language
-          external_url
+          externalUrl
           file {
             link
           }

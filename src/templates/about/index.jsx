@@ -21,9 +21,9 @@ const Page = ({
     tags: { nodes: tags },
     page: {
       title,
-      acf: { content, intro },
-    },
-  },
+      acf: { content, intro }
+    }
+  }
 }) => (
   <>
     <Helmet title={title} />
@@ -40,7 +40,7 @@ const Page = ({
         <Intro intro={intro} />
 
         {content &&
-          content.map((block) => {
+          content.map(block => {
             const { __typename: type } = block;
 
             switch (type) {
@@ -81,7 +81,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    pages: allWordpressWpAbout(sort: { fields: acf___sort, order: ASC }) {
+    pages: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
       nodes {
         title
         slug
@@ -91,7 +91,7 @@ export const query = graphql`
       }
     }
 
-    researchers: allWordpressWpResearchers {
+    researchers: allWpResearcher {
       nodes {
         title
         acf {
@@ -109,22 +109,22 @@ export const query = graphql`
               }
             }
           }
-          part_of_coalexit_group
+          partOfCoalexitGroup
           phone
-          pin_to_top
+          pinToTop
           topics
         }
       }
     }
 
-    tags: allWordpressTag {
+    tags: allWpTag {
       nodes {
         name
         slug
       }
     }
 
-    researchProjects: allWordpressWpResearchprojects(
+    researchProjects: allWpResearchProject(
       sort: { fields: acf___start, order: DESC }
     ) {
       nodes {
@@ -132,25 +132,25 @@ export const query = graphql`
         acf {
           acronym
           end(formatString: "YYYY")
-          externalLink: external_link
+          externalLink
           start(formatString: "YYYY")
           summary
         }
       }
     }
 
-    page: wordpressWpAbout(wordpress_id: { eq: $wordpressId }) {
+    page: wpAboutPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
         intro
-        content: content_about {
+        content {
           __typename
 
-          ... on WordPressAcf_text {
+          ... on WpAboutPage_Acf_Content_Text {
             text
           }
 
-          ... on WordPressAcf_image {
+          ... on WpAboutPage_Acf_Content_Image {
             image {
               localFile {
                 childImageSharp {
@@ -165,15 +165,15 @@ export const query = graphql`
             }
           }
 
-          ... on WordPressAcf_researchProjects {
-            showResearchProjects
+          ... on WpAboutPage_Acf_Content_Researchprojects {
+            showresearchprojects
           }
 
-          ... on WordPressAcf_researchers {
-            showResearchers
+          ... on WpAboutPage_Acf_Content_Researchers {
+            showresearchers
           }
 
-          ... on WordPressAcf_partner {
+          ... on WpAboutPage_Acf_Content_Partner {
             ...partner
           }
         }

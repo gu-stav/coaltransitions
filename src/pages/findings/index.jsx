@@ -7,8 +7,8 @@ import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    findings: { nodes: findings },
-  },
+    findings: { nodes: findings }
+  }
 }) => (
   <>
     <Helmet title="Findings" />
@@ -20,7 +20,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    findings: allWordpressWpFindings(sort: { fields: [acf___fact_number] }) {
+    findings: allWpFinding(sort: { fields: [acf___fact_number] }) {
       nodes {
         ...findingListItem
       }

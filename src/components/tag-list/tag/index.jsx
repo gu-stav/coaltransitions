@@ -6,7 +6,7 @@ import { linkStyle } from './style';
 export default ({ to, slug, children, onFilter, ...attributes }) => (
   <Link
     to={`/publications/?keywords=${slug}`}
-    onClick={(event) => {
+    onClick={event => {
       if (onFilter) {
         event.preventDefault();
         onFilter('tags', [slug]);

@@ -1,12 +1,12 @@
 const path = require('path');
 
-const fetchFindings = (graphql) =>
+const fetchFindings = graphql =>
   graphql(`
     {
-      findings: allWordpressWpFindings {
+      findings: allWpFinding {
         nodes {
           slug
-          wordpress_id
+          databaseId
         }
       }
     }
@@ -14,10 +14,10 @@ const fetchFindings = (graphql) =>
 
 const createPages = (data, createPage) => {
   const {
-    findings: { nodes: findings },
+    findings: { nodes: findings }
   } = data;
 
-  findings.forEach(({ slug, wordpress_id: wordpressId }) => {
+  findings.forEach(({ slug, databaseId: wordpressId }) => {
     const pagePath = `/findings/${slug}/`;
 
     // eslint-disable-next-line no-console
@@ -27,8 +27,8 @@ const createPages = (data, createPage) => {
       path: pagePath,
       component: path.resolve('src/templates/finding/index.jsx'),
       context: {
-        wordpressId,
-      },
+        wordpressId
+      }
     });
   });
 };
@@ -37,5 +37,5 @@ const createFindingPages = (graphql, createPage) =>
   fetchFindings(graphql).then(({ data }) => createPages(data, createPage));
 
 module.exports = {
-  createFindingPages,
+  createFindingPages
 };

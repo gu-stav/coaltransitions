@@ -21,13 +21,13 @@ export default ({ items = [], ...props }) => {
       <style jsx>{style}</style>
 
       <ul {...props}>
-        {pinnedResearchers.map((item) => (
+        {pinnedResearchers.map(item => (
           <li>
             <Researcher {...item} />
           </li>
         ))}
 
-        {nonPinnedResearchers.map((item) => (
+        {nonPinnedResearchers.map(item => (
           <li>
             <Researcher {...item} />
           </li>

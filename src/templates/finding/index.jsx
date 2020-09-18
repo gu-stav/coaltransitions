@@ -24,11 +24,11 @@ const Page = ({
       acf: {
         intro,
         content,
-        additional_links: additionalLinks = [],
-        publications: additionalPublications,
-      },
-    },
-  },
+        additionalLinks = [],
+        publications: additionalPublications
+      }
+    }
+  }
 }) => {
   const publicationListItems = additionalPublications.map(({ publicationId }) =>
     findPublicationById(publicationId, publications)
@@ -105,42 +105,45 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    publications: allWordpressWpPublications {
+    publications: allWpPublication {
       nodes {
         ...publicationListItem
       }
     }
 
-    finding: wordpressWpFindings(wordpress_id: { eq: $wordpressId }) {
+    finding: wpFinding(databaseId: { eq: $wordpressId }) {
       title
-      featuredImage: featured_media {
-        caption
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 600) {
-              src
-              srcSet
+      featuredImage {
+        node {
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                src
+                srcSet
+              }
             }
           }
         }
       }
+
       acf {
         intro
-        additional_links {
+        additionalLinks {
           link
           linktext
         }
         publications {
           publicationId: publication
         }
-        content: content_findings {
+        content {
           __typename
 
-          ... on WordPressAcf_text {
+          ... on WpFinding_AcfFindings_Content_Text {
             text
           }
 
-          ... on WordPressAcf_image {
+          ... on WpFinding_AcfFindings_Content_Image {
             image {
               localFile {
                 childImageSharp {

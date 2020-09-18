@@ -2,7 +2,7 @@ const Twit = require('twit');
 const { autoLink } = require('twitter-text');
 
 const {
-  siteMetadata: { twitter: twitterOptions },
+  siteMetadata: { twitter: twitterOptions }
 } = require('../gatsby-config');
 
 const Client = new Twit({
@@ -10,7 +10,7 @@ const Client = new Twit({
   consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
   access_token: process.env.TWITTER_ACCESS_TOKEN,
   access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
-  timeout_ms: 60 * 1000,
+  timeout_ms: 60 * 1000
 });
 
 const getTweets = () =>
@@ -19,7 +19,7 @@ const getTweets = () =>
       'statuses/user_timeline',
       {
         ...twitterOptions,
-        tweet_mode: 'extended',
+        tweet_mode: 'extended'
       },
       (error, statuses) => {
         if (error) {
@@ -36,7 +36,7 @@ const getTweets = () =>
           .map(({ id, full_text, created_at }) => ({
             id,
             full_text: autoLink(full_text),
-            created_at,
+            created_at
           }));
 
         resolve(tweets);
@@ -50,12 +50,12 @@ exports.handler = async () => {
 
     return {
       statusCode: 200,
-      body: JSON.stringify(tweets),
+      body: JSON.stringify(tweets)
     };
   } catch (error) {
     return {
       statusCode: 500,
-      body: 'Fetching of tweets failed',
+      body: 'Fetching of tweets failed'
     };
   }
 };

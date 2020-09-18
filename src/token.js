@@ -3,13 +3,13 @@ const MQ_SIZES = [
   ['phone', 480],
   ['phoneWide', 600],
   ['tablet', 768],
-  ['desktop', 1024],
+  ['desktop', 1024]
 ];
 
 export const fonts = {
   publicSans: {
-    family: '"Public Sans", sans-serif',
-  },
+    family: '"Public Sans", sans-serif'
+  }
 };
 
 export const mq = MQ_SIZES.reduce((acc, [name, size]) => {
@@ -30,7 +30,7 @@ export const colors = {
 
   // Green
   greenBrand: '#7DB343',
-  greenAction: '#629A27',
+  greenAction: '#629A27'
 };
 
 export const mixins = {
@@ -66,7 +66,7 @@ export const mixins = {
           font-weight: 400;
           letter-spacing: 0.05rem;
           line-height: 1.3;
-      `,
+      `
       },
 
       small: {
@@ -89,7 +89,7 @@ export const mixins = {
           font-size: 0.9rem;
           font-weight: 400;
           line-height: 1.3;
-      `,
+      `
       },
 
       regular: {
@@ -112,7 +112,7 @@ export const mixins = {
           font-size: 1.31rem;
           font-weight: 400;
           line-height: 1.71;
-      `,
+      `
       },
 
       'regular-big': {
@@ -135,7 +135,7 @@ export const mixins = {
           font-size: 1.4rem;
           font-weight: 700;
           line-height: 1.2;
-      `,
+      `
       },
 
       medium: {
@@ -158,7 +158,7 @@ export const mixins = {
           font-size: 1.75rem;
           font-weight: 800;
           line-height: 1.2;
-      `,
+      `
       },
 
       big: {
@@ -179,7 +179,7 @@ export const mixins = {
           font-size: 2.25rem;
           font-weight: 700;
           line-height: 1.11;
-      `,
+      `
       },
 
       'extra-big': {
@@ -200,7 +200,7 @@ export const mixins = {
           font-size: 3rem;
           font-weight: 700;
           line-height: 1.03;
-      `,
+      `
       },
 
       huge: {
@@ -222,8 +222,8 @@ export const mixins = {
           font-size: 3.65rem;
           font-weight: 600;
           line-height: 1.1;
-      `,
-      },
+      `
+      }
     };
 
     return (
@@ -235,5 +235,5 @@ export const mixins = {
     line-height: 1.71;
   `
     );
-  },
+  }
 };
