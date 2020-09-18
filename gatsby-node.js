@@ -10,7 +10,7 @@ exports.createPages = ({ actions, graphql }) => {
     createPublicationPages(graphql, createPage),
     createFindingPages(graphql, createPage),
     createAboutPages(graphql, createPage),
-    createPages(graphql, createPage)
+    createPages(graphql, createPage),
   ]);
 };
 
@@ -37,7 +37,7 @@ exports.onCreateNode = ({ node }) => {
     node.internal.type === 'wordpress__acf_publications' ||
     node.internal.type === 'wordpress__wp_publications'
   ) {
-    node.acf.language.forEach(language => {
+    node.acf.language.forEach((language) => {
       if (language.file === false) {
         // eslint-disable-next-line no-param-reassign
         language.file = {};

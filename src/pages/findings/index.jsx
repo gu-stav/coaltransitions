@@ -7,8 +7,8 @@ import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    findings: { nodes: findings }
-  }
+    findings: { nodes: findings },
+  },
 }) => (
   <>
     <Helmet title="Findings" />
