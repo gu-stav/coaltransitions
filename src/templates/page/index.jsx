@@ -33,7 +33,7 @@ const Page = ({
 
             // eslint-disable-next-line default-case
             switch (type) {
-              case 'WordPressAcf_text':
+              case 'WpPage_Acf_Content':
                 return <Richtext content={block.text} />;
             }
 

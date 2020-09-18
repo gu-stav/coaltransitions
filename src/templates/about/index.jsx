@@ -44,10 +44,10 @@ const Page = ({
             const { __typename: type } = block;
 
             switch (type) {
-              case 'WordPressAcf_text':
+              case 'WpAboutPage_Acf_Content_Text':
                 return <Richtext content={block.text} />;
 
-              case 'WordPressAcf_image':
+              case 'WpAboutPage_Acf_Content_Image':
                 return (
                   <figure className={aboutPicture.className}>
                     <Picture
@@ -57,15 +57,15 @@ const Page = ({
                   </figure>
                 );
 
-              case 'WordPressAcf_researchProjects':
+              case 'WpAboutPage_Acf_Content_Researchprojects':
                 return (
                   <ResearchProjectsList items={researchProjects} tags={tags} />
                 );
 
-              case 'WordPressAcf_researchers':
+              case 'WpAboutPage_Acf_Content_Researchers':
                 return <ResearchersList items={researchers} />;
 
-              case 'WordPressAcf_partner':
+              case 'WpAboutPage_Acf_Content_Partner':
                 return <Partner {...block} />;
 
               default:

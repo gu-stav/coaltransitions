@@ -9,7 +9,7 @@ import TagList from '../../tag-list';
 
 export default ({
   acf: { author, year },
-  tags,
+  tags: { nodes: tags },
   title,
   featuredImage,
   url,
@@ -58,19 +58,23 @@ export const fragment = graphql`
     slug
     title
     featuredImage {
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 400) {
-            src
-            srcSet
-            srcSetWebp
+      node {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 400) {
+              src
+              srcSet
+              srcSetWebp
+            }
           }
         }
       }
     }
     tags {
-      slug
-      name
+      nodes {
+        slug
+        name
+      }
     }
     acf {
       author {

@@ -20,7 +20,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    findings: allWpFinding(sort: { fields: [acf___fact_number] }) {
+    findings: allWpFinding(sort: { fields: [acf___factNumber] }) {
       nodes {
         ...findingListItem
       }

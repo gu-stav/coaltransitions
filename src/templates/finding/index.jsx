@@ -45,9 +45,9 @@ const Page = ({
       <header className="header">
         <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
-        {featuredImage && featuredImage.localFile && (
+        {featuredImage?.node?.localFile && (
           <Picture
-            image={featuredImage.localFile}
+            image={featuredImage.node.localFile}
             caption={featuredImage.caption}
           />
         )}
@@ -61,7 +61,7 @@ const Page = ({
             <div className="description">
               {content.map(({ __typename, ...block }) => {
                 switch (__typename) {
-                  case 'WordPressAcf_text':
+                  case 'WpFinding_Acf_Content_Text':
                     return <Richtext content={block.text} />;
 
                   case 'WordPressAcf_image':

@@ -57,9 +57,9 @@ export default ({
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
-          {featuredImage && featuredImage.localFile && (
+          {featuredImage?.node?.localFile && (
             <Picture
-              image={featuredImage.localFile}
+              image={featuredImage.node.localFile}
               caption={featuredImage.caption}
               captionClassName={captionStyle.className}
             />
@@ -98,13 +98,15 @@ export const fragment = graphql`
     slug
     title
     featuredImage {
-      caption
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            src
-            srcSet
-            srcSetWebp
+      node {
+        caption
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              src
+              srcSet
+              srcSetWebp
+            }
           }
         }
       }
