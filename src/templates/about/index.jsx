@@ -131,9 +131,9 @@ export const query = graphql`
         title
         acf {
           acronym
-          end(formatString: "YYYY")
+          end
           externalLink
-          start(formatString: "YYYY")
+          start
           summary
         }
       }

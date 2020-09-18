@@ -28,7 +28,7 @@ export default ({ name, summary, link, logo }) => (
 );
 
 export const fragment = graphql`
-  fragment partner on WordPressAcf_partner {
+  fragment partner on WpAboutPage_Acf_Content_Partner {
     name
     summary
     link

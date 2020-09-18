@@ -53,11 +53,11 @@ export default ({
 );
 
 export const fragment = graphql`
-  fragment publicationListItem on wordpress__wp_publications {
-    wordpress_id
+  fragment publicationListItem on WpPublication {
+    wordpress_id: databaseId
     slug
     title
-    featuredImage: featured_media {
+    featuredImage {
       localFile {
         childImageSharp {
           fluid(maxWidth: 400) {

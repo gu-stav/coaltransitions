@@ -54,7 +54,7 @@ export const query = graphql`
         content {
           __typename
 
-          ... on WordPressAcf_text {
+          ... on WpPage_Acf_Content {
             text
           }
         }

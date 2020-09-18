@@ -30,8 +30,9 @@ const Page = ({
     }
   }
 }) => {
-  const publicationListItems = additionalPublications.map(({ publicationId }) =>
-    findPublicationById(publicationId, publications)
+  const publicationListItems = additionalPublications.map(
+    ({ databaseId: publicationId }) =>
+      findPublicationById(publicationId, publications)
   );
 
   return (
@@ -134,16 +135,20 @@ export const query = graphql`
           linktext
         }
         publications {
-          publicationId: publication
+          publication {
+            ... on WpPublication {
+              databaseId
+            }
+          }
         }
         content {
           __typename
 
-          ... on WpFinding_AcfFindings_Content_Text {
+          ... on WpFinding_Acf_Content_Text {
             text
           }
 
-          ... on WpFinding_AcfFindings_Content_Image {
+          ... on WpFinding_Acf_Content_Image {
             image {
               localFile {
                 childImageSharp {

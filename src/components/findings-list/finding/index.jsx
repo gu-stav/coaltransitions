@@ -94,10 +94,10 @@ export default ({
 };
 
 export const fragment = graphql`
-  fragment findingListItem on wordpress__wp_findings {
+  fragment findingListItem on WpFinding {
     slug
     title
-    featuredImage: featured_media {
+    featuredImage {
       caption
       localFile {
         childImageSharp {
@@ -111,7 +111,7 @@ export const fragment = graphql`
     }
     acf {
       intro
-      factNumber: fact_number
+      factNumber
     }
   }
 `;
