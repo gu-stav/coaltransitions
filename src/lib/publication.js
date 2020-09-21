@@ -4,9 +4,11 @@ export const extractPublicationsAuthors = publications => {
       acf: { author: publicationAuthors }
     } = publication;
 
-    publicationAuthors.forEach(({ name }) => {
-      acc.add(name);
-    });
+    if (Array.isArray(publicationAuthors)) {
+      publicationAuthors.forEach(({ name }) => {
+        acc.add(name);
+      });
+    }
 
     return acc;
   }, new Set());
@@ -21,7 +23,9 @@ export const extractPublicationsAuthors = publications => {
 
 export const extractPublicationsTags = publications => {
   const tags = publications.reduce((acc, publication) => {
-    const { tags: publicationTags } = publication;
+    const {
+      tags: { nodes: publicationTags }
+    } = publication;
 
     if (publicationTags) {
       publicationTags.forEach(({ slug, name }) => {
