@@ -25,7 +25,7 @@ const Page = ({
         intro,
         content,
         additionalLinks = [],
-        publications: additionalPublications
+        publications: additionalPublications = []
       }
     }
   }
@@ -88,7 +88,7 @@ const Page = ({
             </div>
           )}
 
-          {additionalPublications && (
+          {publicationListItems && publicationListItems.length > 0 && (
             <div className="publications-list-contaioner">
               <PublicationList
                 publications={publicationListItems}
