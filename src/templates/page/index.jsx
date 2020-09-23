@@ -33,7 +33,7 @@ const Page = ({
 
             // eslint-disable-next-line default-case
             switch (type) {
-              case 'WpPage_AcfPage_Content_Text':
+              case 'WpPage_Acf_Content_Text':
                 return <Richtext content={block.text} />;
             }
 
@@ -50,11 +50,11 @@ export const query = graphql`
   query($wordpressId: Int) {
     page: wpPage(databaseId: { eq: $wordpressId }) {
       title
-      acf: acf_page {
+      acf {
         content {
           __typename
 
-          ... on WpPage_AcfPage_Content_Text {
+          ... on WpPage_Acf_Content_Text {
             text
           }
         }
