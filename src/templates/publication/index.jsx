@@ -31,7 +31,7 @@ const Page = ({
         publishedIn
       },
       title,
-      featuredImage: { node: featuredImage },
+      featuredImage,
       tags: { nodes: tags }
     }
   }
@@ -78,9 +78,9 @@ const Page = ({
           )}
         </div>
 
-        {featuredImage?.localFile && (
+        {featuredImage?.node?.localFile && (
           <div className="cover-image-container">
-            <Picture image={featuredImage.localFile} />
+            <Picture image={featuredImage.node.localFile} />
           </div>
         )}
       </header>
