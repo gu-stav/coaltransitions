@@ -31,7 +31,7 @@ const Page = ({
   }
 }) => {
   const publicationListItems = additionalPublications.map(
-    ({ databaseId: publicationId }) =>
+    ({ publication: { databaseId: publicationId } }) =>
       findPublicationById(publicationId, publications)
   );
 
