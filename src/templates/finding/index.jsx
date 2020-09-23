@@ -30,10 +30,12 @@ const Page = ({
     }
   }
 }) => {
-  const publicationListItems = additionalPublications.map(
-    ({ publication: { databaseId: publicationId } }) =>
-      findPublicationById(publicationId, publications)
-  );
+  const publicationListItems = Array.isArray(additionalPublications)
+    ? additionalPublications.map(
+        ({ publication: { databaseId: publicationId } }) =>
+          findPublicationById(publicationId, publications)
+      )
+    : [];
 
   return (
     <>
