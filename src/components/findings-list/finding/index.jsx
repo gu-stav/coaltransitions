@@ -57,9 +57,9 @@ export default ({
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
-          {featuredImage?.node?.localFile && (
+          {featuredImage?.localFile && (
             <Picture
-              image={featuredImage.node.localFile}
+              image={featuredImage.localFile}
               caption={featuredImage.caption}
               captionClassName={captionStyle.className}
             />
