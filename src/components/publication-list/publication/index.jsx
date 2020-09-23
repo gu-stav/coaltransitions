@@ -23,9 +23,9 @@ export default ({
     <div className="cover-image-container">
       <p className="year">{year}</p>
 
-      {featuredImage && featuredImage.localFile && (
+      {featuredImage?.node?.localFile && (
         <Link to={url} className={linkPicture.className} rel="nofollow">
-          <Picture image={featuredImage.localFile} />
+          <Picture image={featuredImage.node.localFile} />
         </Link>
       )}
     </div>
