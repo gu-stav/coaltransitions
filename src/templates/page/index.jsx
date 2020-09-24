@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
@@ -11,9 +11,9 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content }
-    }
-  }
+      acf: { content },
+    },
+  },
 }) => (
   <>
     <style jsx>{style}</style>
@@ -25,7 +25,7 @@ const Page = ({
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
         {content &&
-          content.map(block => {
+          content.map((block) => {
             const { __typename: type } = block;
 
             // eslint-disable-next-line default-case

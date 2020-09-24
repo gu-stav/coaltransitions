@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -25,10 +25,10 @@ const Page = ({
         intro,
         content,
         additionalLinks = [],
-        publications: additionalPublications = []
-      }
-    }
-  }
+        publications: additionalPublications = [],
+      },
+    },
+  },
 }) => {
   const publicationListItems = Array.isArray(additionalPublications)
     ? additionalPublications.map(

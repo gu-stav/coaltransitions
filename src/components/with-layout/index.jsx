@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 
@@ -6,11 +6,11 @@ import Footer from '../footer';
 import Menu from '../menu';
 import style from './style';
 
-export default Children => props => {
+export default (Children) => (props) => {
   const {
     site: {
-      siteMetadata: { title, menu, footer }
-    }
+      siteMetadata: { title, menu, footer },
+    },
   } = useStaticQuery(graphql`
     query {
       site {

@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
@@ -21,9 +21,9 @@ const Page = ({
     tags: { nodes: tags },
     page: {
       title,
-      acf: { content, intro }
-    }
-  }
+      acf: { content, intro },
+    },
+  },
 }) => (
   <>
     <Helmet title={title} />
@@ -40,7 +40,7 @@ const Page = ({
         <Intro intro={intro} />
 
         {content &&
-          content.map(block => {
+          content.map((block) => {
             const { __typename: type } = block;
 
             switch (type) {
