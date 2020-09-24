@@ -34,7 +34,7 @@ export default ({
   buttonLabelAria = 'Read more about this finding',
   fullsizeImage = false
 }) => {
-  const url = `/findings/${slug}/`;
+  const url = `/findings/${slug ? `${slug}/` : ''}`;
   const [Stroke1, Stroke2] = STROKES[
     Math.floor(Math.random() * STROKES.length)
   ];
