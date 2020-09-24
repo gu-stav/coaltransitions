@@ -50,7 +50,7 @@ const Page = ({
         {featuredImage?.node?.localFile && (
           <Picture
             image={featuredImage.node.localFile}
-            caption={featuredImage.caption}
+            caption={featuredImage?.node?.caption}
           />
         )}
       </header>
@@ -66,7 +66,7 @@ const Page = ({
                   case 'WpFinding_Acf_Content_Text':
                     return <Richtext content={block.text} />;
 
-                  case 'WordPressAcf_image':
+                  case 'WpFinding_Acf_Content_Image':
                     return (
                       <figure className={pictureStyle.className}>
                         <Picture
@@ -122,8 +122,7 @@ export const query = graphql`
           localFile {
             childImageSharp {
               fluid(maxWidth: 600) {
-                src
-                srcSet
+                ...Picture
               }
             }
           }
@@ -155,9 +154,7 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    src
-                    srcSet
-                    srcWebp
+                    ...Picture
                   }
                 }
               }
