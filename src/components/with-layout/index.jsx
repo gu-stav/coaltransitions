@@ -18,7 +18,6 @@ export default (Children) => (props) => {
       site {
         siteMetadata {
           title
-          footer
         }
       }
 
