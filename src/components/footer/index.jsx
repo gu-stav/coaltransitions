@@ -28,7 +28,7 @@ export default ({ items: { nodes: items = [] } }) => (
 
     <ul>
       {items.map(({ url, label }) => (
-        <li>
+        <li key={`footer-item-${url}`}>
           <Link to={url} className={item.className}>
             {label}
           </Link>

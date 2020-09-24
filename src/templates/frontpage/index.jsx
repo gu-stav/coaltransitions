@@ -21,19 +21,25 @@ const Page = ({
   <>
     <Helmet title={title} />
 
-    {blocks.map(({ __typename: typename, ...blockProps }) => {
+    {blocks.map(({ __typename: typename, ...blockProps }, index) => {
+      const key = `block-${index}`;
+
       // eslint-disable-next-line default-case
       switch (typename) {
         case 'WpPage_Acf_Content_FeaturedPublications':
           return (
-            <PublicationsTeaser publications={publications} {...blockProps} />
+            <PublicationsTeaser
+              key={key}
+              publications={publications}
+              {...blockProps}
+            />
           );
 
         case 'WpPage_Acf_Content_AboutTeaser':
-          return <AboutTeaser {...blockProps} />;
+          return <AboutTeaser key={key} {...blockProps} />;
 
         case 'WpPage_Acf_Content_Findings':
-          return <FindingsTeaser {...blockProps} />;
+          return <FindingsTeaser key={key} {...blockProps} />;
       }
 
       return null;
