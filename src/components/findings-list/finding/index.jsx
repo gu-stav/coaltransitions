@@ -60,7 +60,7 @@ export default ({
           {featuredImage?.localFile && (
             <Picture
               image={featuredImage.localFile}
-              caption={featuredImage.node.caption}
+              caption={featuredImage.caption}
               captionClassName={captionStyle.className}
             />
           )}
