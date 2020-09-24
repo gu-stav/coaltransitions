@@ -8,7 +8,7 @@ import {
   extractPublicationsAuthors,
   extractPublicationsTags,
   extractPublicationYearExtremes,
-  filterPublications,
+  filterPublications
 } from '../../lib/publication';
 import FilterLoading from '../../components/filter/loading';
 import FilterButton from '../../components/filter/button';
@@ -44,13 +44,13 @@ const generateRangeMarks = (min, max) => {
 
 const Page = ({
   data: {
-    publications: { nodes: initialPublications },
-  },
+    publications: { nodes: initialPublications }
+  }
 }) => {
   const tags = extractPublicationsTags(initialPublications);
   const [
     minPublicationYear,
-    maxPublicationYear,
+    maxPublicationYear
   ] = extractPublicationYearExtremes(initialPublications);
   const authors = extractPublicationsAuthors(initialPublications);
 
@@ -58,7 +58,7 @@ const Page = ({
   const [filter, setFilter] = useState({
     authors: [],
     tags: [],
-    range: null,
+    range: null
   });
 
   const [count, setCount] = useState(0);
@@ -71,8 +71,7 @@ const Page = ({
         setFilter({
           authors: getFilterFromUrl('authors') || [],
           tags: getFilterFromUrl('keywords') || [],
-          range:
-            getFilterFromUrl('range', (year) => parseInt(year, 10)) || null,
+          range: getFilterFromUrl('range', year => parseInt(year, 10)) || null
         });
       }
 
@@ -80,7 +79,7 @@ const Page = ({
         filterPublications(initialPublications, {
           authors: filter.authors,
           tags: filter.tags,
-          range: filter.range,
+          range: filter.range
         })
       );
 
@@ -134,18 +133,18 @@ const Page = ({
                     )}
                     value={
                       filter.authors &&
-                      filter.authors.map((author) => ({
+                      filter.authors.map(author => ({
                         value: author,
-                        label: author,
+                        label: author
                       }))
                     }
-                    onChange={(selected) => {
+                    onChange={selected => {
                       const updatedAuthors =
                         selected && selected.map(({ value }) => value);
 
-                      setFilter((state) => ({
+                      setFilter(state => ({
                         ...state,
-                        authors: updatedAuthors,
+                        authors: updatedAuthors
                       }));
                     }}
                     isMulti
@@ -160,23 +159,23 @@ const Page = ({
                     )}
                     value={
                       filter.tags &&
-                      filter.tags.map((tag) => ({
+                      filter.tags.map(tag => ({
                         value: tag,
-                        label: tags.find(({ value }) => value === tag).label,
+                        label: tags.find(({ value }) => value === tag).label
                       }))
                     }
-                    onChange={(selected) => {
+                    onChange={selected => {
                       const selectedTags =
                         selected && selected.map(({ value }) => value);
 
-                      setFilter((state) => ({
+                      setFilter(state => ({
                         ...state,
-                        tags: selectedTags,
+                        tags: selectedTags
                       }));
                     }}
                     isMulti
                     isSearchable
-                  />,
+                  />
                 ],
 
                 [
@@ -186,10 +185,10 @@ const Page = ({
                     value={
                       filter.range || [minPublicationYear, maxPublicationYear]
                     }
-                    onChange={(value) => {
-                      setFilter((state) => ({
+                    onChange={value => {
+                      setFilter(state => ({
                         ...state,
-                        range: value,
+                        range: value
                       }));
                     }}
                     allowCross={false}
@@ -201,19 +200,19 @@ const Page = ({
                   />,
 
                   <Button
-                    onClick={(event) => {
+                    onClick={event => {
                       event.preventDefault();
-                      setFilter((state) => ({
+                      setFilter(state => ({
                         ...state,
                         authors: [],
                         tags: [],
-                        range: null,
+                        range: null
                       }));
                     }}
                   >
                     Reset
-                  </Button>,
-                ],
+                  </Button>
+                ]
               ]}
             />
           </Suspense>
@@ -225,7 +224,7 @@ const Page = ({
             publications={publications}
             onFilter={(filterKey, filterValue) => {
               setFilter({
-                [filterKey]: filterValue,
+                [filterKey]: filterValue
               });
             }}
           />

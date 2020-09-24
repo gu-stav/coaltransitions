@@ -17,7 +17,7 @@ export default ({ authors, trim = false, onFilter = false }) => (
         <li key={`author-${name}`}>
           <Link
             to={`/publications/?authors=${encodeURIComponent(name)}`}
-            onClick={(event) => {
+            onClick={event => {
               if (onFilter) {
                 event.preventDefault();
                 onFilter('authors', [name]);

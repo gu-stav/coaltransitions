@@ -1,6 +1,6 @@
 const path = require('path');
 
-const fetchPages = (graphql) =>
+const fetchPages = graphql =>
   graphql(`
     {
       pages: allWordpressPage {
@@ -24,19 +24,19 @@ const fetchPages = (graphql) =>
 
 const createPages = (data, createPage) => {
   const {
-    pages: { nodes: pages },
+    pages: { nodes: pages }
   } = data;
 
   pages.forEach(
     ({
       slug,
       wordpress_id: wordpressId,
-      acf: { frontpage = false, content_page: blocks },
+      acf: { frontpage = false, content_page: blocks }
     }) => {
       let pagePath = `/${slug}/`;
       let template = 'page/index';
       const context = {
-        wordpressId,
+        wordpressId
       };
 
       if (frontpage === true) {
@@ -57,7 +57,7 @@ const createPages = (data, createPage) => {
       createPage({
         path: pagePath,
         component: path.resolve(`src/templates/${template}.jsx`),
-        context,
+        context
       });
     }
   );
@@ -67,5 +67,5 @@ const createWpPages = (graphql, createPage) =>
   fetchPages(graphql).then(({ data }) => createPages(data, createPage));
 
 module.exports = {
-  createPages: createWpPages,
+  createPages: createWpPages
 };

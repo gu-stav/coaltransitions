@@ -7,7 +7,7 @@ export default ({ items = [], tags = [], ...props }) => (
   <ul {...props}>
     <style jsx>{style}</style>
 
-    {items.map((item) => (
+    {items.map(item => (
       <li key={`research-project-${item.title}`}>
         <ReserchProject {...item} tags={tags} />
       </li>

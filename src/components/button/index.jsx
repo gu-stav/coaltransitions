@@ -12,7 +12,7 @@ export default ({
 }) => {
   const props = {
     ...attributes,
-    ...(to && { to }),
+    ...(to && { to })
   };
 
   if (to) {
@@ -23,18 +23,18 @@ export default ({
         {external ? (
           <a
             href={to}
-            className={`${linkStyle.className} ${
-              theme && theme === 'blue' && 'theme--blue'
-            }`}
+            className={`${linkStyle.className} ${theme &&
+              theme === 'blue' &&
+              'theme--blue'}`}
             {...attributes}
           >
             {children}
           </a>
         ) : (
           <Link
-            className={`${linkStyle.className} ${
-              theme && theme === 'blue' && 'theme--blue'
-            }`}
+            className={`${linkStyle.className} ${theme &&
+              theme === 'blue' &&
+              'theme--blue'}`}
             {...props}
           >
             {children}

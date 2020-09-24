@@ -13,7 +13,7 @@ export default ({
   title,
   featuredImage,
   url,
-  onFilter,
+  onFilter
 }) => (
   <div className="publication">
     <style jsx>{style}</style>

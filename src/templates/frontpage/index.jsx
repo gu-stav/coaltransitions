@@ -13,10 +13,10 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content_page: blocks },
+      acf: { content_page: blocks }
     },
-    publications: { nodes: publications },
-  },
+    publications: { nodes: publications }
+  }
 }) => (
   <>
     <Helmet title={title} />

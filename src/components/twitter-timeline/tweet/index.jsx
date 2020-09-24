@@ -14,10 +14,10 @@ const MONTH_NAMES = [
   'September',
   'October',
   'November',
-  'December',
+  'December'
 ];
 
-const parseDate = (date) => {
+const parseDate = date => {
   const parsed = new Date(date);
 
   const day = parsed.getDate();
