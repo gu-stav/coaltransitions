@@ -27,11 +27,16 @@ module.exports = {
       resolve: 'gatsby-source-wordpress-experimental',
       options: {
         url: config.endpoint,
+
         auth: {
           htaccess: {
             username: config.auth_username,
             password: config.auth_password
           }
+        },
+
+        schema: {
+          timeout: 60000
         }
       }
     },
