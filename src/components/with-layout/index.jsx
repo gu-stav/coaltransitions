@@ -9,16 +9,24 @@ import style from './style';
 export default (Children) => (props) => {
   const {
     site: {
-      siteMetadata: { title, menu, footer },
+      siteMetadata: { title },
     },
+    footerMenu,
+    headerMenu,
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
           title
-          footer
-          menu
         }
+      }
+
+      headerMenu: wpMenu(locations: { in: MENU }) {
+        ...Menu
+      }
+
+      footerMenu: wpMenu(locations: { in: FOOTER }) {
+        ...Menu
       }
     }
   `);
@@ -30,9 +38,9 @@ export default (Children) => (props) => {
       <Helmet titleTemplate={`%s | ${title}`} />
 
       <div className="site">
-        <Menu items={menu} />
+        <Menu {...headerMenu} />
         <Children {...props} />
-        <Footer items={footer} />
+        <Footer {...footerMenu} />
       </div>
     </>
   );

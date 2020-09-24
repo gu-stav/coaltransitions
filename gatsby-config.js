@@ -5,16 +5,6 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://coaltransitions.org',
     title: 'Coal Transitions',
-    menu: [
-      ['Findings', '/findings/'],
-      ['Publications', '/publications/'],
-      ['About', '/about/'],
-    ],
-    footer: [
-      ['Imprint', '/imprint/'],
-      ['Contact', '/contact/'],
-      ['Privacy', '/privacy/'],
-    ],
     twitter: {
       screen_name: 'CoalTransitions',
       count: 100,

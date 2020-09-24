@@ -4,7 +4,7 @@ import React from 'react';
 import GreenStroke from '../../../static/strokes/stroke-5-green.svg';
 import style, { item, greenStroke } from './style';
 
-export default ({ items }) => (
+export default ({ items: { nodes: items = [] } }) => (
   <footer>
     <style jsx>{style}</style>
     {item.styles}
@@ -27,10 +27,10 @@ export default ({ items }) => (
     </svg>
 
     <ul>
-      {items.map(([title, link]) => (
+      {items.map(({ url, label }) => (
         <li>
-          <Link to={link} className={item.className}>
-            {title}
+          <Link to={url} className={item.className}>
+            {label}
           </Link>
         </li>
       ))}
