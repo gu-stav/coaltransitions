@@ -20,7 +20,7 @@ import Stroke3Blue from '../../../../static/strokes/stroke-3-blue.svg';
 const STROKES = [
   [Stroke1Blue, Stroke1Green],
   [Stroke2Blue, Stroke2Green],
-  [Stroke3Blue, Stroke3Green]
+  [Stroke3Blue, Stroke3Green],
 ];
 
 export default ({
@@ -32,7 +32,7 @@ export default ({
   theme = 'blue',
   buttonLabel = 'Read more',
   buttonLabelAria = 'Read more about this finding',
-  fullsizeImage = false
+  fullsizeImage = false,
 }) => {
   const url = `/findings/${slug ? `${slug}/` : ''}`;
   const [Stroke1, Stroke2] = STROKES[
@@ -44,7 +44,7 @@ export default ({
       className={classnames(
         'argument',
         {
-          'argument--has-theme-green': theme === 'green'
+          'argument--has-theme-green': theme === 'green',
         },
         { 'argument--has-fullsize-image': fullsizeImage }
       )}

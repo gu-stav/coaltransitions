@@ -1,7 +1,7 @@
-export const extractPublicationsAuthors = publications => {
+export const extractPublicationsAuthors = (publications) => {
   const authors = publications.reduce((acc, publication) => {
     const {
-      acf: { author: publicationAuthors }
+      acf: { author: publicationAuthors },
     } = publication;
 
     if (Array.isArray(publicationAuthors)) {
@@ -16,15 +16,15 @@ export const extractPublicationsAuthors = publications => {
   return Array.from(authors.entries(), ([author]) => {
     return {
       value: author,
-      label: author
+      label: author,
     };
   });
 };
 
-export const extractPublicationsTags = publications => {
+export const extractPublicationsTags = (publications) => {
   const tags = publications.reduce((acc, publication) => {
     const {
-      tags: { nodes: publicationTags }
+      tags: { nodes: publicationTags },
     } = publication;
 
     if (publicationTags) {
@@ -65,7 +65,7 @@ export const publicationContainsAllAuthors = (publication, authors) =>
   authors && authors.length > 0
     ? authors.reduce((acc, author) => {
         const {
-          acf: { author: publicationAuthors }
+          acf: { author: publicationAuthors },
         } = publication;
 
         if (
@@ -82,7 +82,7 @@ export const publicationContainsAllAuthors = (publication, authors) =>
       }, true)
     : true;
 
-export const extractPublicationYearExtremes = publications => {
+export const extractPublicationYearExtremes = (publications) => {
   let min;
   let max;
 

@@ -10,9 +10,9 @@ export default ({ endpoint, title }) => {
 
   useEffect(() => {
     fetch(endpoint)
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(setTweets)
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (

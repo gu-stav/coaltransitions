@@ -1,6 +1,6 @@
 const path = require('path');
 
-const fetchPublications = graphql =>
+const fetchPublications = (graphql) =>
   graphql(`
     {
       publications: allWpPublication {
@@ -14,7 +14,7 @@ const fetchPublications = graphql =>
 
 const createPages = (data, createPage) => {
   const {
-    publications: { nodes: publications }
+    publications: { nodes: publications },
   } = data;
 
   publications.forEach(({ slug, databaseId: wordpressId }) => {
@@ -27,8 +27,8 @@ const createPages = (data, createPage) => {
       path: pagePath,
       component: path.resolve('src/templates/publication/index.jsx'),
       context: {
-        wordpressId
-      }
+        wordpressId,
+      },
     });
   });
 };
@@ -37,5 +37,5 @@ const createPublicationPages = (graphql, createPage) =>
   fetchPublications(graphql).then(({ data }) => createPages(data, createPage));
 
 module.exports = {
-  createPublicationPages
+  createPublicationPages,
 };
