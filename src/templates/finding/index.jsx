@@ -50,7 +50,7 @@ const Page = ({
         {featuredImage?.node?.localFile && (
           <Picture
             image={featuredImage.node.localFile}
-            caption={featuredImage.node.caption}
+            caption={featuredImage?.node?.caption}
           />
         )}
       </header>
