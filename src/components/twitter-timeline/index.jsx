@@ -31,7 +31,7 @@ export default ({ endpoint, title }) => {
         </Button>
       </h2>
 
-      {tweets && (
+      {Array.isArray(tweets) && (
         <ul>
           {tweets.map(({ id, full_text: fullText, created_at: createdAt }) => (
             <li key={`tweet=${id}`}>
