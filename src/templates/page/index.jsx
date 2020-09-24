@@ -3,7 +3,6 @@ import Helmet from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
-import Intro from '../../components/intro';
 import Richtext from '../../components/richtext';
 import style from './style';
 import withLayout from '../../components/with-layout';
@@ -12,7 +11,7 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content, intro }
+      acf: { content }
     }
   }
 }) => (
@@ -24,8 +23,6 @@ const Page = ({
     <article>
       <Constraint topLevel>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
-
-        <Intro intro={intro} />
 
         {content &&
           content.map(block => {
