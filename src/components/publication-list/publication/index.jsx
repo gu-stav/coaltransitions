@@ -62,9 +62,7 @@ export const fragment = graphql`
         localFile {
           childImageSharp {
             fluid(maxWidth: 400) {
-              src
-              srcSet
-              srcSetWebp
+              ...Picture
             }
           }
         }

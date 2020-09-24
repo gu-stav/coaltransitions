@@ -122,8 +122,7 @@ export const query = graphql`
           localFile {
             childImageSharp {
               fluid(maxWidth: 600) {
-                src
-                srcSet
+                ...Picture
               }
             }
           }
@@ -155,9 +154,7 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    src
-                    srcSet
-                    srcWebp
+                    ...Picture
                   }
                 }
               }
