@@ -9,11 +9,11 @@ import TagList from '../../tag-list';
 
 export default ({
   acf: { author, year },
-  tags,
+  tags: { nodes: tags },
   title,
   featuredImage,
   url,
-  onFilter
+  onFilter,
 }) => (
   <div className="publication">
     <style jsx>{style}</style>
@@ -23,9 +23,9 @@ export default ({
     <div className="cover-image-container">
       <p className="year">{year}</p>
 
-      {featuredImage && featuredImage.localFile && (
+      {featuredImage?.node?.localFile && (
         <Link to={url} className={linkPicture.className} rel="nofollow">
-          <Picture image={featuredImage.localFile} />
+          <Picture image={featuredImage.node.localFile} />
         </Link>
       )}
     </div>
@@ -53,24 +53,26 @@ export default ({
 );
 
 export const fragment = graphql`
-  fragment publicationListItem on wordpress__wp_publications {
-    wordpress_id
+  fragment publicationListItem on WpPublication {
+    wordpress_id: databaseId
     slug
     title
-    featuredImage: featured_media {
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 400) {
-            src
-            srcSet
-            srcSetWebp
+    featuredImage {
+      node {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 400) {
+              ...Picture
+            }
           }
         }
       }
     }
     tags {
-      slug
-      name
+      nodes {
+        slug
+        name
+      }
     }
     acf {
       author {

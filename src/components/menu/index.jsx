@@ -1,9 +1,21 @@
+import { graphql } from 'gatsby';
 import React from 'react';
 import Link from 'gatsby-link';
 
 import style, { link, linkActive, logo, logoLink } from './style';
 
 import Logo from '../../../static/logos/coal-transitions.svg';
+
+export const fragment = graphql`
+  fragment Menu on WpMenu {
+    items: menuItems {
+      nodes {
+        url
+        label
+      }
+    }
+  }
+`;
 
 const Item = ({ to, children, ...attributes }) => (
   <Link
@@ -17,7 +29,7 @@ const Item = ({ to, children, ...attributes }) => (
   </Link>
 );
 
-export default ({ items = [] }) => (
+export default ({ items: { nodes: items = [] } }) => (
   <nav className="menu">
     <style jsx>{style}</style>
     {link.styles}
@@ -30,9 +42,9 @@ export default ({ items = [] }) => (
     </Link>
 
     <ul>
-      {items.map(([label, path]) => (
+      {items.map(({ url, label }) => (
         <li key={`menu-${label}`}>
-          <Item to={path}>{label}</Item>
+          <Item to={url}>{label}</Item>
         </li>
       ))}
     </ul>

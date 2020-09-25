@@ -13,27 +13,33 @@ const Page = ({
   data: {
     page: {
       title,
-      acf: { content_page: blocks }
+      acf: { content: blocks },
     },
-    publications: { nodes: publications }
-  }
+    publications: { nodes: publications },
+  },
 }) => (
   <>
     <Helmet title={title} />
 
-    {blocks.map(({ __typename: typename, ...blockProps }) => {
+    {blocks.map(({ __typename: typename, ...blockProps }, index) => {
+      const key = `block-${index}`;
+
       // eslint-disable-next-line default-case
       switch (typename) {
-        case 'WordPressAcf_featured_publications':
+        case 'WpPage_Acf_Content_FeaturedPublications':
           return (
-            <PublicationsTeaser publications={publications} {...blockProps} />
+            <PublicationsTeaser
+              key={key}
+              publications={publications}
+              {...blockProps}
+            />
           );
 
-        case 'WordPressAcf_about_teaser':
-          return <AboutTeaser {...blockProps} />;
+        case 'WpPage_Acf_Content_AboutTeaser':
+          return <AboutTeaser key={key} {...blockProps} />;
 
-        case 'WordPressAcf_findings':
-          return <FindingsTeaser {...blockProps} />;
+        case 'WpPage_Acf_Content_Findings':
+          return <FindingsTeaser key={key} {...blockProps} />;
       }
 
       return null;
@@ -50,18 +56,18 @@ const Page = ({
 
 export const query = graphql`
   query($publicationsCount: Int, $wordpressId: Int) {
-    page: wordpressPage(wordpress_id: { eq: $wordpressId }) {
+    page: wpPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
-        content_page {
+        content {
           __typename
 
-          ... on WordPressAcf_about_teaser {
+          ... on WpPage_Acf_Content_AboutTeaser {
             summary
             title
           }
 
-          ... on WordPressAcf_featured_publications {
+          ... on WpPage_Acf_Content_FeaturedPublications {
             title
             summary
             image {
@@ -69,24 +75,20 @@ export const query = graphql`
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    src
-                    srcSet
-                    srcSetWebp
+                    ...Picture
                   }
                 }
               }
             }
           }
 
-          ... on WordPressAcf_findings {
+          ... on WpPage_Acf_Content_Findings {
             title
             image {
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 1200) {
-                    src
-                    srcSet
-                    srcSetWebp
+                    ...Picture
                   }
                 }
               }
@@ -96,7 +98,7 @@ export const query = graphql`
       }
     }
 
-    publications: allWordpressWpPublications(
+    publications: allWpPublication(
       filter: { acf: { featured: { eq: true } } }
       limit: $publicationsCount
       sort: { fields: acf___year, order: DESC }

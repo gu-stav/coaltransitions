@@ -1,5 +1,5 @@
 {
-  "endpoint": "b1909.myraidbox.de",
+  "endpoint": "https://b1909.myraidbox.de/graphql",
   "auth_username": "rb",
   "auth_password": "gonobeda"
 }

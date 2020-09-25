@@ -1,12 +1,14 @@
-export const extractPublicationsAuthors = publications => {
+export const extractPublicationsAuthors = (publications) => {
   const authors = publications.reduce((acc, publication) => {
     const {
-      acf: { author: publicationAuthors }
+      acf: { author: publicationAuthors },
     } = publication;
 
-    publicationAuthors.forEach(({ name }) => {
-      acc.add(name);
-    });
+    if (Array.isArray(publicationAuthors)) {
+      publicationAuthors.forEach(({ name }) => {
+        acc.add(name);
+      });
+    }
 
     return acc;
   }, new Set());
@@ -14,14 +16,16 @@ export const extractPublicationsAuthors = publications => {
   return Array.from(authors.entries(), ([author]) => {
     return {
       value: author,
-      label: author
+      label: author,
     };
   });
 };
 
-export const extractPublicationsTags = publications => {
+export const extractPublicationsTags = (publications) => {
   const tags = publications.reduce((acc, publication) => {
-    const { tags: publicationTags } = publication;
+    const {
+      tags: { nodes: publicationTags },
+    } = publication;
 
     if (publicationTags) {
       publicationTags.forEach(({ slug, name }) => {
@@ -35,33 +39,37 @@ export const extractPublicationsTags = publications => {
   return Object.entries(tags).map(([value, label]) => ({ value, label }));
 };
 
-export const publicationContainsAllTags = (publication, tags) =>
-  tags && tags.length > 0
-    ? tags.reduce((acc, slug) => {
-        const { tags: publicationTags } = publication;
+export const publicationContainsAllTags = (publication, tags) => {
+  if (!tags || tags.length === 0) {
+    return true;
+  }
 
-        if (
-          publicationTags &&
-          publicationTags.find(({ slug: tagSlug }) => {
-            return tagSlug === slug;
-          }) === undefined
-        ) {
-          // eslint-disable-next-line no-param-reassign
-          acc = false;
-        }
+  return tags.reduce((acc, slug) => {
+    const publicationTags = publication?.tags?.nodes;
 
-        return acc;
-      }, true)
-    : true;
+    if (
+      publicationTags &&
+      publicationTags.find(({ slug: tagSlug }) => {
+        return tagSlug === slug;
+      }) === undefined
+    ) {
+      // eslint-disable-next-line no-param-reassign
+      acc = false;
+    }
+
+    return acc;
+  }, true);
+};
 
 export const publicationContainsAllAuthors = (publication, authors) =>
   authors && authors.length > 0
     ? authors.reduce((acc, author) => {
         const {
-          acf: { author: publicationAuthors }
+          acf: { author: publicationAuthors },
         } = publication;
 
         if (
+          publicationAuthors &&
           publicationAuthors.find(({ name: authorName }) => {
             return authorName === author;
           }) === undefined
@@ -74,7 +82,7 @@ export const publicationContainsAllAuthors = (publication, authors) =>
       }, true)
     : true;
 
-export const extractPublicationYearExtremes = publications => {
+export const extractPublicationYearExtremes = (publications) => {
   let min;
   let max;
 

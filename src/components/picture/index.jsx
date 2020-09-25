@@ -1,7 +1,18 @@
+import { graphql } from 'gatsby';
 import classnames from 'classnames';
 import React from 'react';
 
 import style from './style';
+
+export const fragment = graphql`
+  fragment Picture on ImageSharpFluid {
+    height: presentationHeight
+    src
+    srcSet
+    srcSetWebp
+    width: presentationWidth
+  }
+`;
 
 export default ({
   image,
@@ -18,7 +29,7 @@ export default ({
     return null;
   }
 
-  const { srcSetWebp, srcSet, src } = imageByType;
+  const { srcSetWebp, srcSet, src, width, height } = imageByType;
 
   return (
     <>
@@ -29,7 +40,13 @@ export default ({
         <source type="image/png" srcSet={srcSet} />
 
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-        <img src={src} loading="lazy" className={className} />
+        <img
+          src={src}
+          loading="lazy"
+          className={className}
+          width={width}
+          height={height}
+        />
       </picture>
 
       {caption && (

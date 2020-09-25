@@ -13,6 +13,7 @@ export default ({ findings = null }) => (
         <li key={`finding=${index}`}>
           <Finding
             {...finding}
+            featuredImage={finding?.featuredImage?.node}
             theme={index % 2 === 0 ? null : 'green'}
             indexTitle={`Finding ${finding.acf.factNumber}`}
           />

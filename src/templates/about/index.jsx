@@ -21,9 +21,9 @@ const Page = ({
     tags: { nodes: tags },
     page: {
       title,
-      acf: { content, intro }
-    }
-  }
+      acf: { content, intro },
+    },
+  },
 }) => (
   <>
     <Helmet title={title} />
@@ -40,14 +40,14 @@ const Page = ({
         <Intro intro={intro} />
 
         {content &&
-          content.map(block => {
+          content.map((block) => {
             const { __typename: type } = block;
 
             switch (type) {
-              case 'WordPressAcf_text':
+              case 'WpAboutPage_Acf_Content_Text':
                 return <Richtext content={block.text} />;
 
-              case 'WordPressAcf_image':
+              case 'WpAboutPage_Acf_Content_Image':
                 return (
                   <figure className={aboutPicture.className}>
                     <Picture
@@ -57,15 +57,15 @@ const Page = ({
                   </figure>
                 );
 
-              case 'WordPressAcf_researchProjects':
+              case 'WpAboutPage_Acf_Content_Researchprojects':
                 return (
                   <ResearchProjectsList items={researchProjects} tags={tags} />
                 );
 
-              case 'WordPressAcf_researchers':
+              case 'WpAboutPage_Acf_Content_Researchers':
                 return <ResearchersList items={researchers} />;
 
-              case 'WordPressAcf_partner':
+              case 'WpAboutPage_Acf_Content_Partner':
                 return <Partner {...block} />;
 
               default:
@@ -81,7 +81,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    pages: allWordpressWpAbout(sort: { fields: acf___sort, order: ASC }) {
+    pages: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
       nodes {
         title
         slug
@@ -91,7 +91,7 @@ export const query = graphql`
       }
     }
 
-    researchers: allWordpressWpResearchers {
+    researchers: allWpResearcher {
       nodes {
         title
         acf {
@@ -109,55 +109,53 @@ export const query = graphql`
               }
             }
           }
-          part_of_coalexit_group
+          partOfCoalexitGroup
           phone
-          pin_to_top
+          pinToTop
           topics
         }
       }
     }
 
-    tags: allWordpressTag {
+    tags: allWpTag {
       nodes {
         name
         slug
       }
     }
 
-    researchProjects: allWordpressWpResearchprojects(
+    researchProjects: allWpResearchProject(
       sort: { fields: acf___start, order: DESC }
     ) {
       nodes {
         title
         acf {
           acronym
-          end(formatString: "YYYY")
-          externalLink: external_link
-          start(formatString: "YYYY")
+          end
+          externalLink
+          start
           summary
         }
       }
     }
 
-    page: wordpressWpAbout(wordpress_id: { eq: $wordpressId }) {
+    page: wpAboutPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
         intro
-        content: content_about {
+        content {
           __typename
 
-          ... on WordPressAcf_text {
+          ... on WpAboutPage_Acf_Content_Text {
             text
           }
 
-          ... on WordPressAcf_image {
+          ... on WpAboutPage_Acf_Content_Image {
             image {
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    src
-                    srcSet
-                    srcWebp
+                    ...Picture
                   }
                 }
               }
@@ -165,15 +163,15 @@ export const query = graphql`
             }
           }
 
-          ... on WordPressAcf_researchProjects {
-            showResearchProjects
+          ... on WpAboutPage_Acf_Content_Researchprojects {
+            showresearchprojects
           }
 
-          ... on WordPressAcf_researchers {
-            showResearchers
+          ... on WpAboutPage_Acf_Content_Researchers {
+            showresearchers
           }
 
-          ... on WordPressAcf_partner {
+          ... on WpAboutPage_Acf_Content_Partner {
             ...partner
           }
         }

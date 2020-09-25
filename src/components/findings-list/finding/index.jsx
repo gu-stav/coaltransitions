@@ -20,7 +20,7 @@ import Stroke3Blue from '../../../../static/strokes/stroke-3-blue.svg';
 const STROKES = [
   [Stroke1Blue, Stroke1Green],
   [Stroke2Blue, Stroke2Green],
-  [Stroke3Blue, Stroke3Green]
+  [Stroke3Blue, Stroke3Green],
 ];
 
 export default ({
@@ -32,9 +32,9 @@ export default ({
   theme = 'blue',
   buttonLabel = 'Read more',
   buttonLabelAria = 'Read more about this finding',
-  fullsizeImage = false
+  fullsizeImage = false,
 }) => {
-  const url = `/findings/${slug}/`;
+  const url = `/findings/${slug ? `${slug}/` : ''}`;
   const [Stroke1, Stroke2] = STROKES[
     Math.floor(Math.random() * STROKES.length)
   ];
@@ -44,7 +44,7 @@ export default ({
       className={classnames(
         'argument',
         {
-          'argument--has-theme-green': theme === 'green'
+          'argument--has-theme-green': theme === 'green',
         },
         { 'argument--has-fullsize-image': fullsizeImage }
       )}
@@ -57,7 +57,7 @@ export default ({
 
       <figure className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
-          {featuredImage && featuredImage.localFile && (
+          {featuredImage?.localFile && (
             <Picture
               image={featuredImage.localFile}
               caption={featuredImage.caption}
@@ -94,24 +94,24 @@ export default ({
 };
 
 export const fragment = graphql`
-  fragment findingListItem on wordpress__wp_findings {
+  fragment findingListItem on WpFinding {
     slug
     title
-    featuredImage: featured_media {
-      caption
-      localFile {
-        childImageSharp {
-          fluid(maxWidth: 1200) {
-            src
-            srcSet
-            srcSetWebp
+    featuredImage {
+      node {
+        caption
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1200) {
+              ...Picture
+            }
           }
         }
       }
     }
     acf {
       intro
-      factNumber: fact_number
+      factNumber
     }
   }
 `;

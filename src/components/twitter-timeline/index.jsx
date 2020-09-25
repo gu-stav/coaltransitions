@@ -10,8 +10,9 @@ export default ({ endpoint, title }) => {
 
   useEffect(() => {
     fetch(endpoint)
-      .then(res => res.json())
-      .then(setTweets);
+      .then((res) => res.json())
+      .then(setTweets)
+      .catch((err) => console.log(err));
   }, []);
 
   return (
@@ -30,7 +31,7 @@ export default ({ endpoint, title }) => {
         </Button>
       </h2>
 
-      {tweets && (
+      {Array.isArray(tweets) && (
         <ul>
           {tweets.map(({ id, full_text: fullText, created_at: createdAt }) => (
             <li key={`tweet=${id}`}>

@@ -5,54 +5,39 @@ module.exports = {
   siteMetadata: {
     siteUrl: 'https://coaltransitions.org',
     title: 'Coal Transitions',
-    menu: [
-      ['Findings', '/findings/'],
-      ['Publications', '/publications/'],
-      ['About', '/about/']
-    ],
-    footer: [
-      ['Imprint', '/imprint/'],
-      ['Contact', '/contact/'],
-      ['Privacy', '/privacy/']
-    ],
     twitter: {
       screen_name: 'CoalTransitions',
       count: 100,
-      exclude_replies: true
-    }
+      exclude_replies: true,
+    },
   },
 
   plugins: [
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        baseUrl: config.endpoint,
-        protocol: 'https',
-        includedRoutes: [
-          '**/publications',
-          '**/findings',
-          '**/researchers',
-          '**/researchprojects',
-          '**/about',
-          '**/media',
-          '**/tags',
-          '**/menus',
-          '**/pages'
-        ],
+        url: config.endpoint,
+
         auth: {
-          htaccess_user: config.auth_username,
-          htaccess_pass: config.auth_password
-        }
-      }
+          htaccess: {
+            username: config.auth_username,
+            password: config.auth_password,
+          },
+        },
+
+        schema: {
+          timeout: 60000,
+        },
+      },
     },
 
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
         rule: {
-          include: /static\/logos|icons|strokes/
-        }
-      }
+          include: /static\/logos|icons|strokes/,
+        },
+      },
     },
 
     {
@@ -65,8 +50,8 @@ module.exports = {
         theme_color: 'white',
         display: 'standalone',
         icon: './static/favicon-200.png',
-        legacy: false
-      }
+        legacy: false,
+      },
     },
 
     'gatsby-plugin-styled-jsx',
@@ -74,15 +59,14 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-advanced-sitemap',
-    'gatsby-plugin-preact'
   ],
 
-  developMiddleware: app => {
+  developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
       createProxyMiddleware({
-        target: 'http://localhost:9000'
+        target: 'http://localhost:9000',
       })
     );
-  }
+  },
 };
