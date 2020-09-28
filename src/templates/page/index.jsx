@@ -26,11 +26,11 @@ const Page = ({
 
     <Helmet title={title} />
 
-    {intro && <Intro intro={intro} />}
-
     <article>
       <Constraint topLevel>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
+
+        {intro && <Intro intro={intro} />}
 
         {content &&
           content.map((block) => {
