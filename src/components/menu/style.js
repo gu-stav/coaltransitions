@@ -112,9 +112,17 @@ export const socialMediaLabel = css.resolve`
 
 export const socialMediaIcon = css.resolve`
   svg {
-    height: 1.5rem;
-    margin-right: 1rem;
-    width: 1.5rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    width: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    svg {
+      height: 1.5rem;
+      margin-left: 1rem;
+      width: 1.5rem;
+    }
   }
 `;
 
