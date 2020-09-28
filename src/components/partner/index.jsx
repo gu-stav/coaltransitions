@@ -28,7 +28,7 @@ export default ({ name, summary, link, logo }) => (
 );
 
 export const fragment = graphql`
-  fragment partner on WordPressAcf_partner {
+  fragment partner on WpAboutPage_Acf_Content_Partner {
     name
     summary
     link
@@ -36,9 +36,7 @@ export const fragment = graphql`
       localFile {
         childImageSharp {
           fluid(maxWidth: 800) {
-            src
-            srcSet
-            srcWebp
+            ...Picture
           }
         }
       }

@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React, { useState, useEffect, Suspense } from 'react';
 
 import Button from '../../components/button';
@@ -239,9 +239,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    publications: allWordpressWpPublications(
-      sort: { fields: acf___year, order: DESC }
-    ) {
+    publications: allWpPublication(sort: { fields: acf___year, order: DESC }) {
       nodes {
         ...publicationListItem
       }

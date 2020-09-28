@@ -1,20 +1,10 @@
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const config = require('./config.json');
 
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://coaltransitions.org',
     title: 'Coal Transitions',
-    menu: [
-      ['Findings', '/findings/'],
-      ['Publications', '/publications/'],
-      ['About', '/about/'],
-    ],
-    footer: [
-      ['Imprint', '/imprint/'],
-      ['Contact', '/contact/'],
-      ['Privacy', '/privacy/'],
-    ],
     twitter: {
       screen_name: 'CoalTransitions',
       count: 100,
@@ -24,24 +14,19 @@ module.exports = {
 
   plugins: [
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        baseUrl: config.endpoint,
-        protocol: 'https',
-        includedRoutes: [
-          '**/publications',
-          '**/findings',
-          '**/researchers',
-          '**/researchprojects',
-          '**/about',
-          '**/media',
-          '**/tags',
-          '**/menus',
-          '**/pages',
-        ],
+        url: config.endpoint,
+
         auth: {
-          htaccess_user: config.auth_username,
-          htaccess_pass: config.auth_password,
+          htaccess: {
+            username: config.auth_username,
+            password: config.auth_password,
+          },
+        },
+
+        schema: {
+          timeout: 60000,
         },
       },
     },
@@ -74,13 +59,12 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-advanced-sitemap',
-    'gatsby-plugin-preact',
   ],
 
   developMiddleware: (app) => {
     app.use(
       '/.netlify/functions/',
-      proxy({
+      createProxyMiddleware({
         target: 'http://localhost:9000',
       })
     );

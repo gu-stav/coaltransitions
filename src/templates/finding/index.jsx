@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -24,15 +24,18 @@ const Page = ({
       acf: {
         intro,
         content,
-        additional_links: additionalLinks = [],
-        publications: additionalPublications,
+        additionalLinks = [],
+        publications: additionalPublications = [],
       },
     },
   },
 }) => {
-  const publicationListItems = additionalPublications.map(({ publicationId }) =>
-    findPublicationById(publicationId, publications)
-  );
+  const publicationListItems = Array.isArray(additionalPublications)
+    ? additionalPublications.map(
+        ({ publication: { databaseId: publicationId } }) =>
+          findPublicationById(publicationId, publications)
+      )
+    : [];
 
   return (
     <>
@@ -44,10 +47,10 @@ const Page = ({
       <header className="header">
         <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
-        {featuredImage && featuredImage.localFile && (
+        {featuredImage?.node?.localFile && (
           <Picture
-            image={featuredImage.localFile}
-            caption={featuredImage.caption}
+            image={featuredImage.node.localFile}
+            caption={featuredImage?.node?.caption}
           />
         )}
       </header>
@@ -60,10 +63,10 @@ const Page = ({
             <div className="description">
               {content.map(({ __typename, ...block }) => {
                 switch (__typename) {
-                  case 'WordPressAcf_text':
+                  case 'WpFinding_Acf_Content_Text':
                     return <Richtext content={block.text} />;
 
-                  case 'WordPressAcf_image':
+                  case 'WpFinding_Acf_Content_Image':
                     return (
                       <figure className={pictureStyle.className}>
                         <Picture
@@ -87,7 +90,7 @@ const Page = ({
             </div>
           )}
 
-          {additionalPublications && (
+          {publicationListItems && publicationListItems.length > 0 && (
             <div className="publications-list-contaioner">
               <PublicationList
                 publications={publicationListItems}
@@ -105,49 +108,53 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    publications: allWordpressWpPublications {
+    publications: allWpPublication {
       nodes {
         ...publicationListItem
       }
     }
 
-    finding: wordpressWpFindings(wordpress_id: { eq: $wordpressId }) {
+    finding: wpFinding(databaseId: { eq: $wordpressId }) {
       title
-      featuredImage: featured_media {
-        caption
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 600) {
-              src
-              srcSet
+      featuredImage {
+        node {
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...Picture
+              }
             }
           }
         }
       }
+
       acf {
         intro
-        additional_links {
+        additionalLinks {
           link
           linktext
         }
         publications {
-          publicationId: publication
+          publication {
+            ... on WpPublication {
+              databaseId
+            }
+          }
         }
-        content: content_findings {
+        content {
           __typename
 
-          ... on WordPressAcf_text {
+          ... on WpFinding_Acf_Content_Text {
             text
           }
 
-          ... on WordPressAcf_image {
+          ... on WpFinding_Acf_Content_Image {
             image {
               localFile {
                 childImageSharp {
                   fluid(maxWidth: 800) {
-                    src
-                    srcSet
-                    srcWebp
+                    ...Picture
                   }
                 }
               }

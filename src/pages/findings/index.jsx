@@ -1,4 +1,4 @@
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import React from 'react';
 import { graphql } from 'gatsby';
 
@@ -20,7 +20,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    findings: allWordpressWpFindings(sort: { fields: [acf___fact_number] }) {
+    findings: allWpFinding(sort: { fields: [acf___factNumber] }) {
       nodes {
         ...findingListItem
       }

@@ -3,10 +3,10 @@ const path = require('path');
 const fetchFindings = (graphql) =>
   graphql(`
     {
-      findings: allWordpressWpFindings {
+      findings: allWpFinding {
         nodes {
           slug
-          wordpress_id
+          databaseId
         }
       }
     }
@@ -17,7 +17,7 @@ const createPages = (data, createPage) => {
     findings: { nodes: findings },
   } = data;
 
-  findings.forEach(({ slug, wordpress_id: wordpressId }) => {
+  findings.forEach(({ slug, databaseId: wordpressId }) => {
     const pagePath = `/findings/${slug}/`;
 
     // eslint-disable-next-line no-console

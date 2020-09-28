@@ -3,10 +3,10 @@ const path = require('path');
 const fetchPages = (graphql) =>
   graphql(`
     {
-      pages: allWordpressWpAbout {
+      pages: allWpAboutPage {
         nodes {
           slug
-          wordpress_id
+          databaseId
           title
         }
       }
@@ -18,7 +18,7 @@ const createPages = (data, createPage) => {
     pages: { nodes: pages },
   } = data;
 
-  pages.forEach(({ slug, wordpress_id: wordpressId }) => {
+  pages.forEach(({ slug, databaseId: wordpressId }) => {
     let pagePath = `/about/${slug}/`;
 
     // default about page
