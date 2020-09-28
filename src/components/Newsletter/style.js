@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+
 import css from 'styled-jsx/css';
 import React from 'react';
 
