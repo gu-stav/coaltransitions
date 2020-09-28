@@ -31,7 +31,7 @@ const createPages = (data, { createPage, createRedirect }) => {
       wordpressId,
     };
 
-    if (wpChildren?.nodes.length === 0) {
+    if (wpChildren.nodes.length === 0) {
       // eslint-disable-next-line no-console
       console.log('Create page:', uri);
 
