@@ -10,6 +10,11 @@ module.exports = {
       count: 100,
       exclude_replies: true,
     },
+
+    socialMediaChannels: {
+      twitter: 'https://twitter.com/coaltransitions',
+      linkedIn: 'https://www.linkedin.com/company/coalexit/',
+    },
   },
 
   plugins: [
