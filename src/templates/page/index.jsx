@@ -4,6 +4,7 @@ import React from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
+import Newsletter from '../../components/Newsletter';
 import Picture from '../../components/picture';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
@@ -52,6 +53,9 @@ const Page = ({
 
               case 'WpPage_Acf_Content_Researchprojects':
                 return <ResearchProjectsList />;
+
+              case 'WpPage_Acf_Content_Newsletter':
+                return <Newsletter {...block} />;
             }
 
             return null;
@@ -91,6 +95,14 @@ export const query = graphql`
 
           ... on WpPage_Acf_Content_Researchprojects {
             showresearchprojects
+          }
+
+          ... on WpPage_Acf_Content_Newsletter {
+            ...Newsletter
+          }
+
+          ... on WpPage_Acf_Content_LogoGrid {
+            ...LogoGrid
           }
         }
       }
