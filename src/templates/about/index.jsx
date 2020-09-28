@@ -15,10 +15,7 @@ import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    pages: { nodes: pages },
-    researchers: { nodes: researchers },
-    researchProjects: { nodes: researchProjects },
-    tags: { nodes: tags },
+    subMenuItems,
     page: {
       title,
       acf: { content, intro },
@@ -28,7 +25,7 @@ const Page = ({
   <>
     <Helmet title={title} />
 
-    <SubMenu items={pages} />
+    <SubMenu {...subMenuItems} />
 
     <article>
       <style jsx>{style}</style>
@@ -37,7 +34,7 @@ const Page = ({
       <Constraint topLevel>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
-        <Intro intro={intro} />
+        {intro && <Intro intro={intro} />}
 
         {content &&
           content.map((block) => {
@@ -58,12 +55,10 @@ const Page = ({
                 );
 
               case 'WpAboutPage_Acf_Content_Researchprojects':
-                return (
-                  <ResearchProjectsList items={researchProjects} tags={tags} />
-                );
+                return <ResearchProjectsList />;
 
               case 'WpAboutPage_Acf_Content_Researchers':
-                return <ResearchersList items={researchers} />;
+                return <ResearchersList />;
 
               case 'WpAboutPage_Acf_Content_Partner':
                 return <Partner {...block} />;
@@ -81,62 +76,8 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    pages: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
-      nodes {
-        title
-        slug
-        acf {
-          shorttitle
-        }
-      }
-    }
-
-    researchers: allWpResearcher {
-      nodes {
-        title
-        acf {
-          affiliation
-          background
-          email
-          image {
-            localFile {
-              childImageSharp {
-                fixed(height: 400, width: 400) {
-                  src
-                  srcSet
-                  srcSetWebp
-                }
-              }
-            }
-          }
-          partOfCoalexitGroup
-          phone
-          pinToTop
-          topics
-        }
-      }
-    }
-
-    tags: allWpTag {
-      nodes {
-        name
-        slug
-      }
-    }
-
-    researchProjects: allWpResearchProject(
-      sort: { fields: acf___start, order: DESC }
-    ) {
-      nodes {
-        title
-        acf {
-          acronym
-          end
-          externalLink
-          start
-          summary
-        }
-      }
+    subMenuItems: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
+      ...SubMenuAbout
     }
 
     page: wpAboutPage(databaseId: { eq: $wordpressId }) {
@@ -161,10 +102,6 @@ export const query = graphql`
               }
               caption
             }
-          }
-
-          ... on WpAboutPage_Acf_Content_Researchprojects {
-            showresearchprojects
           }
 
           ... on WpAboutPage_Acf_Content_Researchers {

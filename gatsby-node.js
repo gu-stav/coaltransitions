@@ -10,6 +10,6 @@ exports.createPages = ({ actions, graphql }) => {
     createPublicationPages(graphql, createPage),
     createFindingPages(graphql, createPage),
     createAboutPages(graphql, createPage),
-    createPages(graphql, createPage),
+    createPages(graphql, actions),
   ]);
 };
