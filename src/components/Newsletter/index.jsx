@@ -1,7 +1,10 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import ArrowIcon from '../../../static/icons/arrow-alt-right.svg';
 import Button from '../button';
+
+import style, { arrowIcon } from './style';
 
 export const fragment = graphql`
   fragment Newsletter on WpPage_Acf_Content_Newsletter {
@@ -13,12 +16,19 @@ export const fragment = graphql`
 `;
 
 const Newsletter = ({ title, intro, link, linklabel, ...props }) => (
-  <div {...props}>
-    <h2>{title}</h2>
+  <div className="newsletter" {...props}>
+    <style jsx>{style}</style>
+    {arrowIcon.styles}
 
-    {intro && <p>{intro}</p>}
+    <div className="content-container">
+      <h2 className="title">{title}</h2>
 
-    <Button to={link}>{linklabel}</Button>
+      {intro && <p className="intro">{intro}</p>}
+    </div>
+
+    <Button to={link}>
+      {linklabel} <ArrowIcon className={arrowIcon.className} />
+    </Button>
   </div>
 );
 

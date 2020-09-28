@@ -4,6 +4,7 @@ import React from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
+import LogoGrid from '../../components/LogoGrid';
 import Newsletter from '../../components/Newsletter';
 import Picture from '../../components/picture';
 import ResearchProjectsList from '../../components/research-projects-list';
@@ -60,6 +61,9 @@ const Page = ({
 
               case 'WpPage_Acf_Content_Newsletter':
                 return <Newsletter {...block} />;
+
+              case 'WpPage_Acf_Content_Logogrid':
+                return <LogoGrid {...block} />;
             }
 
             return null;

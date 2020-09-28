@@ -3,6 +3,8 @@ import React from 'react';
 
 import Picture from '../picture';
 
+import style from './style';
+
 export const fragment = graphql`
   fragment LogoGrid on WpPage_Acf_Content_Logogrid {
     logos {
@@ -22,10 +24,14 @@ export const fragment = graphql`
 
 const LogoGrid = ({ logos, ...props }) => (
   <ul {...props}>
+    <style jsx>{style}</style>
+
     {logos.map(({ link, logo }) => (
       <li>
         <a href={link}>
-          <Picture {...logo?.localFile?.childImageSharp} />
+          <div>
+            <Picture image={logo?.localFile} />
+          </div>
         </a>
       </li>
     ))}
