@@ -10,7 +10,10 @@ import PublicationList from '../../components/publication-list';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
 
-import style, { pictureStyle } from './style';
+import style, {
+  pictureStyle,
+  featuredImage as featuredImageStyle,
+} from './style';
 
 const findPublicationById = (id, publications) =>
   publications.find(({ wordpress_id: wordpressId }) => wordpressId === id);
@@ -40,6 +43,7 @@ const Page = ({
   return (
     <>
       <style jsx>{style}</style>
+      {featuredImageStyle.styles}
       {pictureStyle.style}
 
       <Helmet title={title} />
@@ -51,6 +55,7 @@ const Page = ({
           <Picture
             image={featuredImage.node.localFile}
             caption={featuredImage?.node?.caption}
+            className={featuredImageStyle.className}
           />
         )}
       </header>

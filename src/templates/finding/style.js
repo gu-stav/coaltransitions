@@ -128,3 +128,8 @@ export const pictureStyle = css.resolve`
     margin-top: 1.5rem;
   }
 `;
+
+export const featuredImage = css.resolve`
+  height: auto;
+  width: 100%;
+`;
