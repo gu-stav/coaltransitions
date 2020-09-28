@@ -101,7 +101,7 @@ export const query = graphql`
             ...Newsletter
           }
 
-          ... on WpPage_Acf_Content_LogoGrid {
+          ... on WpPage_Acf_Content_Logogrid {
             ...LogoGrid
           }
         }

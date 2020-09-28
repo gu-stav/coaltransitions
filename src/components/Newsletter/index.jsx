@@ -8,17 +8,17 @@ export const fragment = graphql`
     title
     intro
     link
-    linkLabel
+    linklabel
   }
 `;
 
-const Newsletter = ({ title, intro, link, linkLabel, ...props }) => (
+const Newsletter = ({ title, intro, link, linklabel, ...props }) => (
   <div {...props}>
     <h2>{title}</h2>
 
     {intro && <p>{intro}</p>}
 
-    <Button to={link}>{linkLabel}</Button>
+    <Button to={link}>{linklabel}</Button>
   </div>
 );
 
