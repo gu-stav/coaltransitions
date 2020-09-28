@@ -8,12 +8,14 @@ import Newsletter from '../../components/Newsletter';
 import Picture from '../../components/picture';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
+import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
 
 import style, { picture as pictureStyle } from './style';
 
 const Page = ({
   data: {
+    subMenuItems,
     page: {
       title,
       acf: { intro, content },
@@ -25,6 +27,8 @@ const Page = ({
     {pictureStyle.styles}
 
     <Helmet title={title} />
+
+    <SubMenu {...subMenuItems} />
 
     <article>
       <Constraint topLevel>
@@ -68,7 +72,11 @@ const Page = ({
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int) {
+  query($wordpressId: Int, $siblings: [Int!]) {
+    subMenuItems: allWpPage(filter: { databaseId: { in: $siblings } }) {
+      ...SubMenuPages
+    }
+
     page: wpPage(databaseId: { eq: $wordpressId }) {
       title
       acf {

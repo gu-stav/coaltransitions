@@ -15,7 +15,7 @@ import withLayout from '../../components/with-layout';
 
 const Page = ({
   data: {
-    pages: { nodes: pages },
+    subMenuItems,
     page: {
       title,
       acf: { content, intro },
@@ -25,7 +25,7 @@ const Page = ({
   <>
     <Helmet title={title} />
 
-    <SubMenu items={pages} />
+    <SubMenu {...subMenuItems} />
 
     <article>
       <style jsx>{style}</style>
@@ -76,14 +76,8 @@ export default withLayout(Page);
 
 export const query = graphql`
   query($wordpressId: Int) {
-    pages: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
-      nodes {
-        title
-        slug
-        acf {
-          shorttitle
-        }
-      }
+    subMenuItems: allWpAboutPage(sort: { fields: acf___sort, order: ASC }) {
+      ...SubMenuAbout
     }
 
     page: wpAboutPage(databaseId: { eq: $wordpressId }) {
