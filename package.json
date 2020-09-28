@@ -24,7 +24,7 @@
     "gatsby-plugin-styled-jsx": "^3.3.12",
     "gatsby-source-filesystem": "^2.3.30",
     "gatsby-source-wordpress": "^3.3.34",
-    "gatsby-source-wordpress-experimental": "^1.4.4",
+    "gatsby-source-wordpress-experimental": "^1.4.0",
     "gatsby-transformer-sharp": "^2.5.15",
     "http-proxy-middleware": "^1.0.5",
     "rc-slider": "^9.5.1",
