@@ -39,6 +39,11 @@ export default css`
     }
   }
 
+  li {
+    align-items: center;
+    display: flex;
+  }
+
   li + li {
     margin-left: 1rem;
   }
@@ -86,6 +91,30 @@ export const linkActive = css.resolve`
     border-bottom-color: currentColor;
     color: ${colors.greenBrand};
     font-weight: 700;
+  }
+`;
+
+export const socialMediaLink = css.resolve`
+  a {
+    color: ${colors.blueBrand};
+    display: inline-block;
+  }
+
+  a:hover,
+  a:focus {
+    color: ${colors.blueActionActive};
+  }
+`;
+
+export const socialMediaLabel = css.resolve`
+  position: absolute;
+`;
+
+export const socialMediaIcon = css.resolve`
+  svg {
+    height: 1.5rem;
+    margin-right: 1rem;
+    width: 1.5rem;
   }
 `;
 
