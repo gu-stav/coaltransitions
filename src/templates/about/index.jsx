@@ -16,9 +16,6 @@ import withLayout from '../../components/with-layout';
 const Page = ({
   data: {
     pages: { nodes: pages },
-    researchers: { nodes: researchers },
-    researchProjects: { nodes: researchProjects },
-    tags: { nodes: tags },
     page: {
       title,
       acf: { content, intro },
@@ -37,7 +34,7 @@ const Page = ({
       <Constraint topLevel>
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
-        <Intro intro={intro} />
+        {intro && <Intro intro={intro} />}
 
         {content &&
           content.map((block) => {
@@ -58,12 +55,10 @@ const Page = ({
                 );
 
               case 'WpAboutPage_Acf_Content_Researchprojects':
-                return (
-                  <ResearchProjectsList items={researchProjects} tags={tags} />
-                );
+                return <ResearchProjectsList />;
 
               case 'WpAboutPage_Acf_Content_Researchers':
-                return <ResearchersList items={researchers} />;
+                return <ResearchersList />;
 
               case 'WpAboutPage_Acf_Content_Partner':
                 return <Partner {...block} />;
@@ -91,54 +86,6 @@ export const query = graphql`
       }
     }
 
-    researchers: allWpResearcher {
-      nodes {
-        title
-        acf {
-          affiliation
-          background
-          email
-          image {
-            localFile {
-              childImageSharp {
-                fixed(height: 400, width: 400) {
-                  src
-                  srcSet
-                  srcSetWebp
-                }
-              }
-            }
-          }
-          partOfCoalexitGroup
-          phone
-          pinToTop
-          topics
-        }
-      }
-    }
-
-    tags: allWpTag {
-      nodes {
-        name
-        slug
-      }
-    }
-
-    researchProjects: allWpResearchProject(
-      sort: { fields: acf___start, order: DESC }
-    ) {
-      nodes {
-        title
-        acf {
-          acronym
-          end
-          externalLink
-          start
-          summary
-        }
-      }
-    }
-
     page: wpAboutPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
@@ -161,10 +108,6 @@ export const query = graphql`
               }
               caption
             }
-          }
-
-          ... on WpAboutPage_Acf_Content_Researchprojects {
-            showresearchprojects
           }
 
           ... on WpAboutPage_Acf_Content_Researchers {

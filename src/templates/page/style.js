@@ -42,3 +42,23 @@ export default css`
     }
   }
 `;
+
+export const picture = css.resolve`
+  figure {
+    margin: 1rem 0;
+  }
+
+  @media ${mq.tablet} {
+    figure {
+      margin-bottom: 1.25rem;
+      margin-top: 1.25rem;
+    }
+  }
+
+  @media ${mq.desktop} {
+    figure {
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+    }
+  }
+`;

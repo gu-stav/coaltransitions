@@ -3,22 +3,29 @@ import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
+import Intro from '../../components/intro';
+import Picture from '../../components/picture';
+import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
-import style from './style';
 import withLayout from '../../components/with-layout';
+
+import style, { picture as pictureStyle } from './style';
 
 const Page = ({
   data: {
     page: {
       title,
-      acf: { content },
+      acf: { intro, content },
     },
   },
 }) => (
   <>
     <style jsx>{style}</style>
+    {pictureStyle.styles}
 
     <Helmet title={title} />
+
+    {intro && <Intro intro={intro} />}
 
     <article>
       <Constraint topLevel>
@@ -32,6 +39,19 @@ const Page = ({
             switch (type) {
               case 'WpPage_Acf_Content_Text':
                 return <Richtext content={block.text} />;
+
+              case 'WpPage_Acf_Content_Image':
+                return (
+                  <figure className={pictureStyle.className}>
+                    <Picture
+                      image={block.image.localFile}
+                      caption={block.image.caption}
+                    />
+                  </figure>
+                );
+
+              case 'WpPage_Acf_Content_Researchprojects':
+                return <ResearchProjectsList />;
             }
 
             return null;
@@ -48,11 +68,29 @@ export const query = graphql`
     page: wpPage(databaseId: { eq: $wordpressId }) {
       title
       acf {
+        intro
         content {
           __typename
 
           ... on WpPage_Acf_Content_Text {
             text
+          }
+
+          ... on WpPage_Acf_Content_Image {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    ...Picture
+                  }
+                }
+              }
+              caption
+            }
+          }
+
+          ... on WpPage_Acf_Content_Researchprojects {
+            showresearchprojects
           }
         }
       }
