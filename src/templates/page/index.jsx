@@ -6,6 +6,7 @@ import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
 import LogoGrid from '../../components/LogoGrid';
 import Newsletter from '../../components/Newsletter';
+import Partner from '../../components/partner';
 import Picture from '../../components/picture';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
@@ -64,6 +65,9 @@ const Page = ({
 
               case 'WpPage_Acf_Content_Logogrid':
                 return <LogoGrid {...block} />;
+
+              case 'WpPage_Acf_Content_Partner':
+                return <Partner {...block} />;
             }
 
             return null;
@@ -115,6 +119,10 @@ export const query = graphql`
 
           ... on WpPage_Acf_Content_Logogrid {
             ...LogoGrid
+          }
+
+          ... on WpPage_Acf_Content_Partner {
+            ...PartnerPage
           }
         }
       }

@@ -109,7 +109,7 @@ export const query = graphql`
           }
 
           ... on WpAboutPage_Acf_Content_Partner {
-            ...partner
+            ...PartnerAbout
           }
         }
       }
