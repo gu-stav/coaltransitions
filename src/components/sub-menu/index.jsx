@@ -30,7 +30,7 @@ export default ({ items }) => (
 
     {items &&
       items.map(({ title, slug, uri, acf }) => (
-        <li>
+        <li key={`sub-menu-${uri}`}>
           <Link
             to={
               uri || (slug === 'research-hub' ? '/about/' : `/about/${slug}/`)
