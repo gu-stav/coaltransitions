@@ -8,6 +8,7 @@ import LogoGrid from '../../components/LogoGrid';
 import Newsletter from '../../components/Newsletter';
 import Partner from '../../components/partner';
 import Picture from '../../components/picture';
+import ResearchersList from '../../components/researchers-list';
 import ResearchProjectsList from '../../components/research-projects-list';
 import Richtext from '../../components/richtext';
 import SubMenu from '../../components/sub-menu';
@@ -57,8 +58,11 @@ const Page = ({
                   </figure>
                 );
 
+              case 'WpPage_Acf_Content_Researchers':
+                return <ResearchersList />;
+
               case 'WpPage_Acf_Content_Researchprojects':
-                return <ResearchProjectsList />;
+                return <ResearchProjectsList {...block} />;
 
               case 'WpPage_Acf_Content_Newsletter':
                 return <Newsletter {...block} />;
@@ -109,8 +113,12 @@ export const query = graphql`
             }
           }
 
+          ... on WpPage_Acf_Content_Researchers {
+            showresearchers
+          }
+
           ... on WpPage_Acf_Content_Researchprojects {
-            showresearchprojects
+            type
           }
 
           ... on WpPage_Acf_Content_Newsletter {
