@@ -1,5 +1,20 @@
 const path = require('path');
 
+const sortByMenuOrder = (nodeA, nodeB) => {
+  const { menuOrder: menuOrderA } = nodeA;
+  const { menuOrder: menuOrderB } = nodeB;
+
+  if (menuOrderA < menuOrderB) {
+    return -1;
+  }
+
+  if (menuOrderA > menuOrderB) {
+    return 1;
+  }
+
+  return 0;
+};
+
 const fetchPages = (graphql) =>
   graphql(`
     {
@@ -11,7 +26,10 @@ const fetchPages = (graphql) =>
 
           wpChildren {
             nodes {
-              uri
+              ... on WpPage {
+                menuOrder
+                uri
+              }
             }
           }
 
@@ -20,7 +38,11 @@ const fetchPages = (graphql) =>
               ... on WpPage {
                 wpChildren {
                   nodes {
-                    databaseId
+                    ... on WpPage {
+                      menuOrder
+                      databaseId
+                      uri
+                    }
                   }
                 }
               }
@@ -31,14 +53,14 @@ const fetchPages = (graphql) =>
     }
   `);
 
-const createPages = (data, { createPage, createRedirect }) => {
-  const {
-    pages: { nodes: pages },
-  } = data;
-
+const createPages = (
+  { pages: { nodes: pages } },
+  { createPage, createRedirect }
+) => {
   pages.forEach(
     ({ uri, databaseId: wordpressId, isFrontPage, wpChildren, siblings }) => {
       const template = isFrontPage ? 'frontpage/index' : 'page/index';
+      const pageHasChildren = wpChildren.nodes.length !== 0;
 
       const context = {
         siblings: [],
@@ -51,12 +73,12 @@ const createPages = (data, { createPage, createRedirect }) => {
         siblings.node.wpChildren &&
         siblings.node.wpChildren.nodes.length > 0
       ) {
-        context.siblings = siblings.node.wpChildren.nodes.map(
-          ({ databaseId }) => databaseId
-        );
+        context.siblings = siblings.node.wpChildren.nodes
+          .sort(sortByMenuOrder)
+          .map(({ databaseId }) => databaseId);
       }
 
-      if (wpChildren.nodes.length === 0) {
+      if (!pageHasChildren) {
         // eslint-disable-next-line no-console
         console.log('Create page:', uri);
 
@@ -66,7 +88,8 @@ const createPages = (data, { createPage, createRedirect }) => {
           context,
         });
       } else {
-        const toPath = wpChildren.nodes[0].uri;
+        // create a link to the first child page
+        const toPath = wpChildren.nodes.sort(sortByMenuOrder)[0].uri;
 
         // eslint-disable-next-line no-console
         console.log(`Create redirect: ${uri} -> ${toPath}`);
