@@ -70,7 +70,7 @@ const Page = ({
                 case 'WpPage_Acf_Content_Researchers':
                   return <ResearchersList />;
 
-                case 'WpPage_Acf_Content_Researchprojects':
+                case 'WpPage_Acf_Content_Researchprojectslist':
                   return <ResearchProjectsList {...block} />;
 
                 case 'WpPage_Acf_Content_Newsletter':
@@ -144,8 +144,8 @@ export const query = graphql`
             showresearchers
           }
 
-          ... on WpPage_Acf_Content_Researchprojects {
-            type
+          ... on WpPage_Acf_Content_Researchprojectslist {
+            ...ResearchProjectList
           }
 
           ... on WpPage_Acf_Content_Newsletter {
