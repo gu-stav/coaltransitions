@@ -8,7 +8,7 @@ import { mixins, colors, mq } from '../../token';
 export default css`
   .newsletter {
     align-items: flex-start;
-    background-color: ${colors.blueBrand};
+    background-image: linear-gradient(to right, #3d5a9e, #8fae63);
     color: white;
     display: flex;
     flex-direction: column;
