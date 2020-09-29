@@ -3,7 +3,11 @@
 
 [[redirects]]
   from = "/about/research-projects/"
-  to = "/research-projects/all-research-projects/"
+  to = "/projects/current/"
+
+[[redirects]]
+  from = "/contact/"
+  to = "/about/contact/"
 
 [[redirects]]
   from = "/reports/"
