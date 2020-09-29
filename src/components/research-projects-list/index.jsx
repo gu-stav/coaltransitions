@@ -46,7 +46,7 @@ export default ({ show }) => {
       return completed === true;
     }
 
-    return completed === false;
+    return !!completed;
   });
 
   return (
