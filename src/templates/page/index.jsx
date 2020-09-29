@@ -86,7 +86,7 @@ export default withLayout(Page);
 export const query = graphql`
   query($wordpressId: Int, $siblings: [Int!]) {
     subMenuItems: allWpPage(
-      sort: { fields: menuOrder }
+      sort: { fields: menuOrder, order: ASC }
       filter: { databaseId: { in: $siblings } }
     ) {
       ...SubMenuPages
