@@ -21,6 +21,7 @@ const Page = ({
     subMenuItems,
     page: {
       title,
+      featuredImage,
       acf: { intro, content },
     },
   },
@@ -35,43 +36,52 @@ const Page = ({
 
     <article>
       <Constraint topLevel>
+        {featuredImage?.node?.localFile && (
+          <Picture
+            image={featuredImage.node.localFile}
+            caption={featuredImage?.node?.caption}
+          />
+        )}
+
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
         {intro && <Intro intro={intro} />}
 
         {content &&
           content.map((block) => {
-            const { __typename: type } = block;
+            if (block) {
+              const { __typename: type } = block;
 
-            // eslint-disable-next-line default-case
-            switch (type) {
-              case 'WpPage_Acf_Content_Text':
-                return <Richtext content={block.text} />;
+              // eslint-disable-next-line default-case
+              switch (type) {
+                case 'WpPage_Acf_Content_Text':
+                  return <Richtext content={block.text} />;
 
-              case 'WpPage_Acf_Content_Image':
-                return (
-                  <figure className={pictureStyle.className}>
-                    <Picture
-                      image={block.image.localFile}
-                      caption={block.image.caption}
-                    />
-                  </figure>
-                );
+                case 'WpPage_Acf_Content_Image':
+                  return (
+                    <figure className={pictureStyle.className}>
+                      <Picture
+                        image={block.image.localFile}
+                        caption={block.image.caption}
+                      />
+                    </figure>
+                  );
 
-              case 'WpPage_Acf_Content_Researchers':
-                return <ResearchersList />;
+                case 'WpPage_Acf_Content_Researchers':
+                  return <ResearchersList />;
 
-              case 'WpPage_Acf_Content_Researchprojects':
-                return <ResearchProjectsList {...block} />;
+                case 'WpPage_Acf_Content_Researchprojects':
+                  return <ResearchProjectsList {...block} />;
 
-              case 'WpPage_Acf_Content_Newsletter':
-                return <Newsletter {...block} />;
+                case 'WpPage_Acf_Content_Newsletter':
+                  return <Newsletter {...block} />;
 
-              case 'WpPage_Acf_Content_Logogrid':
-                return <LogoGrid {...block} />;
+                case 'WpPage_Acf_Content_Logogrid':
+                  return <LogoGrid {...block} />;
 
-              case 'WpPage_Acf_Content_Partner':
-                return <Partner {...block} />;
+                case 'WpPage_Acf_Content_Partner':
+                  return <Partner {...block} />;
+              }
             }
 
             return null;
@@ -94,6 +104,20 @@ export const query = graphql`
 
     page: wpPage(databaseId: { eq: $wordpressId }) {
       title
+
+      featuredImage {
+        node {
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...Picture
+              }
+            }
+          }
+        }
+      }
+
       acf {
         intro
         content {
