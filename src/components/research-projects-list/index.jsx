@@ -4,7 +4,13 @@ import React from 'react';
 import ReserchProject from './research-project';
 import style from './style';
 
-export default (props) => {
+export const fragment = graphql`
+  fragment ResearchProjectList on WpPage_Acf_Content_Researchprojectslist {
+    show
+  }
+`;
+
+export default ({ show }) => {
   const {
     researchProjects: { nodes: items },
     tags: { nodes: tags },
@@ -18,6 +24,7 @@ export default (props) => {
           acf {
             acronym
             end
+            completed
             externalLink
             start
             summary
@@ -34,11 +41,19 @@ export default (props) => {
     }
   `);
 
+  const filteredProjects = items.filter(({ acf: { completed } }) => {
+    if (show === 'completed') {
+      return completed === true;
+    }
+
+    return completed === false;
+  });
+
   return (
-    <ul {...props}>
+    <ul>
       <style jsx>{style}</style>
 
-      {items.map((item) => (
+      {filteredProjects.map((item) => (
         <li key={`research-project-${item.title}`}>
           <ReserchProject {...item} tags={tags} />
         </li>
