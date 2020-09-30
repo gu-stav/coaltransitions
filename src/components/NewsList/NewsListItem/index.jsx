@@ -1,6 +1,8 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
+import BlockSwitch from '../../BlockSwitch';
+
 export const fragment = graphql`
   fragment NewsListItem on WpNewsEntry {
     title
@@ -8,9 +10,11 @@ export const fragment = graphql`
 `;
 
 const NewsListItem = ({ title }) => (
-  <div>
+  <article>
     <h2>{title}</h2>
-  </div>
+
+    <BlockSwitch />
+  </article>
 );
 
 export default NewsListItem;

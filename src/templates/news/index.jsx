@@ -3,26 +3,25 @@ import { Helmet } from 'react-helmet';
 import React from 'react';
 
 import Constraint from '../../components/constraint';
+import News from '../../components/News';
 import withLayout from '../../components/with-layout';
 
-const Page = ({
-  data: {
-    wpNewsEntry: { title },
-  },
-}) => (
+const NewsEntryPage = ({ data: { wpNewsEntry } }) => (
   <>
-    <Helmet title={title} />
+    <Helmet title={wpNewsEntry.title} />
 
-    <Constraint>News Text</Constraint>
+    <Constraint>
+      <News {...wpNewsEntry} />
+    </Constraint>
   </>
 );
 
 export const query = graphql`
   query($databaseId: Int) {
     wpNewsEntry(databaseId: { eq: $databaseId }) {
-      title
+      ...NewsEntry
     }
   }
 `;
 
-export default withLayout(Page);
+export default withLayout(NewsEntryPage);
