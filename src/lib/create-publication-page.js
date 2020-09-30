@@ -17,7 +17,7 @@ const createPages = (data, createPage) => {
     publications: { nodes: publications },
   } = data;
 
-  publications.forEach(({ slug, databaseId: wordpressId }) => {
+  publications.forEach(({ slug, databaseId }) => {
     const pagePath = `/publications/${slug}/`;
 
     // eslint-disable-next-line no-console
@@ -27,7 +27,7 @@ const createPages = (data, createPage) => {
       path: pagePath,
       component: path.resolve('src/templates/publication/index.jsx'),
       context: {
-        wordpressId,
+        databaseId,
       },
     });
   });
