@@ -50,7 +50,7 @@ const Page = ({
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int, $siblings: [Int!]) {
+  query($databaseId: Int, $siblings: [Int!]) {
     subMenuItems: allWpPage(
       sort: { fields: menuOrder, order: ASC }
       filter: { databaseId: { in: $siblings } }
@@ -58,7 +58,7 @@ export const query = graphql`
       ...SubMenuPages
     }
 
-    page: wpPage(databaseId: { eq: $wordpressId }) {
+    page: wpPage(databaseId: { eq: $databaseId }) {
       title
 
       featuredImage {
