@@ -20,6 +20,9 @@ const createWpNewsEntry = ({ news: { nodes: news } }, { createPage }) => {
       databaseId,
     };
 
+    // eslint-disable-next-line no-console
+    console.log(`Create News: ${uri}`);
+
     createPage({
       path: uri,
       component: path.resolve(`src/templates/${template}.jsx`),
