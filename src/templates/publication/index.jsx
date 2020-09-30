@@ -141,8 +141,8 @@ const Page = ({
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int) {
-    publication: wpPublication(databaseId: { eq: $wordpressId }) {
+  query($databaseId: Int) {
+    publication: wpPublication(databaseId: { eq: $databaseId }) {
       title
       featuredImage {
         node {

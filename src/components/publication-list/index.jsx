@@ -32,7 +32,7 @@ export default ({
       </h2>
     )}
 
-    {publications.length > 0 ? (
+    {publications && publications.length > 0 ? (
       <ul>
         {publications.map(({ slug, ...attibutes }) => (
           <li key={`publication-${slug}`}>
