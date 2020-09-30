@@ -15,31 +15,24 @@ const Page = ({
       title,
       acf: { content: blocks },
     },
-    publications: { nodes: publications },
   },
 }) => (
   <>
     <Helmet title={title} />
 
-    {blocks.map(({ __typename: typename, ...blockProps }, index) => {
+    {blocks.map(({ __typename: typename, ...block }, index) => {
       const key = `block-${index}`;
 
       // eslint-disable-next-line default-case
       switch (typename) {
         case 'WpPage_Acf_Content_FeaturedPublications':
-          return (
-            <PublicationsTeaser
-              key={key}
-              publications={publications}
-              {...blockProps}
-            />
-          );
+          return <PublicationsTeaser key={key} {...block} />;
 
         case 'WpPage_Acf_Content_AboutTeaser':
-          return <AboutTeaser key={key} {...blockProps} />;
+          return <AboutTeaser key={key} {...block} />;
 
         case 'WpPage_Acf_Content_Findings':
-          return <FindingsTeaser key={key} {...blockProps} />;
+          return <FindingsTeaser key={key} {...block} />;
       }
 
       return null;
@@ -55,8 +48,8 @@ const Page = ({
 );
 
 export const query = graphql`
-  query($publicationsCount: Int, $wordpressId: Int) {
-    page: wpPage(databaseId: { eq: $wordpressId }) {
+  query($databaseId: Int) {
+    page: wpPage(databaseId: { eq: $databaseId }) {
       title
       acf {
         content {
@@ -80,6 +73,12 @@ export const query = graphql`
                 }
               }
             }
+
+            publications {
+              ... on WpPublication {
+                ...publicationListItem
+              }
+            }
           }
 
           ... on WpPage_Acf_Content_Findings {
@@ -95,16 +94,6 @@ export const query = graphql`
             }
           }
         }
-      }
-    }
-
-    publications: allWpPublication(
-      filter: { acf: { featured: { eq: true } } }
-      limit: $publicationsCount
-      sort: { fields: acf___year, order: DESC }
-    ) {
-      nodes {
-        ...publicationListItem
       }
     }
   }
