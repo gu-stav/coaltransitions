@@ -12,7 +12,7 @@ export const fragment = graphql`
 
 export default ({ show }) => {
   const {
-    researchProjects: { nodes: items },
+    researchProjects: { nodes },
     tags: { nodes: tags },
   } = useStaticQuery(graphql`
     query ResearchProjects {
@@ -41,7 +41,7 @@ export default ({ show }) => {
     }
   `);
 
-  const filteredProjects = items.filter(({ acf: { completed } }) => {
+  const filteredProjects = nodes.filter(({ acf: { completed } }) => {
     if (show === 'completed') {
       return completed === true;
     }
