@@ -7,6 +7,16 @@ const fetchFindings = (graphql) =>
         nodes {
           slug
           databaseId
+
+          acf {
+            publications {
+              publication {
+                ... on WpPublication {
+                  databaseId
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -17,8 +27,19 @@ const createPages = (data, createPage) => {
     findings: { nodes: findings },
   } = data;
 
-  findings.forEach(({ slug, databaseId: wordpressId }) => {
+  findings.forEach(({ slug, databaseId, acf: { publications } }) => {
     const pagePath = `/findings/${slug}/`;
+    const context = {
+      relatedPublications: [-1],
+      databaseId,
+    };
+
+    if (publications && publications.length > 0) {
+      context.relatedPublications = publications.map(
+        ({ publication: { databaseId: publicationDatabaseId } }) =>
+          publicationDatabaseId
+      );
+    }
 
     // eslint-disable-next-line no-console
     console.log('Create finding:', pagePath);
@@ -26,9 +47,7 @@ const createPages = (data, createPage) => {
     createPage({
       path: pagePath,
       component: path.resolve('src/templates/finding/index.jsx'),
-      context: {
-        wordpressId,
-      },
+      context,
     });
   });
 };

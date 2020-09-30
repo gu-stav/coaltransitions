@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
-import React from 'react';
 import { graphql } from 'gatsby';
+import React from 'react';
 
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
@@ -15,111 +15,96 @@ import style, {
   featuredImage as featuredImageStyle,
 } from './style';
 
-const findPublicationById = (id, publications) =>
-  publications.find(({ wordpress_id: wordpressId }) => wordpressId === id);
-
 const Page = ({
   data: {
     publications: { nodes: publications },
     finding: {
       title,
       featuredImage,
-      acf: {
-        intro,
-        content,
-        additionalLinks = [],
-        publications: additionalPublications = [],
-      },
+      acf: { intro, content, additionalLinks = [] },
     },
   },
-}) => {
-  const publicationListItems = Array.isArray(additionalPublications)
-    ? additionalPublications.map(
-        ({ publication: { databaseId: publicationId } }) =>
-          findPublicationById(publicationId, publications)
-      )
-    : [];
+}) => (
+  <>
+    <style jsx>{style}</style>
+    {featuredImageStyle.styles}
+    {pictureStyle.style}
 
-  return (
-    <>
-      <style jsx>{style}</style>
-      {featuredImageStyle.styles}
-      {pictureStyle.style}
+    <Helmet title={title} />
 
-      <Helmet title={title} />
+    <header className="header">
+      <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
 
-      <header className="header">
-        <h1 className="title" dangerouslySetInnerHTML={{ __html: title }} />
+      {featuredImage?.node?.localFile && (
+        <Picture
+          image={featuredImage.node.localFile}
+          caption={featuredImage?.node?.caption}
+          className={featuredImageStyle.className}
+        />
+      )}
+    </header>
 
-        {featuredImage?.node?.localFile && (
-          <Picture
-            image={featuredImage.node.localFile}
-            caption={featuredImage?.node?.caption}
-            className={featuredImageStyle.className}
-          />
+    <Constraint topLevel>
+      <div className="body">
+        <Intro intro={intro} />
+
+        {content && (
+          <div className="description">
+            {content.map(({ __typename, ...block }) => {
+              switch (__typename) {
+                case 'WpFinding_Acf_Content_Text':
+                  return <Richtext content={block.text} />;
+
+                case 'WpFinding_Acf_Content_Image':
+                  return (
+                    <figure className={pictureStyle.className}>
+                      <Picture
+                        image={block.image.localFile}
+                        caption={block.image.caption}
+                      />
+                    </figure>
+                  );
+
+                default:
+                  return <p>Block not implemented</p>;
+              }
+            })}
+          </div>
         )}
-      </header>
 
-      <Constraint topLevel>
-        <div className="body">
-          <Intro intro={intro} />
+        {additionalLinks && additionalLinks.length > 0 && (
+          <div className="additional-links-container">
+            <h3 className="section-headline">Further reading</h3>
+            <MoreLinksList items={additionalLinks} />
+          </div>
+        )}
 
-          {content && (
-            <div className="description">
-              {content.map(({ __typename, ...block }) => {
-                switch (__typename) {
-                  case 'WpFinding_Acf_Content_Text':
-                    return <Richtext content={block.text} />;
-
-                  case 'WpFinding_Acf_Content_Image':
-                    return (
-                      <figure className={pictureStyle.className}>
-                        <Picture
-                          image={block.image.localFile}
-                          caption={block.image.caption}
-                        />
-                      </figure>
-                    );
-
-                  default:
-                    return <p>Block not implemented</p>;
-                }
-              })}
-            </div>
-          )}
-
-          {additionalLinks && additionalLinks.length > 0 && (
-            <div className="additional-links-container">
-              <h3 className="section-headline">Further reading</h3>
-              <MoreLinksList items={additionalLinks} />
-            </div>
-          )}
-
-          {publicationListItems && publicationListItems.length > 0 && (
-            <div className="publications-list-contaioner">
-              <PublicationList
-                publications={publicationListItems}
-                title="Related Publications"
-              />
-            </div>
-          )}
-        </div>
-      </Constraint>
-    </>
-  );
-};
+        {publications && publications.length > 0 && (
+          <div className="publications-list-contaioner">
+            <PublicationList
+              publications={publications}
+              title="Related Publications"
+            />
+          </div>
+        )}
+      </div>
+    </Constraint>
+  </>
+);
 
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int) {
-    publications: allWpPublication {
+  query($databaseId: Int, $relatedPublications: [Int!]) {
+    publications: allWpPublication(
+      filter: { databaseId: { in: $relatedPublications } }
+    ) {
       nodes {
         ...publicationListItem
       }
     }
 
-    finding: wpFinding(databaseId: { eq: $wordpressId }) {
+    finding: wpFinding(databaseId: { eq: $databaseId }) {
       title
       featuredImage {
         node {
@@ -140,13 +125,7 @@ export const query = graphql`
           link
           linktext
         }
-        publications {
-          publication {
-            ... on WpPublication {
-              databaseId
-            }
-          }
-        }
+
         content {
           __typename
 
