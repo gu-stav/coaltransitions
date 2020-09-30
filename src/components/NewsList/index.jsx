@@ -11,12 +11,16 @@ export const fragment = graphql`
   }
 `;
 
-const NewsList = ({ nodes }) => (
-  <ul>
-    {nodes.map((node) => (
-      <NewsListItem {...node} />
-    ))}
-  </ul>
+const NewsList = ({ nodes = [] }) => (
+  <>
+    {Array.isArray(nodes) && (
+      <ul>
+        {nodes.map((node) => (
+          <NewsListItem {...node} />
+        ))}
+      </ul>
+    )}
+  </>
 );
 
 export default NewsList;

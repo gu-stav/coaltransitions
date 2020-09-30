@@ -3,7 +3,7 @@ const path = require('path');
 const fetchNews = (graphql) =>
   graphql(`
     {
-      news: allWpNewsEntry {
+      allWpNewsEntry {
         nodes {
           databaseId
           uri
@@ -12,7 +12,10 @@ const fetchNews = (graphql) =>
     }
   `);
 
-const createWpNewsEntry = ({ news: { nodes: news } }, { createPage }) => {
+const createWpNewsEntry = (
+  { allWpNewsEntry: { nodes: news } },
+  { createPage }
+) => {
   news.forEach(({ databaseId, uri }) => {
     const template = 'news/index';
 
