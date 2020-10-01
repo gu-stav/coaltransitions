@@ -55,7 +55,7 @@ export default ({
       {arrowIcon.styles}
       {captionStyle.styles}
 
-      <figure className="image-container">
+      <div className="image-container">
         <Link to={url} className={imageLink.className} rel="nofollow">
           {featuredImage?.localFile && (
             <Picture
@@ -65,7 +65,7 @@ export default ({
             />
           )}
         </Link>
-      </figure>
+      </div>
 
       <div className="intro-container">
         <h2 className="title">

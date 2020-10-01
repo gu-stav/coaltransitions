@@ -3,6 +3,10 @@ import css from 'styled-jsx/css';
 import { colors, mixins, mq } from '../../token';
 
 export default css`
+  figure {
+    margin: 0;
+  }
+
   img {
     height: auto;
     max-width: 100%;

@@ -2,19 +2,14 @@ import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import React from 'react';
 
+import BlockSwitch from '../../components/BlockSwitch';
 import Constraint from '../../components/constraint';
 import Intro from '../../components/intro';
-import LogoGrid from '../../components/LogoGrid';
-import Newsletter from '../../components/Newsletter';
-import Partner from '../../components/partner';
 import Picture from '../../components/picture';
-import ResearchersList from '../../components/researchers-list';
-import ResearchProjectsList from '../../components/research-projects-list';
-import Richtext from '../../components/richtext';
 import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
 
-import style, { picture as pictureStyle } from './style';
+import style from './style';
 
 const Page = ({
   data: {
@@ -28,7 +23,6 @@ const Page = ({
 }) => (
   <>
     <style jsx>{style}</style>
-    {pictureStyle.styles}
 
     <Helmet title={title} />
 
@@ -47,45 +41,7 @@ const Page = ({
 
         {intro && <Intro intro={intro} />}
 
-        {content &&
-          content.map((block) => {
-            if (block) {
-              const { __typename: type } = block;
-
-              // eslint-disable-next-line default-case
-              switch (type) {
-                case 'WpPage_Acf_Content_Text':
-                  return <Richtext content={block.text} />;
-
-                case 'WpPage_Acf_Content_Image':
-                  return (
-                    <figure className={pictureStyle.className}>
-                      <Picture
-                        image={block.image.localFile}
-                        caption={block.image.caption}
-                      />
-                    </figure>
-                  );
-
-                case 'WpPage_Acf_Content_Researchers':
-                  return <ResearchersList />;
-
-                case 'WpPage_Acf_Content_Researchprojectslist':
-                  return <ResearchProjectsList {...block} />;
-
-                case 'WpPage_Acf_Content_Newsletter':
-                  return <Newsletter {...block} />;
-
-                case 'WpPage_Acf_Content_Logogrid':
-                  return <LogoGrid {...block} />;
-
-                case 'WpPage_Acf_Content_Partner':
-                  return <Partner {...block} />;
-              }
-            }
-
-            return null;
-          })}
+        <BlockSwitch blocks={content} typePrefix="WpPage_Acf_Content_" />
       </Constraint>
     </article>
   </>
@@ -94,7 +50,7 @@ const Page = ({
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int, $siblings: [Int!]) {
+  query($databaseId: Int, $siblings: [Int!]) {
     subMenuItems: allWpPage(
       sort: { fields: menuOrder, order: ASC }
       filter: { databaseId: { in: $siblings } }
@@ -102,7 +58,7 @@ export const query = graphql`
       ...SubMenuPages
     }
 
-    page: wpPage(databaseId: { eq: $wordpressId }) {
+    page: wpPage(databaseId: { eq: $databaseId }) {
       title
 
       featuredImage {
