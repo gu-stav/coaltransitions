@@ -30,7 +30,7 @@ const getTweets = () =>
           // Filter out retweets
           .filter(({ retweeted }) => retweeted !== true)
           // Only pick 9 tweets
-          .slice(0, 2)
+          .slice(0, 3)
           // Only pick the required properties, in order to keep the response small
           // eslint-disable-next-line camelcase
           .map(({ id, full_text, created_at }) => ({
