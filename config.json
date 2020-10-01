@@ -1,5 +1,5 @@
 {
-  "endpoint": "https://b1909.myraidbox.de/graphql",
+  "endpoint": "https://admin.coaltransitions.org/graphql",
   "auth_username": "rb",
   "auth_password": "gonobeda"
 }
