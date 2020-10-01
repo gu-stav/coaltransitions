@@ -6,6 +6,7 @@ import { colors, mixins, mq } from '../../token';
 
 export default css`
   .menu {
+    align-items: center;
     display: flex;
     justify-content: space-between;
     padding: 1.5rem 1.5rem 2rem 0.75rem;
@@ -37,6 +38,14 @@ export default css`
       display: flex;
       flex-direction: row;
       justify-content: flex-start;
+      margin-left: 0.5rem;
+      margin-top: 0;
+    }
+  }
+
+  @media ${mq.desktop} {
+    .main-menu {
+      margin-left: 1.5rem;
     }
   }
 
@@ -139,8 +148,8 @@ export const socialMediaIcon = css.resolve`
 
 export const logo = css.resolve`
   svg {
-    height: 3rem;
-    width: 8rem;
+    height: 3.5rem;
+    width: 8.5rem;
   }
 
   @media ${mq.desktop} {

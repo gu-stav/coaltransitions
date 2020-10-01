@@ -10,6 +10,7 @@ export default css`
     border: 0;
     color: ${colors.blueAction};
     outline: none;
+    margin-right: 0.25rem;
     padding: 0;
     position: relative;
   }
@@ -43,7 +44,7 @@ export default css`
     left: calc(100% + 0.15rem);
     position: absolute;
     text-transform: uppercase;
-    top: 0.5rem;
+    top: 0.25rem;
     transform: rotate(-90deg) translateX(-100%);
     transform-origin: top left;
   }
