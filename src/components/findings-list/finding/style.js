@@ -53,7 +53,7 @@ export default css`
     color: white;
     flex: 1 0 auto;
     margin-left: auto;
-    margin-top: -0.25rem;
+    margin-top: -0.3rem;
     padding: 1.5rem;
     position: relative;
     width: 100%;
