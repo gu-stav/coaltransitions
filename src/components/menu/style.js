@@ -7,36 +7,51 @@ import { colors, mixins, mq } from '../../token';
 export default css`
   .menu {
     align-items: center;
-    align-self: flex-start;
     display: flex;
-    flex-direction: column;
-    padding: 0.5rem 0.5rem 2rem 0.5rem;
+    justify-content: space-between;
+    padding: 1.5rem 1.5rem 2rem 0.75rem;
     width: 100%;
   }
 
   @media ${mq.phone} {
     .menu {
-      flex-direction: row;
-      padding: 0.85rem 1rem 2rem 1rem;
+      padding: 1.5rem 1.5rem 2rem 1.5rem;
     }
   }
 
-  ul {
+  @media ${mq.tablet} {
+    .menu {
+      flex-direction: row;
+    }
+  }
+
+  .main-menu {
     ${mixins.resetList()}
 
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+    display: none;
     margin-top: 1rem;
     width: 100%;
   }
 
-  @media ${mq.phone} {
-    ul {
+  @media ${mq.tablet} {
+    .main-menu {
+      display: flex;
+      flex-direction: row;
       justify-content: flex-start;
+      margin-left: 0.5rem;
       margin-top: 0;
-      width: auto;
     }
+  }
+
+  @media ${mq.desktop} {
+    .main-menu {
+      margin-left: 1.5rem;
+    }
+  }
+
+  li {
+    align-items: center;
+    display: flex;
   }
 
   li + li {
@@ -67,7 +82,17 @@ export const link = css.resolve`
 
   @media ${mq.tablet} {
     a {
-      ${mixins.text('regular', 'tablet')}
+      ${mixins.text('small', 'tablet')}
+
+      border-bottom-width: 0.3rem;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+  }
+
+  @media ${mq.desktop} {
+    a {
+      ${mixins.text('regular', 'desktop')}
 
       border-bottom-width: 0.3rem;
       font-weight: 700;
@@ -89,10 +114,42 @@ export const linkActive = css.resolve`
   }
 `;
 
+export const socialMediaLink = css.resolve`
+  a {
+    color: ${colors.blueBrand};
+    display: inline-block;
+  }
+
+  a:hover,
+  a:focus {
+    color: ${colors.blueActionActive};
+  }
+`;
+
+export const socialMediaLabel = css.resolve`
+  position: absolute;
+`;
+
+export const socialMediaIcon = css.resolve`
+  svg {
+    height: 1rem;
+    margin-left: 0.5rem;
+    width: 1rem;
+  }
+
+  @media ${mq.tablet} {
+    svg {
+      height: 1.5rem;
+      margin-left: 1rem;
+      width: 1.5rem;
+    }
+  }
+`;
+
 export const logo = css.resolve`
   svg {
-    height: 3rem;
-    width: 8rem;
+    height: 3.5rem;
+    width: 8.5rem;
   }
 
   @media ${mq.desktop} {

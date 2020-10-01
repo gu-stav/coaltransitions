@@ -28,7 +28,22 @@ export default ({ name, summary, link, logo }) => (
 );
 
 export const fragment = graphql`
-  fragment partner on WpAboutPage_Acf_Content_Partner {
+  fragment PartnerPage on WpPage_Acf_Content_Partner {
+    name
+    summary
+    link
+    logo {
+      localFile {
+        childImageSharp {
+          fluid(maxWidth: 800) {
+            ...Picture
+          }
+        }
+      }
+    }
+  }
+
+  fragment PartnerAbout on WpAboutPage_Acf_Content_Partner {
     name
     summary
     link

@@ -2,6 +2,14 @@
   functions = "public-functions"
 
 [[redirects]]
+  from = "/about/research-projects/"
+  to = "/projects/current/"
+
+[[redirects]]
+  from = "/contact/"
+  to = "/about/contact/"
+
+[[redirects]]
   from = "/reports/"
   to = "/publications/"
 

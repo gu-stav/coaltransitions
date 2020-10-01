@@ -7,6 +7,36 @@ import style, { linkTitle, linkPicture } from './style';
 import Picture from '../../picture';
 import TagList from '../../tag-list';
 
+export const fragment = graphql`
+  fragment publicationListItem on WpPublication {
+    slug
+    title
+    featuredImage {
+      node {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 400) {
+              ...Picture
+            }
+          }
+        }
+      }
+    }
+    tags {
+      nodes {
+        slug
+        name
+      }
+    }
+    acf {
+      author {
+        name
+      }
+      year
+    }
+  }
+`;
+
 export default ({
   acf: { author, year },
   tags: { nodes: tags },
@@ -51,34 +81,3 @@ export default ({
     </div>
   </div>
 );
-
-export const fragment = graphql`
-  fragment publicationListItem on WpPublication {
-    wordpress_id: databaseId
-    slug
-    title
-    featuredImage {
-      node {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 400) {
-              ...Picture
-            }
-          }
-        }
-      }
-    }
-    tags {
-      nodes {
-        slug
-        name
-      }
-    }
-    acf {
-      author {
-        name
-      }
-      year
-    }
-  }
-`;

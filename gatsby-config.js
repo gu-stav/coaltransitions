@@ -10,6 +10,11 @@ module.exports = {
       count: 100,
       exclude_replies: true,
     },
+
+    socialMediaChannels: {
+      twitter: 'https://twitter.com/coaltransitions',
+      linkedIn: 'https://www.linkedin.com/company/coalexit/',
+    },
   },
 
   plugins: [
@@ -54,6 +59,7 @@ module.exports = {
       },
     },
 
+    'gatsby-plugin-netlify',
     'gatsby-plugin-styled-jsx',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',

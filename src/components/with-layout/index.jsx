@@ -13,11 +13,18 @@ export default (Children) => (props) => {
     },
     footerMenu,
     headerMenu,
+    headerMenuSocialMedia,
   } = useStaticQuery(graphql`
     query {
       site {
         siteMetadata {
           title
+        }
+      }
+
+      headerMenuSocialMedia: site {
+        siteMetadata {
+          ...MenuSocialMediaItems
         }
       }
 
@@ -38,7 +45,7 @@ export default (Children) => (props) => {
       <Helmet titleTemplate={`%s | ${title}`} />
 
       <div className="site">
-        <Menu {...headerMenu} />
+        <Menu {...headerMenu} {...headerMenuSocialMedia.siteMetadata} />
         <Children {...props} />
         <Footer {...footerMenu} />
       </div>

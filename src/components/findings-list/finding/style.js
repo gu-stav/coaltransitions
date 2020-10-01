@@ -24,7 +24,7 @@ export default css`
     flex: 0 0 auto;
     flex-direction: row;
     margin: 0;
-    width: 95%;
+    width: 100%;
   }
 
   @media ${mq.tablet} {
@@ -53,8 +53,8 @@ export default css`
     color: white;
     flex: 1 0 auto;
     margin-left: auto;
-    margin-top: 1.75rem;
-    padding: 1.5rem;
+    margin-top: -0.3rem;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
     position: relative;
     width: 100%;
   }

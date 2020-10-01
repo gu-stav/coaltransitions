@@ -2,16 +2,22 @@ import { graphql } from 'gatsby';
 import { Helmet } from 'react-helmet';
 import React from 'react';
 
+import BlockSwitch from '../../components/BlockSwitch';
 import Constraint from '../../components/constraint';
-import Richtext from '../../components/richtext';
-import style from './style';
+import Intro from '../../components/intro';
+import Picture from '../../components/picture';
+import SubMenu from '../../components/sub-menu';
 import withLayout from '../../components/with-layout';
+
+import style from './style';
 
 const Page = ({
   data: {
+    subMenuItems,
     page: {
       title,
-      acf: { content },
+      featuredImage,
+      acf: { intro, content },
     },
   },
 }) => (
@@ -20,22 +26,22 @@ const Page = ({
 
     <Helmet title={title} />
 
+    <SubMenu {...subMenuItems} />
+
     <article>
       <Constraint topLevel>
+        {featuredImage?.node?.localFile && (
+          <Picture
+            image={featuredImage.node.localFile}
+            caption={featuredImage?.node?.caption}
+          />
+        )}
+
         <h1 dangerouslySetInnerHTML={{ __html: title }} />
 
-        {content &&
-          content.map((block) => {
-            const { __typename: type } = block;
+        {intro && <Intro intro={intro} />}
 
-            // eslint-disable-next-line default-case
-            switch (type) {
-              case 'WpPage_Acf_Content_Text':
-                return <Richtext content={block.text} />;
-            }
-
-            return null;
-          })}
+        <BlockSwitch blocks={content} typePrefix="WpPage_Acf_Content_" />
       </Constraint>
     </article>
   </>
@@ -44,15 +50,78 @@ const Page = ({
 export default withLayout(Page);
 
 export const query = graphql`
-  query($wordpressId: Int) {
-    page: wpPage(databaseId: { eq: $wordpressId }) {
+  query($databaseId: Int, $siblings: [Int!]) {
+    subMenuItems: allWpPage(
+      sort: { fields: menuOrder, order: ASC }
+      filter: { databaseId: { in: $siblings } }
+    ) {
+      ...SubMenuPages
+    }
+
+    page: wpPage(databaseId: { eq: $databaseId }) {
       title
+
+      featuredImage {
+        node {
+          caption
+          localFile {
+            childImageSharp {
+              fluid(maxWidth: 600) {
+                ...Picture
+              }
+            }
+          }
+        }
+      }
+
       acf {
+        intro
         content {
           __typename
 
           ... on WpPage_Acf_Content_Text {
             text
+          }
+
+          ... on WpPage_Acf_Content_Image {
+            image {
+              localFile {
+                childImageSharp {
+                  fluid(maxWidth: 800) {
+                    ...Picture
+                  }
+                }
+              }
+              caption
+            }
+          }
+
+          ... on WpPage_Acf_Content_Researchers {
+            showresearchers
+          }
+
+          ... on WpPage_Acf_Content_Researchprojectslist {
+            ...ResearchProjectList
+          }
+
+          ... on WpPage_Acf_Content_Newsletter {
+            ...Newsletter
+          }
+
+          ... on WpPage_Acf_Content_Logogrid {
+            ...LogoGrid
+          }
+
+          ... on WpPage_Acf_Content_Partner {
+            ...PartnerPage
+          }
+
+          ... on WpPage_Acf_Content_FeaturedNews {
+            news {
+              ... on WpNewsEntry {
+                ...NewsListItem
+              }
+            }
           }
         }
       }

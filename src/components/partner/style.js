@@ -18,7 +18,7 @@ export default css`
 
   .image-container {
     display: block;
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     margin-bottom: 1rem;
     width: 35%;
   }

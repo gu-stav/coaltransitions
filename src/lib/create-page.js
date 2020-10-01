@@ -1,48 +1,109 @@
 const path = require('path');
 
+const sortByMenuOrder = (nodeA, nodeB) => {
+  const { menuOrder: menuOrderA } = nodeA;
+  const { menuOrder: menuOrderB } = nodeB;
+
+  if (menuOrderA < menuOrderB) {
+    return -1;
+  }
+
+  if (menuOrderA > menuOrderB) {
+    return 1;
+  }
+
+  return 0;
+};
+
 const fetchPages = (graphql) =>
   graphql(`
     {
       pages: allWpPage {
         nodes {
-          slug
           databaseId
           isFrontPage
+          uri
+
+          wpChildren {
+            nodes {
+              ... on WpPage {
+                menuOrder
+                uri
+              }
+            }
+          }
+
+          siblings: wpParent {
+            node {
+              ... on WpPage {
+                wpChildren {
+                  nodes {
+                    ... on WpPage {
+                      menuOrder
+                      databaseId
+                      uri
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
   `);
 
-const createPages = (data, createPage) => {
-  const {
-    pages: { nodes: pages },
-  } = data;
+const createPages = (
+  { pages: { nodes: pages } },
+  { createPage, createRedirect }
+) => {
+  pages.forEach(({ uri, databaseId, isFrontPage, wpChildren, siblings }) => {
+    const template = isFrontPage ? 'frontpage/index' : 'page/index';
+    const pageHasChildren = wpChildren.nodes.length !== 0;
 
-  pages.forEach(({ slug, databaseId: wordpressId, isFrontPage }) => {
-    let pagePath = `/${slug}/`;
-    let template = 'page/index';
     const context = {
-      wordpressId,
+      siblings: [],
+      databaseId,
     };
 
-    if (isFrontPage === true) {
-      pagePath = '/';
-      template = 'frontpage/index';
+    if (
+      siblings &&
+      siblings.node &&
+      siblings.node.wpChildren &&
+      siblings.node.wpChildren.nodes.length > 0
+    ) {
+      context.siblings = siblings.node.wpChildren.nodes
+        .sort(sortByMenuOrder)
+        .map(({ databaseId: siblingDatabaseId }) => siblingDatabaseId);
     }
 
-    // eslint-disable-next-line no-console
-    console.log('Create page:', pagePath);
+    if (!pageHasChildren) {
+      // eslint-disable-next-line no-console
+      console.log('Create page:', uri);
 
-    createPage({
-      path: pagePath,
-      component: path.resolve(`src/templates/${template}.jsx`),
-      context,
-    });
+      createPage({
+        path: uri,
+        component: path.resolve(`src/templates/${template}.jsx`),
+        context,
+      });
+    } else {
+      // create a link to the first child page
+      const toPath = wpChildren.nodes.sort(sortByMenuOrder)[0].uri;
+
+      // eslint-disable-next-line no-console
+      console.log(`Create redirect: ${uri} -> ${toPath}`);
+
+      createRedirect({
+        fromPath: uri,
+        toPath,
+        isPermanent: true,
+      });
+    }
   });
 };
 
-const createWpPages = (graphql, createPage) =>
-  fetchPages(graphql).then(({ data }) => createPages(data, createPage));
+const createWpPages = (graphql, actions) =>
+  fetchPages(graphql).then(({ data }) => createPages(data, actions));
 
 module.exports = {
   createPages: createWpPages,
