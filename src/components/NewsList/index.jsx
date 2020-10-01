@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Constraint from '../constraint';
 import NewsListItem from './NewsListItem';
 
 import style from './style';
@@ -18,17 +17,15 @@ const NewsList = ({ nodes = [] }) => (
   <div className="container">
     <style jsx>{style}</style>
 
-    <Constraint topLevel>
-      {Array.isArray(nodes) && (
-        <ul>
-          {nodes.map((node) => (
-            <li>
-              <NewsListItem {...node} />
-            </li>
-          ))}
-        </ul>
-      )}
-    </Constraint>
+    {Array.isArray(nodes) && (
+      <ul>
+        {nodes.map((node) => (
+          <li>
+            <NewsListItem {...node} />
+          </li>
+        ))}
+      </ul>
+    )}
   </div>
 );
 

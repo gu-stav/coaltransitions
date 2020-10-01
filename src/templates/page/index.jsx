@@ -115,6 +115,14 @@ export const query = graphql`
           ... on WpPage_Acf_Content_Partner {
             ...PartnerPage
           }
+
+          ... on WpPage_Acf_Content_FeaturedNews {
+            news {
+              ... on WpNewsEntry {
+                ...NewsListItem
+              }
+            }
+          }
         }
       }
     }

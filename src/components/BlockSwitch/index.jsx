@@ -2,6 +2,7 @@ import React from 'react';
 
 import LogoGrid from '../LogoGrid';
 import Newsletter from '../Newsletter';
+import NewsList from '../NewsList';
 import Partner from '../partner';
 import Picture from '../picture';
 import ResearchersList from '../researchers-list';
@@ -46,6 +47,11 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
 
             case `${typePrefix}Partner`:
               return <Partner {...block} />;
+
+            case `${typePrefix}FeaturedNews`:
+              // eslint-disable-next-line no-case-declarations
+              const { news, ...props } = block;
+              return <NewsList nodes={news} {...props} />;
           }
         }
 

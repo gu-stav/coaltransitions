@@ -2,8 +2,6 @@ import { graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import React from 'react';
 
-import BlockSwitch from '../../BlockSwitch';
-
 import style, { titleLink } from './style';
 
 export const fragment = graphql`
@@ -32,8 +30,6 @@ const NewsListItem = ({ title, date, uri, acf: { intro } }) => (
     </h2>
 
     <p className="intro">{intro}</p>
-
-    <BlockSwitch />
   </article>
 );
 
