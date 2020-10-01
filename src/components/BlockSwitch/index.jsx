@@ -28,8 +28,8 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
             case `${typePrefix}Image`:
               return (
                 <Picture
-                  image={block.image.localFile}
-                  caption={block.image.caption}
+                  image={block?.image?.localFile}
+                  caption={block?.image?.caption}
                 />
               );
 
