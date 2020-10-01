@@ -31,6 +31,9 @@ export default css`
   @media ${mq.desktop} {
     figcaption {
       ${mixins.text('mini', 'desktop')}
+
+      margin-left: 0;
+      margin-right: 0;
     }
   }
 
