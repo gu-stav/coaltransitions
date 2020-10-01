@@ -36,7 +36,6 @@ export default css`
   .title-text {
     ${mixins.text('huge')}
 
-    color: ${colors.blueBrand};
     display: block;
     margin-bottom: 1rem;
     margin-top: 0.5rem;
