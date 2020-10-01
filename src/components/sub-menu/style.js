@@ -51,9 +51,10 @@ export const item = css.resolve`
     background-color: ${colors.blueAction};
     box-decoration-break: clone;
     color: white;
+    display: block;
     font-weight: 700;
     letter-spacing: 0.025rem;
-    padding: 0.25rem 1rem 0.25rem 0.5rem;
+    padding: 0.45rem 1.5rem 0.45rem 0.5rem;
     text-decoration: none;
     text-transform: uppercase;
     white-space: nowrap;

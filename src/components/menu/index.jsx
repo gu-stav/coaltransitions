@@ -12,6 +12,7 @@ import style, {
   socialMediaIcon,
 } from './style';
 
+import BurgerMenu from './BurgerMenu';
 import LinkedInIcon from '../../../static/icons/linkedin.svg';
 import Logo from '../../../static/logos/coal-transitions.svg';
 import TwitterIcon from '../../../static/icons/twitter.svg';
@@ -61,7 +62,9 @@ export default ({ items: { nodes: items = [] }, socialMediaChannels }) => (
       <Logo className={logo.className} />
     </Link>
 
-    <ul>
+    <BurgerMenu items={items} socialMediaChannels={socialMediaChannels} />
+
+    <ul className="main-menu">
       {items.map(({ url, label }) => (
         <li key={`menu-${label}`}>
           <Item to={url}>{label}</Item>
