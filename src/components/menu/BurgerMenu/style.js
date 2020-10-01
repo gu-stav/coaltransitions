@@ -9,6 +9,7 @@ export default css`
     background: transparent;
     border: 0;
     color: ${colors.blueAction};
+    outline: none;
     padding: 0;
     position: relative;
   }
