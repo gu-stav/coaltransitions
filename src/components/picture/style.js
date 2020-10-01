@@ -16,7 +16,7 @@ export default css`
     ${mixins.text('mini')}
 
     color: ${colors.blueBrand};
-    margin: 0.5rem;
+    margin: 0.5rem 1rem;
   }
 
   @media ${mq.tablet} {
@@ -24,6 +24,7 @@ export default css`
       ${mixins.text('mini', 'tablet')}
 
       margin-left: 1.5rem;
+      margin-right: 1.5rem;
     }
   }
 
