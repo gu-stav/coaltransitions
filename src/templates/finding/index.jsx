@@ -10,10 +10,7 @@ import PublicationList from '../../components/publication-list';
 import Richtext from '../../components/richtext';
 import withLayout from '../../components/with-layout';
 
-import style, {
-  pictureStyle,
-  featuredImage as featuredImageStyle,
-} from './style';
+import style, { featuredImage as featuredImageStyle } from './style';
 
 const Page = ({
   data: {
@@ -28,7 +25,6 @@ const Page = ({
   <>
     <style jsx>{style}</style>
     {featuredImageStyle.styles}
-    {pictureStyle.style}
 
     <Helmet title={title} />
 
@@ -57,12 +53,10 @@ const Page = ({
 
                 case 'WpFinding_Acf_Content_Image':
                   return (
-                    <figure className={pictureStyle.className}>
-                      <Picture
-                        image={block.image.localFile}
-                        caption={block.image.caption}
-                      />
-                    </figure>
+                    <Picture
+                      image={block.image.localFile}
+                      caption={block.image.caption}
+                    />
                   );
 
                 default:

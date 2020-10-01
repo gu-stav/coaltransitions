@@ -122,13 +122,6 @@ export default css`
   }
 `;
 
-export const pictureStyle = css.resolve`
-  figure {
-    margin-bottom: 1.5rem;
-    margin-top: 1.5rem;
-  }
-`;
-
 export const featuredImage = css.resolve`
   height: auto;
   width: 100%;

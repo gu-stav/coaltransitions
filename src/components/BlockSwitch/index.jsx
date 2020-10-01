@@ -8,8 +8,12 @@ import ResearchersList from '../researchers-list';
 import ResearchProjectsList from '../research-projects-list';
 import Richtext from '../richtext';
 
+import style from './style';
+
 const BlockSwitch = ({ blocks, typePrefix }) => (
-  <>
+  <div className="block-content">
+    <style jsx>{style}</style>
+
     {blocks &&
       blocks.map((block) => {
         if (block) {
@@ -22,12 +26,10 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
 
             case `${typePrefix}Image`:
               return (
-                <figure>
-                  <Picture
-                    image={block.image.localFile}
-                    caption={block.image.caption}
-                  />
-                </figure>
+                <Picture
+                  image={block.image.localFile}
+                  caption={block.image.caption}
+                />
               );
 
             case `${typePrefix}Researchers`:
@@ -49,7 +51,7 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
 
         return null;
       })}
-  </>
+  </div>
 );
 
 export default BlockSwitch;
