@@ -5,10 +5,11 @@ import React from 'react';
 import NewsList from '../../components/NewsList';
 import withLayout from '../../components/with-layout';
 
-const Page = ({ data: { allWpNewEntry } }) => (
+const Page = ({ data: { allWpNewsEntry } }) => (
   <>
     <Helmet title="News" />
-    <NewsList {...allWpNewEntry} />
+
+    <NewsList {...allWpNewsEntry} />
   </>
 );
 
