@@ -21,10 +21,13 @@ is deployed as an AWS Lambda function by netlify.
 
 #### Environment variables
 
-To fetch tweets from the twitter timeline, the following environment variables
-are required:
-
 ```
+WP_ENDPOINT: Wordpress Graphql endpoint
+WP_AUTH_USERNAME: Wordpress Basic auth username
+WP_AUTH_PASSWORd: Wordpress Basic auth password
+
+// to show recent tweets on the homepage you'll also need
+
 TWITTER_CONSUMER_KEY: Twitter consumer key
 TWITTER_CONSUMER_SECRET: Twitter consumer secret
 TWITTER_ACCESS_TOKEN: Twitter access token
