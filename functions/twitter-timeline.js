@@ -5,11 +5,13 @@ const {
   siteMetadata: { twitter: twitterOptions },
 } = require('../gatsby-config');
 
+const { env } = process;
+
 const Client = new Twit({
-  consumer_key: process.env.TWITTER_CONSUMER_KEY,
-  consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-  access_token: process.env.TWITTER_ACCESS_TOKEN,
-  access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+  consumer_key: env.TWITTER_CONSUMER_KEY,
+  consumer_secret: env.TWITTER_CONSUMER_SECRET,
+  access_token: env.TWITTER_ACCESS_TOKEN,
+  access_token_secret: env.TWITTER_ACCESS_TOKEN_SECRET,
   timeout_ms: 60 * 1000,
 });
 
@@ -30,7 +32,7 @@ const getTweets = () =>
           // Filter out retweets
           .filter(({ retweeted }) => retweeted !== true)
           // Only pick 9 tweets
-          .slice(0, 2)
+          .slice(0, 3)
           // Only pick the required properties, in order to keep the response small
           // eslint-disable-next-line camelcase
           .map(({ id, full_text, created_at }) => ({

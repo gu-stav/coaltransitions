@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 const { createProxyMiddleware } = require('http-proxy-middleware');
-const config = require('./config.json');
+
+const { env } = process;
 
 module.exports = {
   siteMetadata: {
@@ -21,12 +24,12 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress-experimental',
       options: {
-        url: config.endpoint,
+        url: env.WP_ENDPOINT,
 
         auth: {
           htaccess: {
-            username: config.auth_username,
-            password: config.auth_password,
+            username: env.WP_AUTH_USERNAME,
+            password: env.WP_AUTH_PASSWORD,
           },
         },
 

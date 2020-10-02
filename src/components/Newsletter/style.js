@@ -27,7 +27,7 @@ export default css`
 
   @media ${mq.desktop} {
     .newsletter {
-      margin: 5rem -2.5rem;
+      margin: 8rem -2.5rem;
       padding: 2.5rem;
     }
   }

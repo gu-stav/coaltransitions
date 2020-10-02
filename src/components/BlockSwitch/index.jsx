@@ -51,7 +51,7 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
             case `${typePrefix}FeaturedNews`:
               // eslint-disable-next-line no-case-declarations
               const { news, ...props } = block;
-              return <NewsList nodes={news} {...props} />;
+              return <NewsList nodes={news} title="Recent News" {...props} />;
           }
         }
 
