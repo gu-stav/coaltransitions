@@ -31,11 +31,6 @@ export default css`
     }
   }
 
-  .burger-svg {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-
   .burger-label {
     font-family: ${fonts.publicSans.family};
     font-size: 0.67rem;
@@ -91,6 +86,11 @@ export default css`
   .social-media__item + .social-media__item {
     margin-left: 1.5rem;
   }
+`;
+
+export const barsIcon = css.resolve`
+  height: 2.5rem;
+  width: 2.5rem;
 `;
 
 export const socialMediaIcon = css.resolve`
