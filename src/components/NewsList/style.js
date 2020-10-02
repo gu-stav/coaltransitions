@@ -30,6 +30,7 @@ export default css`
     .title {
       ${mixins.text('extra-big', 'desktop')}
 
+      margin-bottom: 5rem;
       margin-top: 5rem;
     }
   }

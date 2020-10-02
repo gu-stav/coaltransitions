@@ -4,6 +4,7 @@ import { graphql } from 'gatsby';
 
 import AboutTeaser from '../../components/about-teaser';
 import Constraint from '../../components/constraint';
+import NewsList from '../../components/NewsList';
 import PublicationsTeaser from '../../components/publications-teaser';
 import FindingsTeaser from '../../components/findings-teaser';
 import TwitterTimeline from '../../components/twitter-timeline';
@@ -33,6 +34,15 @@ const Page = ({
 
         case 'WpPage_Acf_Content_Findings':
           return <FindingsTeaser key={key} {...block} />;
+
+        case `WpPage_Acf_Content_FeaturedNews`:
+          // eslint-disable-next-line no-case-declarations
+          const { news, ...props } = block;
+          return (
+            <Constraint>
+              <NewsList nodes={news} title="Coal Transitions News" {...props} />
+            </Constraint>
+          );
       }
 
       return null;
@@ -40,7 +50,7 @@ const Page = ({
 
     <Constraint>
       <TwitterTimeline
-        title="News"
+        title="Twitter"
         endpoint="/.netlify/functions/twitter-timeline"
       />
     </Constraint>
@@ -90,6 +100,14 @@ export const query = graphql`
                     ...Picture
                   }
                 }
+              }
+            }
+          }
+
+          ... on WpPage_Acf_Content_FeaturedNews {
+            news {
+              ... on WpNewsEntry {
+                ...NewsListItem
               }
             }
           }
