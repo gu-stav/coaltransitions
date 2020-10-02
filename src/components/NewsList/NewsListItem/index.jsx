@@ -6,7 +6,7 @@ import style, { titleLink } from './style';
 
 export const fragment = graphql`
   fragment NewsListItem on WpNewsEntry {
-    date(formatString: "DD MMM YYYY")
+    date(formatString: "DD. MMM YYYY")
     title
     uri
     acf {
