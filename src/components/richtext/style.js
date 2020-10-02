@@ -19,11 +19,11 @@ export default css`
     }
   }
 
-  :global(.richtext > *:first-child:not(:only-child)) {
+  :global(.richtext > *:first-child) {
     margin-top: 0;
   }
 
-  :global(.richtext > *:last-child:not(:only-child)) {
+  :global(.richtext > *:last-child) {
     margin-bottom: 0;
   }
 

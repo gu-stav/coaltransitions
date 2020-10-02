@@ -39,26 +39,30 @@ export default css`
   }
 
   .title {
-    ${mixins.text('medium')}
+    ${mixins.text('regular-big')}
 
-    margin-bottom: 1rem;
     margin-top: 0;
   }
 
   @media ${mq.tablet} {
     .title {
-      ${mixins.text('medium', 'tablet')}
+      ${mixins.text('regular-big', 'tablet')}
     }
   }
 
   @media ${mq.desktop} {
     .title {
-      ${mixins.text('medium', 'desktop')}
+      ${mixins.text('regular-big', 'desktop')}
     }
+  }
+
+  .title-link {
+    text-decoration: none;
   }
 
   .title-link:hover,
   .title-link:focus {
     color: ${colors.blueBrand};
+    text-decoration: underline;
   }
 `;
