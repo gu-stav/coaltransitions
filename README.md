@@ -34,14 +34,11 @@ TWITTER_ACCESS_TOKEN: Twitter access token
 TWITTER_ACCESS_TOKEN_SECRET: Twitter access token secret
 ```
 
-## Production build
-
-By running `npm run build` gatsby creates a static version of the site in
-`./public`.
 
 ### Build status
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f051ac1e-f9b0-424a-9477-dd9bdef6e833/deploy-status)](https://app.netlify.com/sites/coaltransitions/deploys)
+
 
 ## Development
 
@@ -49,12 +46,14 @@ First you need to install the project dependencies by running
 
 `npm run install`
 
-To start the development server now run:
+Now create a copy of the `.env.example` file and fill in the environment
+variables. You should be able to start the development now by running:
 
 `npm run develop`
 
 This should give you access to [localhost:8000](http://localhost:8000) where
 you can access the development build of the site, with production data.
+
 
 ### Functions
 
@@ -70,3 +69,9 @@ Gatsby automatically proxies the required requests to the functions server. No
 additional setup is required.
 
 The twitter search parameters can be found in `gatsby-config.js`.
+
+
+## Production build
+
+By running `npm run build` gatsby creates a static version of the site in
+`./public`.
