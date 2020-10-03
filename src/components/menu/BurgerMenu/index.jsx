@@ -14,6 +14,8 @@ import LinkedInIcon from '../../../../static/icons/linkedin.svg';
 import TimesIcon from '../../../../static/icons/times-thin.svg';
 import TwitterIcon from '../../../../static/icons/twitter.svg';
 
+Modal.setAppElement(`#___gatsby`);
+
 const Item = ({ to, children, ...attributes }) => (
   <Link
     to={to}
