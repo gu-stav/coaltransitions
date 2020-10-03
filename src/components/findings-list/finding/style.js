@@ -54,7 +54,7 @@ export default css`
     flex: 1 0 auto;
     margin-left: auto;
     margin-top: -0.3rem;
-    padding: 1.5rem 1.5rem 2rem 1.5rem;
+    padding: 1.5rem 1rem 2rem 1rem;
     position: relative;
     width: 100%;
   }
