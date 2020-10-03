@@ -1,4 +1,5 @@
 import { graphql } from 'gatsby';
+import classnames from 'classnames';
 import React from 'react';
 
 import Button from '../button';
@@ -14,8 +15,10 @@ export const fragment = graphql`
   }
 `;
 
-const NewsList = ({ title, nodes = [] }) => (
-  <div className="container">
+const NewsList = ({ title, nodes = [], padding = false }) => (
+  <div
+    className={classnames('container', padding && 'container--with-padding')}
+  >
     <style jsx>{style}</style>
 
     {title && (

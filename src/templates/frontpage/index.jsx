@@ -40,7 +40,12 @@ const Page = ({
           const { news, ...props } = block;
           return (
             <Constraint>
-              <NewsList nodes={news} title="Coal Transitions News" {...props} />
+              <NewsList
+                nodes={news}
+                title="Coal Transitions News"
+                padding
+                {...props}
+              />
             </Constraint>
           );
       }

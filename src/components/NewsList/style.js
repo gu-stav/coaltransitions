@@ -4,10 +4,19 @@ import { colors, mixins, mq } from '../../token';
 
 export default css`
   .container {
+    padding-top: 1rem;
+    width: 100%;
+  }
+
+  @media ${mq.tablet} {
+    .container {
+      padding-top: 1.5rem;
+    }
+  }
+
+  .container--with-padding {
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 1.5rem;
-    width: 100%;
   }
 
   .title {
@@ -17,7 +26,7 @@ export default css`
     color: ${colors.blueBrand};
     display: flex;
     flex-direction: row;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     margin-top: 3rem;
     position: relative;
   }
@@ -25,6 +34,8 @@ export default css`
   @media ${mq.tablet} {
     .title {
       ${mixins.text('extra-big', 'tablet')}
+
+      margin-bottom: 3rem;
     }
   }
 
