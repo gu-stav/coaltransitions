@@ -94,7 +94,6 @@ const Page = ({
             />
           </Suspense>
         )}
-        {console.log(newsEntries)}
         <NewsOverview nodes={newsEntries} {...props} />
       </Constraint>
     </>
