@@ -4,6 +4,8 @@ import { colors, mixins, mq } from '../../token';
 
 export default css`
   .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
     padding-top: 1.5rem;
     width: 100%;
   }

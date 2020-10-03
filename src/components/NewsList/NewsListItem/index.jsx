@@ -12,6 +12,15 @@ export const fragment = graphql`
     acf {
       intro
     }
+
+    terms {
+      nodes {
+        ... on WpNewsTag {
+          slug
+          name
+        }
+      }
+    }
   }
 `;
 
