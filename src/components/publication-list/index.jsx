@@ -1,8 +1,19 @@
+import { graphql } from 'gatsby';
 import React from 'react';
 
 import Button from '../button';
 import Publication from './publication';
 import style from './style';
+
+export const fragment = graphql`
+  fragment PublicationList on WpPage_Acf_Content_RelatedPublications {
+    publications {
+      ... on WpPublication {
+        ...publicationListItem
+      }
+    }
+  }
+`;
 
 export default ({
   title,
