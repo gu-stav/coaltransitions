@@ -5,6 +5,7 @@ import Newsletter from '../Newsletter';
 import NewsList from '../NewsList';
 import Partner from '../partner';
 import Picture from '../picture';
+import PublicationList from '../publication-list';
 import ResearchersList from '../researchers-list';
 import ResearchProjectsList from '../research-projects-list';
 import Richtext from '../richtext';
@@ -52,6 +53,13 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
               // eslint-disable-next-line no-case-declarations
               const { news, ...props } = block;
               return <NewsList nodes={news} title="Recent News" {...props} />;
+
+            case `${typePrefix}RelatedPublications`:
+              return (
+                <div className="publications-list-contaioner">
+                  <PublicationList {...props} />
+                </div>
+              );
           }
         }
 
