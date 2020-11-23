@@ -16,7 +16,7 @@ export const containsAllTags = (publication, tagsList) => {
 };
 
 export const extractTags = (news) => {
-  const tags = news.reduce((acc, { terms }) => {
+  const tags = news.reduce((acc, { newsTags: terms }) => {
     if (terms?.nodes) {
       terms.nodes.forEach(({ slug, name }) => {
         acc[slug] = name;
