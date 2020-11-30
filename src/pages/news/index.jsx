@@ -104,7 +104,7 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    allWpNewsEntry {
+    allWpNewsEntry(filter: { status: { eq: "publish" } }) {
       ...NewsList
     }
   }
