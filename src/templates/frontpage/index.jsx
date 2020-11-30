@@ -36,6 +36,10 @@ const Page = ({
           return <FindingsTeaser key={key} {...block} />;
 
         case `WpPage_Acf_Content_FeaturedNews`:
+          // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
+          /* eslint-disable no-unreachable */
+          return null;
+
           // eslint-disable-next-line no-case-declarations
           const { news, ...props } = block;
           return (
@@ -48,6 +52,7 @@ const Page = ({
               />
             </Constraint>
           );
+        /* eslint-enable no-unreachable */
       }
 
       return null;
@@ -109,13 +114,14 @@ export const query = graphql`
             }
           }
 
-          ... on WpPage_Acf_Content_FeaturedNews {
-            news {
-              ... on WpNewsEntry {
-                ...NewsListItem
-              }
-            }
-          }
+          # // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
+          #... on WpPage_Acf_Content_FeaturedNews {
+          #  news {
+          #    ... on WpNewsEntry {
+          #      ...NewsListItem
+          #    }
+          #  }
+          #}
         }
       }
     }

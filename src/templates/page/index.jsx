@@ -116,12 +116,17 @@ export const query = graphql`
             ...PartnerPage
           }
 
-          ... on WpPage_Acf_Content_FeaturedNews {
-            news {
-              ... on WpNewsEntry {
-                ...NewsListItem
-              }
-            }
+          # // TODO: https://github.com/gatsbyjs/gatsby-source-wordpress-experimental/issues/311
+          #... on WpPage_Acf_Content_FeaturedNews {
+          #  news {
+          #    ... on WpNewsEntry {
+          #      ...NewsListItem
+          #    }
+          #  }
+          #}
+
+          ... on WpPage_Acf_Content_RelatedPublications {
+            ...PublicationList
           }
         }
       }

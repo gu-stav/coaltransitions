@@ -3,7 +3,7 @@ const path = require('path');
 const fetchNews = (graphql) =>
   graphql(`
     {
-      allWpNewsEntry {
+      allWpNewsEntry(filter: { status: { eq: "publish" } }) {
         nodes {
           databaseId
           uri

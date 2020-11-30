@@ -15,7 +15,7 @@ const NewsEntryPage = ({ data: { wpNewsEntry } }) => (
 
 export const query = graphql`
   query($databaseId: Int) {
-    wpNewsEntry(databaseId: { eq: $databaseId }) {
+    wpNewsEntry(databaseId: { eq: $databaseId }, status: { eq: "publish" }) {
       ...NewsEntry
     }
   }

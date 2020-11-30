@@ -13,12 +13,10 @@ export const fragment = graphql`
       intro
     }
 
-    terms {
+    newsTags {
       nodes {
-        ... on WpNewsTag {
-          slug
-          name
-        }
+        slug
+        name
       }
     }
   }
