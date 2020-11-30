@@ -50,9 +50,12 @@ const BlockSwitch = ({ blocks, typePrefix }) => (
               return <Partner {...block} />;
 
             case `${typePrefix}FeaturedNews`:
+              return null;
+              /* eslint-disable no-unreachable */
               // eslint-disable-next-line no-case-declarations
               const { news, ...props } = block;
               return <NewsList nodes={news} title="Recent News" {...props} />;
+            /* eslint-enable no-unreachable */
 
             case `${typePrefix}RelatedPublications`:
               return (

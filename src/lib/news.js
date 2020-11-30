@@ -4,7 +4,7 @@ export const containsAllTags = (publication, tagsList) => {
   }
 
   return tagsList.reduce((acc, slug) => {
-    const tags = publication?.terms?.nodes || [];
+    const tags = publication?.newsTags?.nodes || [];
 
     if (tags.find(({ slug: tagSlug }) => tagSlug === slug) === undefined) {
       // eslint-disable-next-line no-param-reassign
