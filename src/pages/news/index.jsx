@@ -30,7 +30,7 @@ const Page = ({
     if (typeof window !== 'undefined') {
       if (count === 0) {
         setFilter({
-          tags: getFilterFromUrl('keywords') || [],
+          tags: getFilterFromUrl('type') || [],
         });
       }
 
@@ -38,10 +38,12 @@ const Page = ({
         tags: filter.tags,
       });
 
+      console.log(filtered);
+
       setNewsEntries(filtered);
 
       if (count > 0) {
-        setUrlForFilter('keywords', filter.tags);
+        setUrlForFilter('type', filter.tags);
       }
     }
 
@@ -65,8 +67,8 @@ const Page = ({
               rows={[
                 [
                   <Select
-                    placeholder="Keywords"
-                    name="tags"
+                    placeholder="Type"
+                    name="type"
                     options={tags.sort(({ label: aLabel }, { label: bLabel }) =>
                       aLabel.toLowerCase().localeCompare(bLabel.toLowerCase())
                     )}
