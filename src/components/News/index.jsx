@@ -17,12 +17,20 @@ export const fragment = graphql`
 
       content {
         ... on WpNewsEntry_Acf_Content_Text {
-          fieldGroupName
           text
         }
 
         ... on WpNewsEntry_Acf_Content_Image {
-          fieldGroupName
+          image {
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...Picture
+                }
+              }
+            }
+            caption
+          }
         }
       }
     }

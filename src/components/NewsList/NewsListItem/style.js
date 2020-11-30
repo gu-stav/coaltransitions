@@ -28,6 +28,21 @@ export default css`
     position: relative;
   }
 
+  .date-container {
+    display: flex;
+  }
+
+  @media ${mq.tablet} {
+    .date-container {
+      align-items: flex-end;
+      flex-direction: column;
+      left: 0;
+      position: absolute;
+      top: 0.35rem;
+      transform: translateX(calc(-100% - 1.25rem));
+    }
+  }
+
   .date {
     ${mixins.text('small')}
 
@@ -42,10 +57,26 @@ export default css`
       ${mixins.text('regular')}
 
       font-weight: 700;
-      left: 0;
-      position: absolute;
-      top: 0.35rem;
-      transform: translateX(calc(-100% - 1.25rem));
+    }
+  }
+
+  .type {
+    ${mixins.text('mini')}
+
+    align-items: center;
+    color: ${colors.blueBrand};
+    display: flex;
+    font-weight: 700;
+    margin-left: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  @media ${mq.tablet} {
+    .type {
+      ${mixins.text('small')}
+
+      font-weight: 700;
+      margin-top: 1rem;
     }
   }
 
@@ -89,6 +120,22 @@ export default css`
   @media ${mq.desktop} {
     .intro {
       ${mixins.text('regular', 'desktop')}
+    }
+  }
+`;
+
+export const iconType = css.resolve`
+  svg {
+    color: ${colors.blueBrand};
+    height: 0.75rem;
+    margin-left: 0.5rem;
+    width: 0.75rem;
+  }
+
+  @media ${mq.tablet} {
+    svg {
+      height: 1rem;
+      width: 1rem;
     }
   }
 `;

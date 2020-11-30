@@ -30,7 +30,7 @@ const Page = ({
     if (typeof window !== 'undefined') {
       if (count === 0) {
         setFilter({
-          tags: getFilterFromUrl('keywords') || [],
+          tags: getFilterFromUrl('type') || [],
         });
       }
 
@@ -41,7 +41,7 @@ const Page = ({
       setNewsEntries(filtered);
 
       if (count > 0) {
-        setUrlForFilter('keywords', filter.tags);
+        setUrlForFilter('type', filter.tags);
       }
     }
 
@@ -65,8 +65,8 @@ const Page = ({
               rows={[
                 [
                   <Select
-                    placeholder="Keywords"
-                    name="tags"
+                    placeholder="Type"
+                    name="type"
                     options={tags.sort(({ label: aLabel }, { label: bLabel }) =>
                       aLabel.toLowerCase().localeCompare(bLabel.toLowerCase())
                     )}
@@ -104,7 +104,10 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    allWpNewsEntry(filter: { status: { eq: "publish" } }) {
+    allWpNewsEntry(
+      filter: { status: { eq: "publish" } }
+      sort: { fields: date, order: DESC }
+    ) {
       ...NewsList
     }
   }
