@@ -38,8 +38,6 @@ const Page = ({
         tags: filter.tags,
       });
 
-      console.log(filtered);
-
       setNewsEntries(filtered);
 
       if (count > 0) {
@@ -106,7 +104,10 @@ export default withLayout(Page);
 
 export const query = graphql`
   query {
-    allWpNewsEntry(filter: { status: { eq: "publish" } }) {
+    allWpNewsEntry(
+      filter: { status: { eq: "publish" } }
+      sort: { fields: date, order: DESC }
+    ) {
       ...NewsList
     }
   }
