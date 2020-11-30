@@ -123,6 +123,10 @@ export const query = graphql`
               }
             }
           }
+
+          ... on WpPage_Acf_Content_RelatedPublications {
+            ...PublicationList
+          }
         }
       }
     }

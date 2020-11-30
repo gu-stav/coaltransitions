@@ -14,4 +14,14 @@ export default css`
       margin-top: 3.5rem;
     }
   }
+
+  .publications-list-contaioner {
+    margin-left: -1rem;
+  }
+
+  @media ${mq.desktop} {
+    .publications-list-contaioner {
+      margin-left: calc(-15% - 10.5rem);
+    }
+  }
 `;
