@@ -95,7 +95,12 @@ const NewsListItem = ({
           {tags && tags.length > 0 && (
             <span className="type">
               {tags.map(({ name, slug }) => {
-                const Icon = typeIconMap[slug];
+                const Icon = typeIconMap[slug] || null;
+
+                if (!Icon) {
+                  return null;
+                }
+
                 return (
                   <>
                     {name}
